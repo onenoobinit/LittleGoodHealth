@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.mobile.android.app.login.LoginActivity">
+
+    <ImageView
+        android:id="@+id/iv_login_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@mipmap/jlapp_dly_db_png" />
+
+
+    <EditText
+        android:id="@+id/et_login_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="54px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="180px"
+        android:background="@null"
+        android:hint="请输入您的账号"
+        android:textColorHint="@color/c_a6a6a6"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="28px"
+        android:background="@color/c_dfdfdf"></View>
+
+    <EditText
+        android:id="@+id/et_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="54px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="80px"
+        android:background="@null"
+        android:hint="请输入您的密码"
+        android:inputType="textPassword"
+        android:textColorHint="@color/c_a6a6a6"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="28px"
+        android:background="@color/c_dfdfdf"></View>
+
+    <TextView
+        android:id="@+id/tv_login_sure"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_below="@+id/edit_login_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/tv_login"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_efefef"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.mobile.android.app.Memorandum.MemorandumActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_view"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcl_bw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/all_add_data"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradient_transparent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/jlapp_zxfk_fwzt_tjxgs_icon"/>
+
+        <TextView
+            android:id="@+id/tv_add_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="添加新的备忘录"
+            android:textColor="@color/c_85B175"
+            android:textSize="30px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:overScrollMode="never">
+
+    <ScrollView
+        android:id="@+id/sv_sigin"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px">
+
+                <CheckBox
+                    android:id="@+id/changejj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:button="@drawable/cb_bg"
+                    android:checked="false"
+                    android:paddingLeft="5dp"
+                    android:text="仅修改家具需求" />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/all_lf_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:layout_marginTop="90px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="*"
+                    android:textColor="@color/red"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5px"
+                    android:text="量房时间:"
+                    android:textColor="@color/c_888888"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_lf_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="22px"
+                    android:text="请选择实际量房时间"
+                    android:textColor="@color/c_000000"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20px"
+                    android:src="@mipmap/jlapp_zxfk_zffs_xl_icon" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:layout_marginTop="50px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="家具需求:"
+                    android:textColor="@color/c_888888"
+                    android:textSize="15sp" />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22px"
+                        android:layout_marginTop="10px"
+                        android:orientation="horizontal">
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <CheckBox
+                                android:id="@+id/centerkt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:button="@drawable/cb_bg"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:paddingLeft="5dp"
+                                android:text="中央空调" />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <CheckBox
+                                android:id="@+id/wholedz"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:button="@drawable/cb_bg"
+                                android:checked="false"
+                                android:paddingLeft="5dp"
+                                android:text="整屋定制" />
+
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22px"
+                        android:layout_marginTop="50px"
+                        android:orientation="horizontal">
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <CheckBox
+                                android:id="@+id/yangtai"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:button="@drawable/cb_bg"
+                                android:checked="false"
+                                android:paddingLeft="5dp"
+                                android:text="阳台窗" />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <CheckBox
+                                android:id="@+id/mumen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:button="@drawable/cb_bg"
+                                android:checked="false"
+                                android:paddingLeft="5dp"
+                                android:text="木门" />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/dinuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="22px"
+                        android:layout_marginTop="50px"
+                        android:button="@drawable/cb_bg"
+                        android:checked="false"
+                        android:paddingLeft="5dp"
+                        android:text="地暖" />
+                </com.zhy.autolayout.AutoLinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/all_mesure_whole"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:orientation="vertical">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="*"
+                            android:textColor="@color/red"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5px"
+                            android:gravity="bottom"
+                            android:text="面积大小:"
+                            android:textColor="@color/c_888888"
+                            android:textSize="15sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="22px"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/over80"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="大于60㎡" />
+
+                            <RadioButton
+                                android:id="@+id/little80"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="小于60㎡" />
+                        </RadioGroup>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="*"
+                            android:textColor="@color/red"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5px"
+                            android:gravity="bottom"
+                            android:text="承包方式:"
+                            android:textColor="@color/c_888888"
+                            android:textSize="15sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_cbstyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="22px"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/wholebao"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="全包" />
+
+                            <RadioButton
+                                android:id="@+id/halfbao"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="半包" />
+                        </RadioGroup>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="*"
+                            android:textColor="@color/red"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5px"
+                            android:text="动工时间:"
+                            android:textColor="@color/c_888888"
+                            android:textSize="15sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_dgtime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="22px"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/threein"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="三个月内" />
+
+                            <RadioButton
+                                android:id="@+id/threeout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="三个月后" />
+
+                            <RadioButton
+                                android:id="@+id/notsure"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="待定" />
+                        </RadioGroup>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="*"
+                            android:textColor="@color/red"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5px"
+                            android:gravity="bottom"
+                            android:text="微信添加:"
+                            android:textColor="@color/c_888888"
+                            android:textSize="15sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_wx"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="22px"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/wxyes"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="是" />
+
+                            <RadioButton
+                                android:id="@+id/wxno"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="否" />
+                        </RadioGroup>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="*"
+                            android:textColor="@color/red"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5px"
+                            android:gravity="bottom"
+                            android:text="公司服务:"
+                            android:textColor="@color/c_888888"
+                            android:textSize="15sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_company"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="22px"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/hadsend"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="已发" />
+
+                            <RadioButton
+                                android:id="@+id/nosend"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="未发" />
+                        </RadioGroup>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="*"
+                            android:textColor="@color/red"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5px"
+                            android:gravity="bottom"
+                            android:text="装修类型:"
+                            android:textColor="@color/c_888888"
+                            android:textSize="15sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_zxstyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="22px"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/wholez"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="整装" />
+
+                            <RadioButton
+                                android:id="@+id/partz"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:button="@drawable/cb_bg_circle"
+                                android:checked="false"
+                                android:paddingLeft="10px"
+                                android:text="局装" />
+                        </RadioGroup>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="64px"
+                        android:layout_marginTop="50px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="*"
+                            android:textColor="@color/red"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5px"
+                            android:text="备注:"
+                            android:textColor="@color/c_888888"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/et_lf_beizhu"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="22px"
+                            android:layout_marginRight="30px"
+                            android:background="@drawable/et_bg"
+                            android:hint=""
+                            android:paddingLeft="20px"
+                            android:textColorHint="@color/c_888888"
+                            android:textSize="15sp" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="60px"
+                    android:background="@color/c_efefef" />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:id="@+id/all_addView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:orientation="vertical"></com.zhy.autolayout.AutoLinearLayout>
+
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200px"
+                    android:background="@color/c_efefef">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:id="@+id/all_addesigin_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@mipmap/jlapp_zxfk_fwzt_tjxgs_icon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="添加新设计公司"
+                            android:textColor="@color/c_85b175"
+                            android:textSize="15sp" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+                </com.zhy.autolayout.AutoRelativeLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </ScrollView>
+</com.zhy.autolayout.AutoLinearLayout>

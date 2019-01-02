@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">三脚猫</string>
+    <!--联系业主页面-->
+    <string name="input_owner_id">请输入业主ID</string>
+    <string name="contact_owner">联系业主</string>
+    <string name="query">查询</string>
+    <string name="call">拨号</string>
+    <!--建材反馈页面-->
+    <string name="input_feed_back">请输入您的反馈内容</string>
+</resources>

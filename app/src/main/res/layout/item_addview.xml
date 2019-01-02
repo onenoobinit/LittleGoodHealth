@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64px"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5px"
+            android:text="设计师公司:"
+            android:textColor="@color/c_888888"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_fb_company"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="22px"
+            android:layout_marginRight="30px"
+            android:background="@drawable/et_bg"
+            android:hint="请输入设计师公司名称"
+            android:paddingLeft="20px"
+            android:textColorHint="@color/c_888888"
+            android:textSize="15sp" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="*"
+            android:textColor="@color/red"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px"
+            android:text="设计师态度:"
+            android:textColor="@color/c_888888"
+            android:textSize="15sp" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22px"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/attitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/nice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/cb_bg_circle"
+                    android:checked="false"
+                    android:paddingLeft="10px"
+                    android:text="良好" />
+
+                <RadioButton
+                    android:id="@+id/just_so_so"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:button="@drawable/cb_bg_circle"
+                    android:paddingLeft="10px"
+                    android:text="一般" />
+
+                <RadioButton
+                    android:id="@+id/bad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:button="@drawable/cb_bg_circle"
+                    android:paddingLeft="10px"
+                    android:text="恶劣" />
+            </RadioGroup>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64px"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="设计师态度详情:"
+            android:textColor="@color/c_888888"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_bad_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="22px"
+            android:layout_marginRight="30px"
+            android:background="@drawable/et_bg"
+            android:hint="选择恶劣时必填"
+            android:paddingLeft="20px"
+            android:textColorHint="@color/c_888888"
+            android:textSize="15sp" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="*"
+                android:textColor="@color/red"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5px"
+                android:text="迟到情况:"
+                android:textColor="@color/c_888888"
+                android:textSize="15sp" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22px"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/rg_late"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/ontime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/cb_bg_circle"
+                    android:checked="false"
+                    android:paddingLeft="10px"
+                    android:text="准时" />
+
+                <RadioButton
+                    android:id="@+id/comelate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50px"
+                    android:button="@drawable/cb_bg_circle"
+                    android:paddingLeft="10px"
+                    android:text="迟到" />
+
+                <RadioButton
+                    android:id="@+id/notcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50px"
+                    android:button="@drawable/cb_bg_circle"
+                    android:paddingLeft="10px"
+                    android:text="未到" />
+            </RadioGroup>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <EditText
+            android:id="@+id/et_late_content"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="22px"
+            android:layout_marginRight="30px"
+            android:background="@drawable/et_bg"
+            android:hint="小时（迟到必填）"
+            android:paddingLeft="20px"
+            android:textColorHint="@color/c_888888"
+            android:textSize="15sp" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60px"
+        android:layout_marginTop="30px">
+
+        <TextView
+            android:id="@+id/tv_item_delete"
+            android:layout_width="210px"
+            android:layout_height="60px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30px"
+            android:background="@drawable/tv_85b175"
+            android:gravity="center"
+            android:text="删除该公司信息"
+            android:textColor="@color/c_85b175"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/c_efefef" />
+</com.zhy.autolayout.AutoLinearLayout>

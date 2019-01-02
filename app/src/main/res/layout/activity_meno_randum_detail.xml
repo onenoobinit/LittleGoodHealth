@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    tools:context="com.mobile.android.app.Memorandum.MemoRandumDetailActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_view"
+        />
+
+    <TextView
+        android:id="@+id/tv_memorandum_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="40px"
+        android:lineSpacingExtra="1dp"
+        android:text="备忘日期/n
+2018/05/08"
+        android:textColor="@color/c_a6a6a6"
+        android:textSize="30px"
+        />
+
+    <TextView
+        android:id="@+id/tv_delete_bw"
+        android:layout_width="82px"
+        android:layout_height="54px"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/toolbar"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="40px"
+        android:background="@drawable/tv_bgd_delete"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="@color/white"
+        android:textSize="26px"
+        />
+
+    <TextView
+        android:id="@+id/tv_edit_bw"
+        android:layout_width="82px"
+        android:layout_height="54px"
+        android:layout_below="@id/toolbar"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="40px"
+        android:layout_toLeftOf="@id/tv_delete_bw"
+        android:background="@drawable/tv_corner_bgd_basic_color"
+        android:gravity="center"
+        android:text="编辑"
+        android:textColor="@color/white"
+        android:textSize="26px"
+        />
+
+    <TextView
+        android:id="@+id/tv_memorandum_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_memorandum_date"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="40px"
+        android:lineSpacingExtra="5dp"
+        android:textColor="@color/c_000000"
+        android:textSize="30px"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:drawable="@mipmap/jlapp_zxfk_zclf_dx_xz_icon" />
+    <item android:state_selected="true" android:drawable="@mipmap/jlapp_zxfk_zclf_dx_xz_icon"></item>
+    <item android:state_pressed="true" android:drawable="@mipmap/jlapp_zxfk_zclf_dx_xz_icon"></item>
+    <item android:state_checked="false" android:drawable="@mipmap/jlapp_zxfk_fwzt_xz_icon" />
+</selector>

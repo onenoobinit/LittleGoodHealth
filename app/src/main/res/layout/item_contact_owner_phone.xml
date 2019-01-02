@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="25dp"
+    >
+
+
+    <TextView
+        android:id="@+id/tv_owner_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_owner_name"
+        android:text="(ID号: 26489452)"
+        android:textColor="@color/c_88888"
+        android:textSize="30px"/>
+
+    <TextView
+        android:id="@+id/tv_call_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_owner_id"
+        android:layout_marginTop="30px"
+        android:text="电话A"
+        android:textColor="@color/c_000000"
+        android:textSize="30px"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/all_call_phone"
+        android:layout_width="110px"
+        android:layout_height="46px"
+        android:layout_below="@id/tv_owner_id"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="20px"
+        android:layout_marginTop="24px"
+        android:layout_toRightOf="@id/tv_call_name"
+        android:background="@drawable/tv_corner_bgd_basic_color"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25px"
+            android:layout_height="25px"
+            android:src="@mipmap/jlapp_wjld_qd_icon"/>
+
+        <TextView
+            android:id="@+id/tv_call_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3px"
+            android:gravity="center"
+            android:text="拨号"
+            android:textColor="@color/white"
+            android:textSize="24px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_below="@id/all_call_phone"
+        android:background="@color/c_EFEFEF"/>
+</com.zhy.autolayout.AutoRelativeLayout>

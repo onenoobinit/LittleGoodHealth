@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context="com.mobile.android.app.Memorandum.AddEditMemoRandumActivity">
+
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/toolbar_view_submit"/>
+
+    <TextView
+        android:id="@+id/tv_memorandum_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolBar"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="60px"
+        android:lineSpacingExtra="1dp"
+        android:text="备忘日期: 请选择备忘日期"
+        android:textColor="@color/c_a6a6a6"
+        android:textSize="30px"
+        />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="490px"
+        android:layout_below="@id/tv_memorandum_date"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30px"
+        android:background="@drawable/feed_back_bgd"
+        android:paddingBottom="20px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:paddingTop="30px"
+        >
+
+        <EditText
+            android:id="@+id/edit_bw_content"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:background="@null"
+            android:gravity="left"
+            android:hint="请输入您的备忘内容"
+            android:lineSpacingExtra="5dp"
+            android:maxEms="500"
+            android:textColor="@color/c_000000"
+            android:textColorHint="@color/c_888888"
+            android:textSize="30px"
+            />
+
+        <TextView
+            android:id="@+id/tv_content_max_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="/500"
+            android:textColor="@color/c_000000"
+            android:textSize="24px"
+            />
+
+        <TextView
+            android:id="@+id/tv_content_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@id/tv_content_max_length"
+            android:text="0"
+            android:textColor="@color/c_85B175"
+            android:textSize="24px"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

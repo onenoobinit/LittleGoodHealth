@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.mobile.android.app.build_material_feedback.BuildingMaterialsFeedBackActivity">
+
+    <include layout="@layout/toolbar_view_submit"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/all_bg_permit"
+        android:orientation="horizontal"
+        >
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/arl_feedback_selector"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1.5"
+            >
+
+            <TextView
+                android:id="@+id/tv_feed_back_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="1dp"
+                android:text="反馈类型"
+                android:textColor="@color/c_696969"
+                android:textSize="14sp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14px"
+                android:layout_toRightOf="@id/tv_feed_back_type"
+                android:src="@mipmap/jlapp_ss_xl_btn"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <EditText
+            android:id="@+id/et_desiginer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30px"
+            android:layout_weight="3"
+            android:background="@null"
+            android:hint="请输入业主ID"
+            android:inputType="number"
+            android:textColorHint="@color/c_888888"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="40px"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:src="@mipmap/jlapp_ss_ssl_btn"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/all_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/all_owner_order"
+            android:layout_width="wrap_content"
+            android:layout_height="130px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="业主单号:"
+                android:textColor="@color/c_888888"
+                android:textSize="30px"/>
+
+            <TextView
+                android:id="@+id/tv_owner_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25px"
+                android:text="选择业主订单"
+                android:textColor="@color/c_000000"
+                android:textSize="30px"/>
+
+            <ImageView
+                android:id="@+id/iv_order_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="24px"
+                android:src="@mipmap/jlapp_zxfk_zffs_xl_icon"/>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="490px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:background="@drawable/feed_back_bgd"
+            android:paddingBottom="20px"
+            android:paddingLeft="30px"
+            android:paddingRight="30px"
+            android:paddingTop="30px"
+            >
+
+            <EditText
+                android:id="@+id/edit_feedback_content"
+                android:layout_width="match_parent"
+                android:layout_height="400px"
+                android:background="@null"
+                android:gravity="left"
+                android:hint="@string/input_feed_back"
+                android:lineSpacingExtra="5dp"
+                android:maxEms="500"
+                android:textColor="@color/c_000000"
+                android:textColorHint="@color/c_888888"
+                android:textSize="30px"
+                />
+
+            <TextView
+                android:id="@+id/tv_content_max_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="/500"
+                android:textColor="@color/c_000000"
+                android:textSize="24px"
+                />
+
+            <TextView
+                android:id="@+id/tv_content_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="2dp"
+                android:layout_toLeftOf="@id/tv_content_max_length"
+                android:text="0"
+                android:textColor="@color/c_85B175"
+                android:textSize="24px"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

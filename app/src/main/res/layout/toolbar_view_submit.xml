@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                       android:id="@+id/toolBar"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="50dp"
+                                       android:orientation="horizontal"
+                                       android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="85px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:scaleType="centerInside"
+        android:src="@mipmap/imagesstorage_btn_back"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="200px"
+        android:textColor="@color/c_010101"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tv_submit"
+        android:layout_width="41dp"
+        android:layout_height="26dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="30px"
+        android:background="@drawable/tv_corner_bgd_basic_color"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="13sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+       android:layout_alignParentBottom="true"
+        android:background="@color/c_efefef"/>
+</com.zhy.autolayout.AutoRelativeLayout>

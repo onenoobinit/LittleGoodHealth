@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".app.decfeedback.DecFeedbackActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_dec_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar_height"
+        android:background="@color/white"
+        app:navigationIcon="@mipmap/imagesstorage_btn_back"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="装修反馈"
+            android:textColor="@color/c_3d3d3d"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_dec_submit"
+            android:layout_width="41dp"
+            android:layout_height="26dp"
+            android:layout_gravity="end"
+            android:layout_marginRight="30px"
+            android:background="@drawable/tv_green"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/c_efefef" />
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30px"
+        android:background="@drawable/all_bg_permit"
+        android:orientation="horizontal">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/arl_dec_selector"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5">
+
+            <TextView
+                android:id="@+id/tv_dec_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="反馈类型"
+                android:textColor="@color/c_696969"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/jlapp_ss_xl_btn" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <EditText
+            android:id="@+id/et_dec"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30px"
+            android:layout_weight="3"
+            android:background="@null"
+            android:hint="请输入业主ID"
+            android:inputType="number"
+            android:textColorHint="@color/c_888888"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_dec_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="40px"
+            android:src="@mipmap/jlapp_ss_ssl_btn" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoFrameLayout
+            android:id="@+id/fl_content"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20px"></com.zhy.autolayout.AutoFrameLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

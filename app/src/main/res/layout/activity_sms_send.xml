@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.mobile.android.app.sms_send.SmsSendActivity">
+
+    <include layout="@layout/toolbar_view"/>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="98px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="40px"
+        android:background="@drawable/contact_owner_query_bgd"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <EditText
+            android:id="@+id/edit_owner_id"
+            android:layout_width="500px"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center|left"
+            android:hint="@string/input_owner_id"
+            android:inputType="number"
+            android:paddingLeft="30px"/>
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30px"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:src="@mipmap/jlapp_ss_ssl_btn"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/arl_send_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="70px"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_owner_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="业主姓名: 王小二"
+            android:textColor="@color/c_000000"
+            android:textSize="34px"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_send_msg"
+            android:layout_width="140px"
+            android:layout_height="54px"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/tv_corner_bgd_basic_color"
+            android:gravity="center"
+            android:text="发送短信"
+            android:textColor="@color/white"
+            android:textSize="26px"/>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/all_send_node"
+            android:layout_width="wrap_content"
+            android:layout_height="130px"
+            android:layout_below="@id/tv_owner_name"
+
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送节点:"
+                android:textColor="@color/c_888888"
+                android:textSize="30px"/>
+
+            <TextView
+                android:id="@+id/tv_send_node"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25px"
+                android:text="待定节点"
+                android:textColor="@color/c_000000"
+                android:textSize="30px"/>
+
+            <ImageView
+                android:id="@+id/iv_order_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="24px"
+                android:src="@mipmap/jlapp_zxfk_zffs_xl_icon"/>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <TextView
+            android:id="@+id/tv_msg_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/all_send_node"
+            android:lineSpacingExtra="4dp"
+            android:text="我是一名it程序猿，每到公司加班的时候，我都默默戴上耳机点开这首歌曲，嘴角微微上扬，我知道这个月优秀员工又是我的，手下的键盘已经冒烟了"
+            android:textColor="@color/c_000000"
+            android:textSize="30px"
+            android:visibility="gone"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

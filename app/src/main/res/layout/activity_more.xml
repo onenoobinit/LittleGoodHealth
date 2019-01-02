@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.mobile.android.app.more.MoreActivity">
+
+    <include layout="@layout/toolbar_view"
+        />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/arl_exit_login"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px">
+
+        <TextView
+            android:id="@+id/tv_exit_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="退出登录"
+            android:textColor="@color/c_888888"
+            android:textSize="34px"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/jlapp_gdgn_xq_icon"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/c_efefef"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>

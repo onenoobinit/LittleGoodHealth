@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:id="@+id/tv_owner_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="王小二"
+        android:textColor="@color/c_000000"
+        android:textSize="30px"/>
+
+    <TextView
+        android:id="@+id/tv_owner_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20px"
+        android:layout_toRightOf="@id/tv_owner_name"
+        android:text="(ID号: 26489452)"
+        android:textColor="@color/c_000000"
+        android:textSize="30px"/>
+
+    <TextView
+        android:id="@+id/ldshij"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_owner_name"
+        android:layout_marginTop="20px"
+        android:text="来电时间"
+        android:textColor="@color/c_bc6363"
+        android:textSize="26px"
+        />
+
+    <TextView
+        android:id="@+id/tv_ld_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ldshij"
+        android:layout_marginTop="15px"
+        android:text="2018/4/12 12:12:12"
+        android:textColor="@color/c_bc6363"
+        android:textSize="26px"/>
+
+    <TextView
+        android:id="@+id/tv_latest_qd_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_ld_time"
+        android:layout_marginBottom="11dp"
+        android:layout_marginTop="30dp"
+        android:text="您最近一次去电时间: 2018/03/03 12:12:12"
+        android:textColor="@color/c_888888"
+        android:textSize="26px"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/all_call_phone"
+        android:layout_width="170px"
+        android:layout_height="70px"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_owner_name"
+        android:background="@drawable/tv_corner_bgd_basic_color"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/jlapp_wjld_qd_icon"/>
+
+        <TextView
+            android:id="@+id/tv_call_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6px"
+            android:gravity="center"
+            android:text="去电"
+            android:textColor="@color/white"
+            android:textSize="30px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/all_call_phone"
+        android:background="@color/c_EFEFEF"/>
+</com.zhy.autolayout.AutoRelativeLayout>

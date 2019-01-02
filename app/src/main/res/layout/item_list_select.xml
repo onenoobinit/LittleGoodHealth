@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                       xmlns:tools="http://schemas.android.com/tools"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:orientation="vertical"
+                                       android:textColor="@color/c_888888"
+    >
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="业主订单A"
+        android:textColor="@color/c_888888"
+        android:textSize="18sp"
+        tools:ignore="DuplicateIds"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/c_efefef"/>
+</com.zhy.autolayout.AutoRelativeLayout>
