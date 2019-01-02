@@ -76,6 +76,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
             default:
                 break;
+
         }
     }
 
