@@ -16,7 +16,7 @@ import com.mobile.android.utils.Constant;
  * @desc 闪屏页
  */
 public class SplashActivity extends BaseActivity {
-    private Handler mHandler=new Handler();
+    private Handler mHandler = new Handler();
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class SplashActivity extends BaseActivity {
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             }
             finish();
-        }, 2000);
+        }, 1000);
     }
 
     @Override

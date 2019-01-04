@@ -1,35 +1,18 @@
 package com.mobile.android;
 
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.L;
-import com.mobile.hyoukalibrary.utils.NetworkUtils;
-import com.mobile.hyoukalibrary.utils.StatusBarCompat;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
-import com.mobile.android.app.Memorandum.MemoRandumDetailActivity;
-import com.mobile.android.app.Memorandum.MemorandumActivity;
-import com.mobile.android.app.build_material_feedback.BuildingMaterialsFeedBackActivity;
-import com.mobile.android.app.contact_owner.ContactOwnerActivity;
-import com.mobile.android.app.decfeedback.DecFeedbackActivity;
-import com.mobile.android.app.desinger.DesiginerSearchActivity;
+import com.mobile.android.app.home.IndexFragment;
+import com.mobile.android.app.home.MeFragment;
 import com.mobile.android.app.login.GlobalReceiver;
-import com.mobile.android.app.missed_calls.MissedCallsActivity;
-import com.mobile.android.app.more.MoreActivity;
-import com.mobile.android.app.sms_send.SmsSendActivity;
 import com.mobile.android.entity.TodayBwBean;
 import com.mobile.android.retrofit.ApiContstants;
 import com.mobile.android.retrofit.RetrofitManager;
@@ -37,8 +20,13 @@ import com.mobile.android.retrofit.RetryWhenNetworkException;
 import com.mobile.android.retrofit.RxSchedulers;
 import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.updatebyrx2.UpdateManager;
+import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.base.BaseEntity;
+import com.mobile.hyoukalibrary.base.BaseObserver;
+import com.mobile.hyoukalibrary.utils.L;
+import com.mobile.hyoukalibrary.utils.StatusBarCompat;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoLinearLayout;
-import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.concurrent.TimeUnit;
 
@@ -47,76 +35,151 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * @author clz
+ * @author wangqiang
  */
 public class MainActivity extends BaseActivity {
-    @BindView(R.id.iv_main_logo)
-    ImageView ivMainLogo;
-    @BindView(R.id.tv_hadlogin_number)
-    TextView tvHadloginNumber;
-    @BindView(R.id.all_member_more)
-    AutoLinearLayout allMemberMore;
-    @BindView(R.id.tv_member_content)
-    TextView tvMemberContent;
-    @BindView(R.id.arl_main_toolbar)
-    AutoRelativeLayout arlMainToolbar;
-    @BindView(R.id.iv_main_callyz)
-    ImageView ivMainCallyz;
-    @BindView(R.id.arl_main_contact)
-    AutoRelativeLayout arlMainContact;
-    @BindView(R.id.iv_main_misscall)
-    ImageView ivMainMisscall;
-    @BindView(R.id.all_main_misscall)
-    AutoRelativeLayout allMainMisscall;
-    @BindView(R.id.iv_main_search)
-    ImageView ivMainSearch;
-    @BindView(R.id.arl_main_desiginer)
-    AutoRelativeLayout arlMainDesiginer;
-    @BindView(R.id.iv_main_dec)
-    ImageView ivMainDec;
-    @BindView(R.id.arl_main_dec)
-    AutoRelativeLayout arlMainDec;
-    @BindView(R.id.iv_main_material)
-    ImageView ivMainMaterial;
-    @BindView(R.id.arl_main_material)
-    AutoRelativeLayout arlMainMaterial;
-    @BindView(R.id.iv_main_manager)
-    ImageView ivMainManager;
-    @BindView(R.id.arl_main_member)
-    AutoRelativeLayout arlMainMember;
-    @BindView(R.id.iv_main_message)
-    ImageView ivMainMessage;
-    @BindView(R.id.arl_main_message)
-    AutoRelativeLayout arlMainMessage;
-    @BindView(R.id.iv_main_more)
-    ImageView ivMainMore;
-    @BindView(R.id.arl_main_more)
-    AutoRelativeLayout arlMainMore;
-    @BindView(R.id.sv_scrollview)
-    ScrollView svScrollview;
-    @BindView(R.id.arl_main_toppic)
-    AutoLinearLayout arlMainPic;
-    @BindView(R.id.ll_root)
-    AutoLinearLayout ll_root;
-    @BindView(R.id.iv_toolbar_bgd)
-    ImageView mIvToolbarBgd;
-    @BindView(R.id.refreshLayout)
-    SmartRefreshLayout mRefreshLayout;
+    /* @BindView(R.id.iv_main_logo)
+     ImageView ivMainLogo;
+     @BindView(R.id.tv_hadlogin_number)
+     TextView tvHadloginNumber;
+     @BindView(R.id.all_member_more)
+     AutoLinearLayout allMemberMore;
+     @BindView(R.id.tv_member_content)
+     TextView tvMemberContent;
+     @BindView(R.id.arl_main_toolbar)
+     AutoRelativeLayout arlMainToolbar;
+     @BindView(R.id.iv_main_callyz)
+     ImageView ivMainCallyz;
+     @BindView(R.id.arl_main_contact)
+     AutoRelativeLayout arlMainContact;
+     @BindView(R.id.iv_main_misscall)
+     ImageView ivMainMisscall;
+     @BindView(R.id.all_main_misscall)
+     AutoRelativeLayout allMainMisscall;
+     @BindView(R.id.iv_main_search)
+     ImageView ivMainSearch;
+     @BindView(R.id.arl_main_desiginer)
+     AutoRelativeLayout arlMainDesiginer;
+     @BindView(R.id.iv_main_dec)
+     ImageView ivMainDec;
+     @BindView(R.id.arl_main_dec)
+     AutoRelativeLayout arlMainDec;
+     @BindView(R.id.iv_main_material)
+     ImageView ivMainMaterial;
+     @BindView(R.id.arl_main_material)
+     AutoRelativeLayout arlMainMaterial;
+     @BindView(R.id.iv_main_manager)
+     ImageView ivMainManager;
+     @BindView(R.id.arl_main_member)
+     AutoRelativeLayout arlMainMember;
+     @BindView(R.id.iv_main_message)
+     ImageView ivMainMessage;
+     @BindView(R.id.arl_main_message)
+     AutoRelativeLayout arlMainMessage;
+     @BindView(R.id.iv_main_more)
+     ImageView ivMainMore;
+     @BindView(R.id.arl_main_more)
+     AutoRelativeLayout arlMainMore;
+     @BindView(R.id.sv_scrollview)
+     ScrollView svScrollview;
+     @BindView(R.id.arl_main_toppic)
+     AutoLinearLayout arlMainPic;
+     @BindView(R.id.ll_root)
+     AutoLinearLayout ll_root;
+     @BindView(R.id.iv_toolbar_bgd)
+     ImageView mIvToolbarBgd;
+     @BindView(R.id.refreshLayout)*/
+//    SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.fl_content)
+    FrameLayout flContent;
+    @BindView(R.id.all_sy)
+    AutoLinearLayout allSy;
+    @BindView(R.id.all_me)
+    AutoLinearLayout allMe;
+    @BindView(R.id.iv_index)
+    ImageView ivIndex;
+    @BindView(R.id.tv_index)
+    TextView tvIndex;
+    @BindView(R.id.iv_me)
+    ImageView ivMe;
+    @BindView(R.id.tv_me)
+    TextView tvMe;
 
     private IntentFilter mIntentFilter = null;
     private GlobalReceiver mGlobalReceiver;
     private int viewHeight;
     private int old_offset;
     private String remarkId;
+    private Fragment[] fragments;
+    private FragmentTransaction trx;
+    private int currentTabIndex;
+    private int selectedCurrent = 0;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         ButterKnife.bind(this);
+        initFragments();
         registerLoginOut();
-        scrollviewdo();
-        initData();
+//        scrollviewdo();
+//        initData();
         //检查更新
         UpdateManager.getInstance().checkUpdate(this);
+    }
+
+    private void initFragments() {
+        IndexFragment indexFragment = IndexFragment.newInstance();
+        MeFragment meFragment = MeFragment.newInstance();
+        fragments = new Fragment[]{indexFragment, meFragment};
+        int checkFragmentPosition = getIntent().getIntExtra("checkFragmentPosition", 0);
+        if (checkFragmentPosition > 0) {
+            setShowingFrament(checkFragmentPosition, true);
+            getIntent().removeExtra("checkFragmentPosition");
+            return;
+        }
+
+        trx = getSupportFragmentManager().beginTransaction();
+        trx.add(R.id.fl_content, indexFragment)
+                .add(R.id.fl_content, meFragment)
+                .hide(meFragment)
+                .show(indexFragment).commitAllowingStateLoss();
+    }
+
+    /**
+     * Fragment切换
+     */
+    private void setShowingFrament(int postion, boolean b) {
+        if (currentTabIndex != postion) {
+            trx = getSupportFragmentManager().beginTransaction();
+            if (b) {
+                if (postion > currentTabIndex) {
+                    trx.setCustomAnimations(
+                            R.anim.slide_right_in,
+                            R.anim.slide_left_out
+                    );
+                } else {
+                    trx.setCustomAnimations(
+                            R.anim.slide_left_in,
+                            R.anim.slide_right_out
+                    );
+                }
+            }
+            trx.hide(fragments[currentTabIndex]);
+            if (!fragments[postion].isAdded()) {
+                trx.add(R.id.fl_content, fragments[postion]);
+            }
+            //首页
+            if (postion == 0) {
+                ivIndex.setImageResource(R.mipmap.tab_index_select);
+                ivMe.setImageResource(R.mipmap.tab_me);
+            }
+
+            if (postion == 1) {
+                ivIndex.setImageResource(R.mipmap.tab_index);
+                ivMe.setImageResource(R.mipmap.tab_me_select);
+            }
+            trx.show(fragments[postion]).commitAllowingStateLoss();
+            currentTabIndex = postion;
+        }
     }
 
     private void initData() {
@@ -132,17 +195,18 @@ public class MainActivity extends BaseActivity {
                     @Override
                     protected void onFinally() {
                         super.onFinally();
-                        mRefreshLayout.finishRefresh();
+//                        mRefreshLayout.finishRefresh();
                     }
 
                     @Override
                     protected void onHandleSuccess(TodayBwBean bean) {
                         L.i("main", bean.toString());
-                        mRefreshLayout.finishRefresh();
+                       /* mRefreshLayout.finishRefresh();
                         if (null != bean) {
                             //设置最新的备忘
                             tvMemberContent.setText(bean.getRemark_txt());
                             if (TextUtils.isEmpty(bean.getRemark_id())) {
+
                                 allMemberMore.setVisibility(View.GONE);
                                 if (TextUtils.isEmpty(bean.getRemark_txt())) {
                                     tvMemberContent.setText("今日无备忘");
@@ -151,24 +215,24 @@ public class MainActivity extends BaseActivity {
                                 allMemberMore.setVisibility(View.VISIBLE);
                                 remarkId = bean.getRemark_id();
                             }
-                        }
+                        }*/
                     }
                 });
         final String account = SupervisorApp.getUser().getAccount();
         if (null != account) {
-            tvHadloginNumber.setText("已登录账号: " + account);
+//            tvHadloginNumber.setText("已登录账号: " + account);
         }
     }
 
-    private void scrollviewdo() {
+    /*private void scrollviewdo() {
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-               refreshlayout.autoRefresh();
+                refreshlayout.autoRefresh();
                 initData();
             }
         });
-    }
+    }*/
 
     private void registerLoginOut() {
         //过滤器
@@ -196,10 +260,10 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.all_member_more, R.id.arl_main_contact, R.id.all_main_misscall, R.id.arl_main_desiginer, R.id.arl_main_dec, R.id.arl_main_material, R.id.arl_main_member, R.id.arl_main_message, R.id.arl_main_more})
+    @OnClick({R.id.all_sy, R.id.all_me})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.all_member_more://今日备忘更多
+            /*case R.id.all_member_more://今日备忘更多
                 final Intent intent = new Intent(MainActivity.this, MemoRandumDetailActivity.class);
                 intent.putExtra("bw_id", remarkId);
                 startActivity(intent);
@@ -231,6 +295,13 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.arl_main_more://更多功能
                 startActivity(new Intent(this, MoreActivity.class));
+                break;*/
+            case R.id.all_sy://首页
+                selectedCurrent = 0;
+                setShowingFrament(0, true);
+                break;
+            case R.id.all_me://我的
+                setShowingFrament(1, true);
                 break;
             default:
                 break;
@@ -267,4 +338,5 @@ public class MainActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

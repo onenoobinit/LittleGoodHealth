@@ -1,21 +1,19 @@
 package com.mobile.android.app.login;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.manager.ActivityManager;
-import com.mobile.hyoukalibrary.utils.L;
-import com.mobile.hyoukalibrary.utils.SPUtil;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.MainActivity;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
@@ -28,17 +26,24 @@ import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.utils.AESUtils;
 import com.mobile.android.utils.Constant;
 import com.mobile.android.widgets.dialog.LoadingDialog;
+import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.base.BaseEntity;
+import com.mobile.hyoukalibrary.base.BaseObserver;
+import com.mobile.hyoukalibrary.manager.ActivityManager;
+import com.mobile.hyoukalibrary.utils.L;
+import com.mobile.hyoukalibrary.utils.SPUtil;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @author clz
+ * @author wangqiang
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
-
+public class LoginActivity extends BaseActivity implements View.OnClickListener, SurfaceHolder.Callback {
 
     @BindView(R.id.iv_login_pic)
     ImageView mIvLoginPic;
@@ -48,19 +53,67 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     EditText mEtLoginPassword;
     @BindView(R.id.tv_login_sure)
     TextView mTvLoginSure;
+    @BindView(R.id.myVideo)
+    SurfaceView myVideo;
     private LoadingDialog mLoadingDialog;
+    private SurfaceHolder holder;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        //全屏没有状态栏。
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        /*//全屏没有状态栏。
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //透明导航栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
         ButterKnife.bind(this);
         mTvLoginSure.setOnClickListener(this);
+        initViewVideo();
+    }
+
+    private void initViewVideo() {
+       /* myVideo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.myview));
+        myVideo.start();
+        myVideo.setOnCompletionListener(mediaPlayer -> myVideo.start());*/
+        holder = myVideo.getHolder();
+        holder.addCallback(this);
+        holder.setKeepScreenOn(true);
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setOnPreparedListener(mediaPlayer1 -> {
+            if (!mediaPlayer.isPlaying()) {
+                mediaPlayer.start();
+            }
+        });
+        try {
+            AssetFileDescriptor file = getResources().openRawResourceFd(R.raw.myview);
+            mediaPlayer.setDataSource(file.getFileDescriptor(), file.getStartOffset(),
+                    file.getLength());
+            mediaPlayer.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.prepare();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_login;
+    }
+
+    @Override
+    protected void onRestart() {
+        initViewVideo();
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStop() {
+//        myVideo.stopPlayback();
+        super.onStop();
     }
 
     @Override
@@ -72,7 +125,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login_sure:
-                login();
+//                login();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             default:
                 break;
@@ -133,6 +187,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } catch (Exception e) {
         }
         return null;
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        mediaPlayer.setDisplay(holder);
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+        }
     }
 }
 

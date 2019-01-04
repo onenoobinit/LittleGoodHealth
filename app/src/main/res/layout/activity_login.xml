@@ -1,76 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
     tools:context="com.mobile.android.app.login.LoginActivity">
+
+    <SurfaceView
+        android:id="@+id/myVideo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@mipmap/nagi_wrong"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="120px"
+        android:alpha="0.8"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/iv_login_pic"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250px"
         android:scaleType="fitXY"
-        android:src="@mipmap/jlapp_dly_db_png" />
+        android:alpha="0.8"
+        android:src="@mipmap/job_icon" />
 
 
     <EditText
         android:id="@+id/et_login_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="54px"
-        android:layout_marginRight="30px"
-        android:layout_marginTop="180px"
-        android:background="@null"
-        android:hint="请输入您的账号"
-        android:textColorHint="@color/c_a6a6a6"
-        android:textSize="15sp" />
+        android:layout_width="945px"
+        android:layout_height="127px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="650px"
+        android:background="@drawable/bg_login_name"
+        android:hint="用户名"
+        android:paddingLeft="66px"
+        android:alpha="0.8"
+        android:textColorHint="@color/c_9b9b9b"
+        android:textSize="40px" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="30px"
-        android:layout_marginRight="30px"
-        android:layout_marginTop="28px"
-        android:background="@color/c_dfdfdf"></View>
 
     <EditText
         android:id="@+id/et_login_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="54px"
-        android:layout_marginRight="30px"
-        android:layout_marginTop="80px"
-        android:background="@null"
-        android:hint="请输入您的密码"
+        android:layout_width="945px"
+        android:layout_height="127px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="840px"
+        android:background="@drawable/bg_login_name"
+        android:hint="密码"
         android:inputType="textPassword"
-        android:textColorHint="@color/c_a6a6a6"
-        android:textSize="15sp" />
+        android:paddingLeft="66px"
+        android:alpha="0.8"
+        android:textColorHint="@color/c_9b9b9b"
+        android:textSize="40px" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="30px"
-        android:layout_marginRight="30px"
-        android:layout_marginTop="28px"
-        android:background="@color/c_dfdfdf"></View>
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="86px"
+        android:layout_marginTop="982px"
+        android:text="忘记密码？"
+        android:textColor="@color/c_9b9b9b"
+        android:textSize="35px" />-->
 
     <TextView
         android:id="@+id/tv_login_sure"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="30px"
-        android:layout_marginRight="30px"
-        android:layout_below="@+id/edit_login_password"
+        android:layout_width="945px"
+        android:layout_height="127px"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/tv_login"
+        android:layout_marginTop="1123px"
+        android:background="@drawable/bg_tv_gray"
         android:gravity="center"
         android:text="登录"
+        android:alpha="0.8"
         android:textColor="@color/white"
-        android:textSize="17sp" />
+        android:textSize="52px" />
 
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/all_recept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5px"
+        android:layout_above="@+id/all_yinsi"
+        android:alpha="0.8"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
 
-</com.zhy.autolayout.AutoLinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录代表您同意"
+            android:textColor="@color/white"
+            android:textSize="35px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《三脚猫用户协议》"
+            android:textColor="@color/c_00A7F7"
+            android:textSize="35px" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/all_yinsi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50px"
+        android:alpha="0.8"
+        android:layout_above="@+id/tv_to_register"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="以及"
+            android:textColor="@color/white"
+            android:textSize="35px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《三脚猫隐私条款》"
+            android:textColor="@color/c_00A7F7"
+            android:textSize="35px" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:id="@+id/tv_to_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="153px"
+        android:text="没有账号？去注册"
+        android:alpha="0.8"
+        android:textColor="@color/c_00A7F7"
+        android:textSize="35px" />
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -9,484 +9,78 @@
     android:orientation="vertical"
     tools:context="com.mobile.android.MainActivity">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
 
-
-    <ScrollView
-        android:id="@+id/sv_scrollview"
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+        android:layout_height="141px"
+        android:orientation="horizontal">
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/all_sy"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical">
-
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:id="@+id/arl_main_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="520px">
-
-                <com.zhy.autolayout.AutoRelativeLayout
-                    android:id="@+id/arl_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/iv_toolbar_bgd"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="0px"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/jl_bj_png" />
-
-                    <ImageView
-                        android:id="@+id/iv_main_logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="75px"
-                        android:src="@mipmap/jlapp_ydlzh_gslg_icon" />
-
-                    <com.zhy.autolayout.AutoLinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30px"
-                        android:layout_marginTop="70px"
-                        android:layout_toRightOf="@+id/iv_main_logo"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="优居客监理系统"
-                            android:textColor="@color/white"
-                            android:textSize="17sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_hadlogin_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10px"
-                            android:text="已登录账号：xxxx"
-                            android:textColor="@color/white"
-                            android:textSize="15sp" />
-
-                    </com.zhy.autolayout.AutoLinearLayout>
-                </com.zhy.autolayout.AutoRelativeLayout>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="220px"
-                    app:cardCornerRadius="5dp"
-                    app:cardElevation="2dp">
-
-                    <com.zhy.autolayout.AutoLinearLayout
-                        android:id="@+id/arl_main_toppic"
-                        android:layout_width="match_parent"
-                        android:layout_height="140dp"
-                        android:orientation="vertical">
-
-                        <com.zhy.autolayout.AutoRelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="30px"
-                                android:layout_marginTop="40px"
-                                android:text="今日备忘"
-                                android:textColor="@color/c_000000"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <com.zhy.autolayout.AutoLinearLayout
-                                android:id="@+id/all_member_more"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="50px"
-                                android:layout_marginTop="55px"
-                                android:orientation="horizontal"
-                                android:visibility="gone">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="更多"
-                                    android:textColor="@color/c_a6a6a6"
-                                    android:textSize="11sp" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginLeft="12px"
-                                    android:src="@mipmap/jlapp_gdgn_xq_icon" />
-                            </com.zhy.autolayout.AutoLinearLayout>
-                        </com.zhy.autolayout.AutoRelativeLayout>
-
-                        <TextView
-                            android:id="@+id/tv_member_content"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="20px"
-                            android:layout_marginLeft="30px"
-                            android:layout_marginRight="30px"
-                            android:layout_marginTop="24px"
-                            android:textColor="@color/c_515151"
-                            android:textSize="15sp" />
-                    </com.zhy.autolayout.AutoLinearLayout>
-                </android.support.v7.widget.CardView>
-
-            </com.zhy.autolayout.AutoRelativeLayout>
+            android:layout_weight="1">
 
             <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="30px"
-                android:layout_marginRight="30px"
-                android:layout_marginTop="50px"
-                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
-                <com.zhy.autolayout.AutoLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160px"
-                    android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/iv_index"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/tab_index_select" />
 
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="15px"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp"
-                        app:contentPadding="5dp">
+                <TextView
+                    android:id="@+id/tv_index"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3px"
+                    android:text="首页"
+                    android:textColor="@color/c_8C8D99"
+                    android:textSize="29px" />
+            </com.zhy.autolayout.AutoLinearLayout>
 
-                        <com.zhy.autolayout.AutoRelativeLayout
-                            android:id="@+id/arl_main_contact"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+        </com.zhy.autolayout.AutoLinearLayout>
 
-                            <ImageView
-                                android:id="@+id/iv_main_callyz"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="30px"
-                                android:src="@mipmap/jlapp_lxyz_icon" />
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/all_me"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="20px"
-                                android:layout_toRightOf="@+id/iv_main_callyz"
-                                android:text="联系业主"
-                                android:textColor="@color/c_000000"
-                                android:textSize="17sp" />
-                        </com.zhy.autolayout.AutoRelativeLayout>
-                    </android.support.v7.widget.CardView>
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
 
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="15px"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp"
-                        app:contentPadding="5dp">
+                <ImageView
+                    android:id="@+id/iv_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/tab_me" />
 
-                        <com.zhy.autolayout.AutoRelativeLayout
-                            android:id="@+id/all_main_misscall"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/iv_main_misscall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="30px"
-                                android:src="@mipmap/jlapp_wjld_icon" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="20px"
-                                android:layout_toRightOf="@+id/iv_main_misscall"
-                                android:text="未接来电"
-                                android:textColor="@color/c_000000"
-                                android:textSize="17sp" />
-                        </com.zhy.autolayout.AutoRelativeLayout>
-                    </android.support.v7.widget.CardView>
-                </com.zhy.autolayout.AutoLinearLayout>
-
-
-                <com.zhy.autolayout.AutoLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160px"
-                    android:layout_marginTop="30px"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="15px"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp"
-                        app:contentPadding="5dp">
-
-                        <com.zhy.autolayout.AutoRelativeLayout
-                            android:id="@+id/arl_main_desiginer"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/iv_main_search"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="30px"
-                                android:src="@mipmap/jlapp_sy_sjscx_icon" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="20px"
-                                android:layout_toRightOf="@+id/iv_main_search"
-                                android:text="设计师查询"
-                                android:textColor="@color/c_000000"
-                                android:textSize="17sp" />
-                        </com.zhy.autolayout.AutoRelativeLayout>
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="15px"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp"
-                        app:contentPadding="5dp">
-
-                        <com.zhy.autolayout.AutoRelativeLayout
-                            android:id="@+id/arl_main_dec"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/iv_main_dec"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="30px"
-                                android:src="@mipmap/jlapp_sy_zxfk_icon" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="20px"
-                                android:layout_toRightOf="@+id/iv_main_dec"
-                                android:text="装修反馈"
-                                android:textColor="@color/c_000000"
-                                android:textSize="17sp" />
-                        </com.zhy.autolayout.AutoRelativeLayout>
-                    </android.support.v7.widget.CardView>
-                </com.zhy.autolayout.AutoLinearLayout>
-
-                <com.zhy.autolayout.AutoLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160px"
-                    android:layout_marginTop="30px"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="15px"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp"
-                        app:contentPadding="5dp">
-
-                        <com.zhy.autolayout.AutoRelativeLayout
-                            android:id="@+id/arl_main_material"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/iv_main_material"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="30px"
-                                android:src="@mipmap/jlapp_sy_jcfk_icon" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="20px"
-                                android:layout_toRightOf="@+id/iv_main_material"
-                                android:text="建材反馈"
-                                android:textColor="@color/c_000000"
-                                android:textSize="17sp" />
-                        </com.zhy.autolayout.AutoRelativeLayout>
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="15px"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp"
-                        app:contentPadding="5dp">
-
-                        <com.zhy.autolayout.AutoRelativeLayout
-                            android:id="@+id/arl_main_member"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/iv_main_manager"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="30px"
-                                android:src="@mipmap/jlapp_sy_bwjl_icon" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="20px"
-                                android:layout_toRightOf="@+id/iv_main_manager"
-                                android:text="备忘管理"
-                                android:textColor="@color/c_000000"
-                                android:textSize="17sp" />
-                        </com.zhy.autolayout.AutoRelativeLayout>
-                    </android.support.v7.widget.CardView>
-                </com.zhy.autolayout.AutoLinearLayout>
-
-                <com.zhy.autolayout.AutoLinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160px"
-                    android:layout_marginTop="30px"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="15px"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp"
-                        app:contentPadding="5dp">
-
-                        <com.zhy.autolayout.AutoRelativeLayout
-                            android:id="@+id/arl_main_message"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/iv_main_message"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="30px"
-                                android:src="@mipmap/jlapp_sy_dxfs_icon" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="20px"
-                                android:layout_toRightOf="@+id/iv_main_message"
-                                android:text="短信发送"
-                                android:textColor="@color/c_000000"
-                                android:textSize="17sp" />
-                        </com.zhy.autolayout.AutoRelativeLayout>
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="15px"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="2dp"
-                        app:contentPadding="5dp">
-
-                        <com.zhy.autolayout.AutoRelativeLayout
-                            android:id="@+id/arl_main_more"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/iv_main_more"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="30px"
-                                android:src="@mipmap/jlapp_sy_gdgn_icon" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginLeft="20px"
-                                android:layout_toRightOf="@+id/iv_main_more"
-                                android:text="更多功能"
-                                android:textColor="@color/c_000000"
-                                android:textSize="17sp" />
-                        </com.zhy.autolayout.AutoRelativeLayout>
-                    </android.support.v7.widget.CardView>
-                </com.zhy.autolayout.AutoLinearLayout>
+                <TextView
+                    android:id="@+id/tv_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3px"
+                    android:text="我的"
+                    android:textColor="@color/c_8C8D99"
+                    android:textSize="29px" />
             </com.zhy.autolayout.AutoLinearLayout>
         </com.zhy.autolayout.AutoLinearLayout>
-    </ScrollView>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 </com.zhy.autolayout.AutoLinearLayout>
