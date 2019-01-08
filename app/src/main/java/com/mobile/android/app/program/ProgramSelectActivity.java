@@ -1,5 +1,6 @@
 package com.mobile.android.app.program;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -89,7 +90,8 @@ public class ProgramSelectActivity extends BaseActivity {
         ButterKnife.bind(this);
         initScroll();
         initRecycleView();
-
+        TextView viewById = findViewById(R.id.tv_next);
+        viewById.setOnClickListener(view -> startActivity(new Intent(this, ProgramDetailActivity.class)));
     }
 
     private void initScroll() {

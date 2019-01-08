@@ -120,14 +120,19 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <!-- 订单页面 -->
-        <activity android:name=".app.order.OrderActivity"
+        <activity
+            android:name=".app.order.OrderActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <!-- 方案选择 -->
         <activity
             android:name=".app.program.ProgramSelectActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 方案选择详情 -->
+        <activity
+            android:name=".app.program.ProgramDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
