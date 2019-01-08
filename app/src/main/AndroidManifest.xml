@@ -132,7 +132,38 @@
         <!-- 方案选择详情 -->
         <activity
             android:name=".app.program.ProgramDetailActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 产品详情 -->
+        <activity
+            android:name=".app.program.ProductDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 设置 -->
+        <activity
+            android:name=".app.set.SetActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 绑定手机 -->
+        <activity
+            android:name=".app.set.SetPhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 绑定邮箱 -->
+        <activity
+            android:name=".app.set.SetMailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 修改登录密码 -->
+        <activity
+            android:name=".app.set.SetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 关于 -->
+        <activity
+            android:name=".app.set.AboutActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
     </application>
 
 </manifest>

@@ -111,4 +111,45 @@
         <item name="android:textSize">46px</item>
         <item name="android:textColor">#535353</item>
     </style>
+
+    <style name="setLeftTv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">46px</item>
+        <item name="android:textSize">40px</item>
+        <item name="android:textColor">@color/c_4A4A4A</item>
+    </style>
+
+    <style name="setIv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20px</item>
+        <item name="android:layout_marginRight">80px</item>
+        <item name="android:src">@mipmap/arrow_right</item>
+    </style>
+
+    <style name="setVline">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_marginLeft">46px</item>
+        <item name="android:layout_marginRight">46px</item>
+        <item name="android:background">@color/c_D8D8D8</item>
+    </style>
+
+    <style name="Sweet.Alert.Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="dialogStyle" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <!-- 进入时的动画 -->
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+        <!-- 退出时的动画 -->
+    </style>
 </resources>

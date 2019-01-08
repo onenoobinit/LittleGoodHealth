@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.mobile.android.R;
 import com.mobile.android.app.order.OrderActivity;
+import com.mobile.android.app.set.SetActivity;
 import com.mobile.hyoukalibrary.base.BaseFragment;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
@@ -126,7 +127,8 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.tv_user_name:
                 break;
-            case R.id.tv_set:
+            case R.id.tv_set://设置
+                startActivity(new Intent(mContext, SetActivity.class));
                 break;
             case R.id.all_number_more://订单更多
                 Intent intent = new Intent(mContext, OrderActivity.class);

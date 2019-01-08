@@ -4,99 +4,254 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:overScrollMode="never">
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/logi_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar_height"
+        android:background="@color/white"
+        app:navigationIcon="@mipmap/back_arrow_blue"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="方案选择"
+            android:textColor="@color/c_000000"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+    </android.support.v7.widget.Toolbar>
+
+    <com.mobile.android.widgets.LazyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_below="@+id/logi_tool_bar"
+        android:overScrollMode="never">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/logi_tool_bar"
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/tool_bar_height"
-            android:background="@color/white"
-            app:navigationIcon="@mipmap/back_arrow_blue"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/all_program_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="320px"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:baselineAligned="false"
+                    android:orientation="vertical"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <include
+                        android:id="@id/all_set_line"
+                        layout="@layout/program_head"></include>
+                </android.support.v7.widget.CardView>
+
+                <include
+                    android:id="@+id/all_program_select"
+                    layout="@layout/program_select" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:id="@+id/all_left"
+                    android:layout_width="224px"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="46px"
+                        android:layout_marginTop="46px"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="35px"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="KL-重板"
+                        android:textColor="@color/c_777777"
+                        android:textSize="40px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginTop="57px"
+                    android:layout_toRightOf="@+id/all_left"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_start_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PVG-AMS"
+                        android:textColor="@color/c_24253D"
+                        android:textSize="52px"
+                        android:textStyle="bold" />
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50px"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@mipmap/shop" />
+
+                        <TextView
+                            android:id="@+id/tv_shop_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10px"
+                            android:text="恒丰国际"
+                            android:textColor="@color/c_00A7F7"
+                            android:textSize="29px" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="20px"
+                            android:src="@mipmap/chat" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="60px"
+                    android:text="产品详情 >"
+                    android:textColor="@color/c_00A7F7"
+                    android:textSize="34px" />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14px"
+                android:layout_marginTop="60px"></android.support.v7.widget.RecyclerView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:text="方案选择"
-                android:textColor="@color/c_000000"
-                android:textSize="20sp"
-                android:textStyle="normal" />
-        </android.support.v7.widget.Toolbar>
-
-        <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/all_program_dialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="320px"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:baselineAligned="false"
-                android:orientation="vertical"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="4dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
-
-                <include
-                    android:id="@id/all_set_line"
-                    layout="@layout/program_head"></include>
-            </android.support.v7.widget.CardView>
-
-            <include
-                android:id="@+id/all_program_select"
-                layout="@layout/program_select" />
-        </com.zhy.autolayout.AutoLinearLayout>
-
-        <com.zhy.autolayout.AutoRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:layout_marginLeft="46px"
+                android:layout_marginTop="40px"
+                android:text="中转港"
+                android:textColor="@color/c_00A7F7"
+                android:textSize="35px" />
 
             <com.zhy.autolayout.AutoLinearLayout
-                android:layout_width="224px"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="46px"
-                    android:layout_marginTop="46px"
-                    android:src="@mipmap/ic_launcher" />
+                android:layout_width="match_parent"
+                android:layout_height="81px"
+                android:layout_marginTop="26px"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_detail_start"
+                    android:layout_width="173px"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="46px"
+                    android:background="@drawable/tv_detail_start"
+                    android:gravity="center"
+                    android:text="AMS"
+                    android:textColor="@color/white"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:id="@+id/tv_detail_end"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="35px"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="KL-重板"
-                    android:textColor="@color/c_777777"
-                    android:textSize="40px" />
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="86px"
+                    android:background="@drawable/tv_detail_end"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="55px"
+                    android:paddingRight="55px"
+                    android:text="更多目的港选择 >"
+                    android:textColor="@color/c_00A7F7"
+                    android:textSize="35px" />
             </com.zhy.autolayout.AutoLinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:layout_marginLeft="66px"
+                android:layout_marginRight="43px"
+                android:layout_marginTop="32px"
+                android:background="@drawable/bg_xuxian"
+                android:layerType="software"></View>
 
-        </com.zhy.autolayout.AutoRelativeLayout>
-    </com.zhy.autolayout.AutoLinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginTop="29px"></android.support.v7.widget.RecyclerView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginTop="40px"
+                android:text="选择比重"
+                android:textColor="@color/c_00A7F7"
+                android:textSize="35px" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_proportion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32px"></android.support.v7.widget.RecyclerView>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10px"
+                android:src="@mipmap/sure_xian" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="160px"></View>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.mobile.android.widgets.LazyScrollView>
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="160px"
         android:layout_alignParentBottom="true"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <com.zhy.autolayout.AutoLinearLayout
@@ -116,6 +271,7 @@
                 android:textSize="40px" />
 
             <TextView
+                android:id="@+id/tv_detail_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -126,6 +282,7 @@
         </com.zhy.autolayout.AutoLinearLayout>
 
         <TextView
+            android:id="@+id/tv_detail_next"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
