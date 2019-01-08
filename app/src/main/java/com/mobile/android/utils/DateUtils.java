@@ -2,6 +2,7 @@ package com.mobile.android.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -56,5 +57,61 @@ public class DateUtils {
             isBigger = true;
         }
         return isBigger;
+    }
+
+    /**
+     * 获取前n天日期、后n天日期
+     *
+     * @param distanceDay 前几天 如获取前7天日期则传-7即可；如果后7天则传7
+     * @return
+     */
+    public static String getOldDate(int distanceDay) {
+        SimpleDateFormat dft = new SimpleDateFormat("yyyy-MM-dd");
+        Date beginDate = new Date();
+        Calendar date = Calendar.getInstance();
+        date.setTime(beginDate);
+        date.set(Calendar.DATE, date.get(Calendar.DATE) + distanceDay);
+        Date endDate = null;
+        try {
+            endDate = dft.parse(dft.format(date.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dft.format(endDate);
+    }
+
+    public static String getWeek(String time) {
+        String Week = "";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(format.parse(time));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int wek = c.get(Calendar.DAY_OF_WEEK);
+
+        if (wek == 1) {
+            Week += "周日";
+        }
+        if (wek == 2) {
+            Week += "周一";
+        }
+        if (wek == 3) {
+            Week += "周二";
+        }
+        if (wek == 4) {
+            Week += "周三";
+        }
+        if (wek == 5) {
+            Week += "周四";
+        }
+        if (wek == 6) {
+            Week += "周五";
+        }
+        if (wek == 7) {
+            Week += "周六";
+        }
+        return Week;
     }
 }

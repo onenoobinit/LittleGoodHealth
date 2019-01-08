@@ -1,7 +1,6 @@
 package com.mobile.android.app.desinger;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,13 +50,13 @@ public class GridviewAdapter extends BaseAdapter {
         tv = (TextView) view.findViewById(R.id.popup_text);
         tv.setText(list.get(position));
 
-        if (position == selectIndex) {
+       /* if (position == selectIndex) {
             tv.setTextColor(Color.parseColor("#a6a6a6"));
             tv.setBackgroundResource(R.drawable.search_label_pressed);
         }else{
             tv.setTextColor(Color.parseColor("#696969"));
             tv.setBackgroundResource(R.drawable.tv_press);
-        }
+        }*/
         return view;
     }
 

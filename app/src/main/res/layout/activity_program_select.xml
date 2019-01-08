@@ -28,10 +28,19 @@
             android:textStyle="normal" />
     </android.support.v7.widget.Toolbar>
 
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/logi_tool_bar"
+        android:background="@color/c_4A4A4A"
+        android:visibility="gone"></View>
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/logi_tool_bar"
+        android:layout_below="@+id/v_line"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
@@ -56,10 +65,10 @@
                         android:id="@+id/all_program_dialog"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/c_F3F2F2"
+                        android:background="@color/white"
                         android:orientation="vertical">
 
-                       <!-- <android.support.v7.widget.CardView
+                        <android.support.v7.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="320px"
                             android:layout_marginLeft="15dp"
@@ -69,294 +78,16 @@
                             app:cardCornerRadius="4dp"
                             app:cardElevation="4dp"
                             app:cardPreventCornerOverlap="true"
-                            app:cardUseCompatPadding="true">-->
+                            app:cardUseCompatPadding="true">
 
-                            <com.zhy.autolayout.AutoLinearLayout
-                                android:id="@+id/all_set_line"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@mipmap/slice"
-                                android:orientation="vertical"
-                                android:alpha="0.9"
-                                android:paddingLeft="60px"
-                                android:paddingRight="60px">
+                            <include
+                                android:id="all_set_line"
+                                layout="@layout/program_head"></include>
+                        </android.support.v7.widget.CardView>
 
-                                <com.zhy.autolayout.AutoRelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="35px">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:text="始发港"
-                                        android:textColor="@color/c_A8A8A8"
-                                        android:textSize="29px" />
-
-                                    <!--<TextView
-                                        android:id="@+id/tv_item_order_date"
-                                        android:layout_width="wrap_content"
-                                        android:text="9月9日"
-                                        android:textSize="40px"
-                                        android:layout_centerInParent="true"
-                                        android:textColor="@color/c_181818"
-                                        android:layout_height="wrap_content" />-->
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:text="目的港"
-                                        android:textColor="@color/c_A8A8A8"
-                                        android:textSize="29px" />
-                                </com.zhy.autolayout.AutoRelativeLayout>
-
-                                <com.zhy.autolayout.AutoRelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="6px">
-
-                                    <com.zhy.autolayout.AutoLinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/tv_start_py"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center_vertical"
-                                            android:text="---"
-                                            android:textColor="@color/c_00A7F7"
-                                            android:textSize="52px"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/tv_start_hy"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center_vertical"
-                                            android:layout_marginLeft="9px"
-                                            android:text=""
-                                            android:textColor="@color/c_00A7F7"
-                                            android:textSize="29px" />
-                                    </com.zhy.autolayout.AutoLinearLayout>
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerInParent="true"
-                                        android:src="@mipmap/fly" />
-
-                                    <com.zhy.autolayout.AutoLinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentRight="true"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/tv_end_hy"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center_vertical"
-                                            android:text="巴塞罗那"
-                                            android:textColor="@color/c_00A7F7"
-                                            android:textSize="29px" />
-
-                                        <TextView
-                                            android:id="@+id/tv_end_py"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center_vertical"
-                                            android:layout_marginLeft="9px"
-                                            android:text="BCN"
-                                            android:textColor="@color/c_00A7F7"
-                                            android:textSize="52px" />
-                                    </com.zhy.autolayout.AutoLinearLayout>
-                                </com.zhy.autolayout.AutoRelativeLayout>
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="2px"
-                                    android:layout_marginTop="14px"
-                                    android:layerType="software"
-                                    android:background="@drawable/bg_xuxian"></View>
-
-                                <com.zhy.autolayout.AutoLinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20px"
-                                    android:orientation="horizontal">
-
-                                    <com.zhy.autolayout.AutoLinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="件数："
-                                            android:textColor="@color/c_9b9b9b"
-                                            android:textSize="29px" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="5px"
-                                            android:text="填入"
-                                            android:textColor="@color/c_9b9b9b"
-                                            android:textSize="29px" />
-                                    </com.zhy.autolayout.AutoLinearLayout>
-
-                                    <com.zhy.autolayout.AutoLinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="重量："
-                                            android:textColor="@color/c_9b9b9b"
-                                            android:textSize="29px" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="5px"
-                                            android:text="填入"
-                                            android:textColor="@color/c_9b9b9b"
-                                            android:textSize="29px" />
-                                    </com.zhy.autolayout.AutoLinearLayout>
-
-                                    <com.zhy.autolayout.AutoLinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="体积："
-                                            android:textColor="@color/c_9b9b9b"
-                                            android:textSize="29px" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="5px"
-                                            android:text="填入"
-                                            android:textColor="@color/c_9b9b9b"
-                                            android:textSize="29px" />
-                                    </com.zhy.autolayout.AutoLinearLayout>
-
-                                    <com.zhy.autolayout.AutoLinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="比重："
-                                            android:textColor="@color/c_9b9b9b"
-                                            android:textSize="29px" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="5px"
-                                            android:text="填入"
-                                            android:textColor="@color/c_9b9b9b"
-                                            android:textSize="29px" />
-                                    </com.zhy.autolayout.AutoLinearLayout>
-                                </com.zhy.autolayout.AutoLinearLayout>
-                            </com.zhy.autolayout.AutoLinearLayout>
-                        <!--</android.support.v7.widget.CardView>-->
-
-                        <com.zhy.autolayout.AutoLinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="141px"
-                            android:layout_marginTop="20px"
-                            android:background="@color/c_F3F2F2"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="43px"
-                                android:text="筛选" />
-
-                            <com.zhy.autolayout.AutoLinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="70px"
-                                android:layout_marginRight="70px"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/tv_just"
-                                    android:layout_width="144px"
-                                    android:layout_height="63px"
-                                    android:layout_gravity="center_vertical"
-                                    android:background="@drawable/bg_tv_just"
-                                    android:gravity="center"
-                                    android:text="正装"
-                                    android:textColor="@color/white"
-                                    android:textSize="40px" />
-
-                                <TextView
-                                    android:id="@+id/tv_prepare"
-                                    android:layout_width="144px"
-                                    android:layout_height="63px"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginLeft="37px"
-                                    android:background="@drawable/bg_tv_back"
-                                    android:gravity="center"
-                                    android:text="备装"
-                                    android:textColor="@color/c_00A7F7"
-                                    android:textSize="40px" />
-
-                                <View
-                                    android:layout_width="1px"
-                                    android:layout_height="53px"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginLeft="58px"
-                                    android:background="@color/c_979797"></View>
-
-                                <TextView
-                                    android:id="@+id/tv_tray"
-                                    android:layout_width="144px"
-                                    android:layout_height="63px"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginLeft="58px"
-                                    android:background="@drawable/bg_tv_just"
-                                    android:gravity="center"
-                                    android:text="托盘"
-                                    android:textColor="@color/white"
-                                    android:textSize="40px" />
-
-                                <TextView
-                                    android:id="@+id/tv_bulk"
-                                    android:layout_width="144px"
-                                    android:layout_height="63px"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginLeft="52px"
-                                    android:background="@drawable/bg_tv_back"
-                                    android:gravity="center"
-                                    android:text="散货"
-                                    android:textColor="@color/c_00A7F7"
-                                    android:textSize="40px" />
-                            </com.zhy.autolayout.AutoLinearLayout>
-                        </com.zhy.autolayout.AutoLinearLayout>
+                        <include
+                            android:id="@+id/all_program_select"
+                            layout="@layout/program_select" />
                     </com.zhy.autolayout.AutoLinearLayout>
                 </android.support.constraint.ConstraintLayout>
             </android.support.design.widget.CollapsingToolbarLayout>
@@ -368,39 +99,36 @@
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <View
-                        android:id="@+id/v_line"
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@color/c_4A4A4A"
-                        android:visibility="gone"></View>
+                    android:layout_height="match_parent">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_date"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-
                 </com.zhy.autolayout.AutoLinearLayout>
             </android.support.constraint.ConstraintLayout>
         </android.support.design.widget.AppBarLayout>
 
-        <com.zhy.autolayout.AutoRelativeLayout
+        <com.mobile.android.widgets.ObservableScrollView
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="二级联动" />
-        </com.zhy.autolayout.AutoRelativeLayout>
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="二级联动" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.mobile.android.widgets.ObservableScrollView>
     </android.support.design.widget.CoordinatorLayout>
 
     <com.zhy.autolayout.AutoLinearLayout
@@ -410,11 +138,13 @@
         android:orientation="horizontal">
 
         <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/all_compresive_sort"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/iv_pare_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -422,6 +152,7 @@
                 android:src="@mipmap/zhineng_sort_select" />
 
             <TextView
+                android:id="@+id/tv_pare_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -432,11 +163,13 @@
         </com.zhy.autolayout.AutoLinearLayout>
 
         <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/all_sale_sort"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/iv_sale_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -444,6 +177,7 @@
                 android:src="@mipmap/sale_sort" />
 
             <TextView
+                android:id="@+id/tv_sale_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -454,11 +188,13 @@
         </com.zhy.autolayout.AutoLinearLayout>
 
         <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/all_price_sort"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/iv_price_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -466,6 +202,7 @@
                 android:src="@mipmap/price_sort" />
 
             <TextView
+                android:id="@+id/tv_price_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

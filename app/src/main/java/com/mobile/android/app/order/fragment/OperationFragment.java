@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.mobile.android.R;
-import com.mobile.android.app.order.adapter.OperationAdapter;
+import com.mobile.android.app.order.adapter.WholeAdapter;
 import com.mobile.hyoukalibrary.base.BaseFragment;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
@@ -38,7 +38,7 @@ public class OperationFragment extends BaseFragment {
 
     //定义当前的刷新的状态
     private LOADSTATE mCurrentState = LOADSTATE.IDLE;//第一次进来空闲状态
-    private OperationAdapter operationAdapter;
+    private WholeAdapter operationAdapter;
 
     //上拉,下拉,空闲
     private enum LOADSTATE {
@@ -88,7 +88,7 @@ public class OperationFragment extends BaseFragment {
         LinearLayoutManager manager = new LinearLayoutManager(mContext);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rvWhole.setLayoutManager(manager);
-        operationAdapter = new OperationAdapter(mContext, 1, complains);
+        operationAdapter = new WholeAdapter(mContext, 2, complains);
         rvWhole.setAdapter(operationAdapter);
     }
 

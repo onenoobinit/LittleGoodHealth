@@ -184,7 +184,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
         tbDecFeedback.setNavigationOnClickListener(view -> {
             finish();
         });
-        addPopWindow = new AddPopWindow(DecFeedbackActivity.this, arlDecSelector);
+        addPopWindow = new AddPopWindow(DecFeedbackActivity.this, 400);
         addPopWindow.setOnPopupItemClickListener(new AddPopWindow.PopupItemClickListener() {
             @Override
             public void popupItemClick(String sid) {

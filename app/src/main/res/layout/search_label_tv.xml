@@ -11,7 +11,7 @@
         android:padding="10dp"
         android:singleLine="true"
         android:text="Helloworld"
-        android:textColor="@color/c_a6a6a6"
+        android:textColor="@color/c_000000"
         android:textSize="15sp">
     </TextView>
 </RelativeLayout>

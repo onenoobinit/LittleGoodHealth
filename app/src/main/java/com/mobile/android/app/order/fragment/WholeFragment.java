@@ -88,7 +88,7 @@ public class WholeFragment extends BaseFragment {
         LinearLayoutManager manager = new LinearLayoutManager(mContext);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rvWhole.setLayoutManager(manager);
-        wholeAapter = new WholeAdapter(mContext, 1, complains);
+        wholeAapter = new WholeAdapter(mContext, 0, complains);
         rvWhole.setAdapter(wholeAapter);
     }
 

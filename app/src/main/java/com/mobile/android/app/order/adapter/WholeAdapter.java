@@ -43,30 +43,34 @@ public class WholeAdapter extends RecyclerView.Adapter<WholeAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-       /* if ("已解决".equals(datas.get(position).getStatus_name())) {
-            holder.tv_ap_state.setBackgroundResource(R.drawable.tv_ap_green);
-            holder.tv_ap_state.setText("已解决");
-            holder.tv_ap_state.setTextColor(Color.parseColor("#50c3ba"));
-        } else if ("待办".equals(datas.get(position).getStatus_name())) {
-            holder.tv_ap_state.setBackgroundResource(R.drawable.tv_ap_red);
-            holder.tv_ap_state.setText("待办");
-            holder.tv_ap_state.setTextColor(Color.parseColor("#FF0000"));
-        } else if ("处理中".equals(datas.get(position).getStatus_name())) {
-            holder.tv_ap_state.setBackgroundResource(R.drawable.tv_ap_oriange);
-            holder.tv_ap_state.setText("处理中");
-            holder.tv_ap_state.setTextColor(Color.parseColor("#fbaa36"));
+        if (type == 0) {
+            holder.tv_order_stauts.setVisibility(View.GONE);
+            holder.tv_order_shenhe.setVisibility(View.GONE);
         }
-        holder.tv_ap_number.setText(datas.get(position).getComplain_id());
-        holder.tv_ap_name.setText(datas.get(position).getOne_class_name());
-        holder.tv_ap_title.setText(datas.get(position).getTwo_class_name());
-        holder.tv_ap_describe.setText(datas.get(position).getContent());
-        holder.tv_ap_call.setText(datas.get(position).getComplain_from());
-        holder.tv_ap_time.setText(datas.get(position).getAdd_time());
-        holder.all_ap_item.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, ComplainDetailActivity.class);
-            intent.putExtra("complain_id", datas.get(position).getComplain_id());
-            mContext.startActivity(intent);
-        });*/
+
+        if (type == 1) {
+            holder.tv_order_shenhe.setVisibility(View.VISIBLE);
+            holder.tv_order_shenhe.setText("订单审核中");
+            holder.tv_order_stauts.setVisibility(View.GONE);
+        }
+
+        if (type == 2) {
+            holder.tv_order_shenhe.setVisibility(View.GONE);
+            holder.tv_order_stauts.setVisibility(View.VISIBLE);
+            holder.tv_order_shenhe.setText("需确认优化运费数据");
+        }
+
+        if (type == 3) {
+            holder.tv_order_shenhe.setVisibility(View.GONE);
+            holder.tv_order_stauts.setVisibility(View.VISIBLE);
+            holder.tv_order_shenhe.setText("待付款");
+        }
+
+        if (type == 4) {
+            holder.tv_order_shenhe.setVisibility(View.GONE);
+            holder.tv_order_stauts.setVisibility(View.VISIBLE);
+            holder.tv_order_shenhe.setText("待评论");
+        }
     }
 
     @Override
@@ -84,6 +88,8 @@ public class WholeAdapter extends RecyclerView.Adapter<WholeAdapter.MyViewHolder
         private final TextView tvEndPy;
         private final TextView tvItemInsurance;
         private final TextView tvItemMoney;
+        private final TextView tv_order_stauts;
+        private final TextView tv_order_shenhe;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -96,6 +102,8 @@ public class WholeAdapter extends RecyclerView.Adapter<WholeAdapter.MyViewHolder
             tvEndPy = itemView.findViewById(R.id.tv_end_py);
             tvItemInsurance = itemView.findViewById(R.id.tv_item_Insurance);
             tvItemMoney = itemView.findViewById(R.id.tv_item_money);
+            tv_order_stauts = itemView.findViewById(R.id.tv_order_stauts);
+            tv_order_shenhe = itemView.findViewById(R.id.tv_order_shenhe);
         }
     }
 }

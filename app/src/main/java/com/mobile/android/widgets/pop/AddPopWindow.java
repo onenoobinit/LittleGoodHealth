@@ -36,7 +36,7 @@ public class AddPopWindow extends PopupWindow implements AdapterView.OnItemClick
     private final GridviewAdapter gridviewAdapter;
 
 
-    public AddPopWindow(final Activity context, View view) {
+    public AddPopWindow(final Activity context, int i) {
         this.context = context;
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,12 +46,13 @@ public class AddPopWindow extends PopupWindow implements AdapterView.OnItemClick
         // 设置SelectPicPopupWindow的View
         this.setContentView(conentView);
         // 设置SelectPicPopupWindow弹出窗体的宽
-        view.post(new Runnable() {
+       /* view.post(new Runnable() {
             @Override
             public void run() {
                 setWidth(view.getWidth());
             }
-        });
+        });*/
+       setWidth(i);
         // 设置SelectPicPopupWindow弹出窗体的高
         this.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         // 设置SelectPicPopupWindow弹出窗体可点击

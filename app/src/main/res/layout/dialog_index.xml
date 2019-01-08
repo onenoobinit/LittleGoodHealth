@@ -154,6 +154,8 @@
             android:layout_marginLeft="35px"
             android:layout_marginRight="35px"
             android:layout_marginTop="58px"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:orientation="horizontal">
 
             <com.zhy.autolayout.AutoLinearLayout

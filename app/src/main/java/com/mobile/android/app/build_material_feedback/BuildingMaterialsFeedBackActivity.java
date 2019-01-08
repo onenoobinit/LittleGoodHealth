@@ -117,7 +117,7 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
                         for (int i = 0; i < mFk_types.size(); i++) {
                             mFeedBackTypes.add(mFk_types.get(i).getType());
                         }
-                        mFeedBackTypeWindow = new AddPopWindow(BuildingMaterialsFeedBackActivity.this, mArlFeedbackSelector);
+                        mFeedBackTypeWindow = new AddPopWindow(BuildingMaterialsFeedBackActivity.this, 100);
                         mFeedBackTypeWindow.setPopupItemClickListener2(new AddPopWindow.PopupItemClickListener2() {
                             @Override
                             public void popupItemClick(int position) {

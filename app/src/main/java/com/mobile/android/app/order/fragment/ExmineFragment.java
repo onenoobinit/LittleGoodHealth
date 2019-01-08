@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.mobile.android.R;
-import com.mobile.android.app.order.adapter.ExmineAdapter;
+import com.mobile.android.app.order.adapter.WholeAdapter;
 import com.mobile.hyoukalibrary.base.BaseFragment;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
@@ -38,7 +38,7 @@ public class ExmineFragment extends BaseFragment {
 
     //定义当前的刷新的状态
     private LOADSTATE mCurrentState = LOADSTATE.IDLE;//第一次进来空闲状态
-    private ExmineAdapter exmineAdapter;
+    private WholeAdapter exmineAdapter;
 
     //上拉,下拉,空闲
     private enum LOADSTATE {
@@ -88,7 +88,7 @@ public class ExmineFragment extends BaseFragment {
         LinearLayoutManager manager = new LinearLayoutManager(mContext);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rvWhole.setLayoutManager(manager);
-        exmineAdapter = new ExmineAdapter(mContext, 1, complains);
+        exmineAdapter = new WholeAdapter(mContext, 1, complains);
         rvWhole.setAdapter(exmineAdapter);
     }
 
