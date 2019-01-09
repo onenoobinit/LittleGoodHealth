@@ -136,6 +136,7 @@
                     <TextView
                         android:id="@+id/tv_set_phone"
                         style="@style/setLeftTv"
+                        android:textColor="@color/c_4A4A4A"
                         android:layout_gravity="center_vertical"
                         android:text="123****1234" />
 
@@ -170,6 +171,7 @@
                     <TextView
                         android:id="@+id/tv_set_mail"
                         style="@style/setLeftTv"
+                        android:textColor="@color/c_4A4A4A"
                         android:layout_gravity="center_vertical"
                         android:text="123@qq.com" />
 
@@ -247,6 +249,7 @@
                     <TextView
                         android:id="@+id/tv_set_vip"
                         style="@style/setLeftTv"
+                        android:visibility="gone"
                         android:layout_gravity="center_vertical"
                         android:text="青铜会员" />
 

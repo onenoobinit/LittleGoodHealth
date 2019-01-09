@@ -1,15 +1,18 @@
 package com.mobile.hyoukalibrary.base;
 
 import android.app.Application;
+import android.text.TextUtils;
 
 import com.baidu.mobstat.StatService;
-import com.tencent.sonic.sdk.SonicConfig;
-import com.tencent.sonic.sdk.SonicEngine;
 import com.mobile.hyoukalibrary.sonic.SonicRuntimeImpl;
 import com.mobile.hyoukalibrary.utils.ApplicationUtils;
 import com.mobile.hyoukalibrary.utils.L;
+import com.mobile.hyoukalibrary.utils.MetaDataUtil;
 import com.mobile.hyoukalibrary.utils.SDCardUtil;
 import com.mobile.hyoukalibrary.utils.ToastUtil;
+import com.tencent.sonic.sdk.SonicConfig;
+import com.tencent.sonic.sdk.SonicEngine;
+
 import java.io.File;
 
 
@@ -50,6 +53,7 @@ public abstract class BaseApplication extends Application {
      * SD卡项目地址
      */
     public static String fileName = "designer";
+    private String channel;
 
 
     /**
@@ -110,5 +114,21 @@ public abstract class BaseApplication extends Application {
 
     public static BaseApplication getInstance() {
         return mInstance;
+    }
+
+    /**
+     * 获取渠道号
+     *
+     * @return
+     */
+    public String getChannel() {
+        if (TextUtils.isEmpty(channel)) {
+            channel = MetaDataUtil.getFromApplication(this, "BaiduMobAd_CHANNEL");
+            //根据后台需求 去掉渠道号下划线
+            if (!TextUtils.isEmpty(channel) && channel.contains("_")) {
+                channel = channel.replace("_", "");
+            }
+        }
+        return channel;
     }
 }

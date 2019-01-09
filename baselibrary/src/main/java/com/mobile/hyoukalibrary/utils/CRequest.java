@@ -1,5 +1,7 @@
 package com.mobile.hyoukalibrary.utils;
 
+import android.text.TextUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,4 +108,16 @@ public class CRequest {
         return mapRequest;
     }
 
+    public static String append(String url,String params){
+        if (!TextUtils.isEmpty(params)){
+            if (!TextUtils.isEmpty(url) && !url.contains(params)){
+                if (url.contains("?")){
+                    url = url +"&"+params;
+                }else{
+                    url = url +"?"+params;
+                }
+            }
+        }
+        return url;
+    }
 }

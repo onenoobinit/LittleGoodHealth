@@ -13,11 +13,11 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:src="@mipmap/nagi_wrong"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
         android:layout_marginTop="120px"
         android:alpha="0.8"
-        android:layout_height="wrap_content" />
+        android:src="@mipmap/nagi_wrong" />
 
     <ImageView
         android:id="@+id/iv_login_pic"
@@ -25,8 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250px"
-        android:scaleType="fitXY"
         android:alpha="0.8"
+        android:scaleType="fitXY"
         android:src="@mipmap/job_icon" />
 
 
@@ -36,10 +36,12 @@
         android:layout_height="127px"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="650px"
-        android:background="@drawable/bg_login_name"
-        android:hint="用户名"
-        android:paddingLeft="66px"
         android:alpha="0.8"
+        android:background="@drawable/bg_login_name"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:hint="用户名"
+        android:inputType="number|textEmailAddress"
+        android:paddingLeft="66px"
         android:textColorHint="@color/c_9b9b9b"
         android:textSize="40px" />
 
@@ -50,14 +52,13 @@
         android:layout_height="127px"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="840px"
+        android:alpha="0.8"
         android:background="@drawable/bg_login_name"
         android:hint="密码"
         android:inputType="textPassword"
         android:paddingLeft="66px"
-        android:alpha="0.8"
         android:textColorHint="@color/c_9b9b9b"
         android:textSize="40px" />
-
 
     <!--<TextView
         android:layout_width="wrap_content"
@@ -75,10 +76,10 @@
         android:layout_height="127px"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="1123px"
+        android:alpha="0.8"
         android:background="@drawable/bg_tv_gray"
         android:gravity="center"
         android:text="登录"
-        android:alpha="0.8"
         android:textColor="@color/white"
         android:textSize="52px" />
 
@@ -86,10 +87,10 @@
         android:id="@+id/all_recept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5px"
         android:layout_above="@+id/all_yinsi"
-        android:alpha="0.8"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5px"
+        android:alpha="0.8"
         android:orientation="horizontal">
 
         <TextView
@@ -100,6 +101,7 @@
             android:textSize="35px" />
 
         <TextView
+            android:id="@+id/tv_login_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="《三脚猫用户协议》"
@@ -111,10 +113,10 @@
         android:id="@+id/all_yinsi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50px"
-        android:alpha="0.8"
         android:layout_above="@+id/tv_to_register"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50px"
+        android:alpha="0.8"
         android:orientation="horizontal">
 
         <TextView
@@ -125,6 +127,7 @@
             android:textSize="35px" />
 
         <TextView
+            android:id="@+id/tv_login_mimi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="《三脚猫隐私条款》"
@@ -139,8 +142,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="153px"
-        android:text="没有账号？去注册"
         android:alpha="0.8"
+        android:text="没有账号？去注册"
         android:textColor="@color/c_00A7F7"
         android:textSize="35px" />
 </com.zhy.autolayout.AutoRelativeLayout>

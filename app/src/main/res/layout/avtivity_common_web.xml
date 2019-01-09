@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/arl_header"
+        android:layout_width="match_parent"
+        android:layout_height="105px"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:translationZ="1px">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="80px"
+            android:layout_marginRight="60px"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLength="8"
+            android:singleLine="true"
+            android:textColor="@color/c_000000"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            android:text="" />
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:paddingLeft="20px"
+            android:paddingRight="12px"
+            android:src="@mipmap/back_arrow_blue" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/c_979797"
+        android:layout_below="@id/arl_header"
+        android:layout_height="2px"></View>
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/arl_header"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressbar_web"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/arl_header"
+        android:progressDrawable="@drawable/progress_bar_web_drawable"
+        android:visibility="gone"
+
+        />
+
+    <com.mobile.hyoukalibrary.x5_web_view.BaseWebView
+        android:id="@+id/ev_web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/progressbar_web"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/afl_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

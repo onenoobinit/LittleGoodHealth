@@ -4,4 +4,9 @@
         <item>装修</item>
         <item>建材</item>
     </string-array>
+
+    <string-array name="options">
+        <item>拍摄照片</item>
+        <item>选择文件</item>
+    </string-array>
 </resources>

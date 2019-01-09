@@ -118,7 +118,7 @@
         <activity
             android:name=".app.register.RegisterActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <!-- 订单页面 -->
         <activity
             android:name=".app.order.OrderActivity"
@@ -162,6 +162,22 @@
         <!-- 关于 -->
         <activity
             android:name=".app.set.AboutActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 通用网页 -->
+        <activity
+            android:name=".app.web.CommonWebActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <!-- 意见反馈 -->
+        <activity
+            android:name=".app.set.FeedBackActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 搜索 -->
+        <activity
+            android:name=".app.search.SearchActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
     </application>

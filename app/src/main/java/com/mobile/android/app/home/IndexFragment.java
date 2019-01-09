@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.mobile.android.R;
 import com.mobile.android.app.program.ProgramSelectActivity;
+import com.mobile.android.app.search.SearchActivity;
 import com.mobile.android.widgets.dialog.IndexDialog;
 import com.mobile.android.widgets.pop.AddPopWindow;
 import com.mobile.hyoukalibrary.base.BaseFragment;
@@ -70,7 +71,7 @@ public class IndexFragment extends BaseFragment {
 
             @Override
             public void endClick(TextView tv, ImageView iv) {
-
+                mContext.startActivity(new Intent(mContext, SearchActivity.class));
             }
 
             @Override

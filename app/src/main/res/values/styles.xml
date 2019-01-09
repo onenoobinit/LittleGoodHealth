@@ -117,7 +117,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">46px</item>
         <item name="android:textSize">40px</item>
-        <item name="android:textColor">@color/c_4A4A4A</item>
+        <item name="android:textColor">@color/c_9b9b9b</item>
     </style>
 
     <style name="setIv">

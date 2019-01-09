@@ -59,6 +59,13 @@ dependencies {
     //https://github.com/hongyangAndroid/AndroidAutoLayout
     api 'com.zhy:autolayout:1.4.5'
     androidTestImplementation 'junit:junit:4.12'
+
+    api 'cn.finalteam.rxgalleryfinal:library:1.1.2'
+    /*图片选择*/
+    api 'cn.finalteam:galleryfinal:1.4.8.7'
+
+    //腾讯TBS
+    api files('libs/tbs_sdk_thirdapp_v3.6.0.1183_43604_sharewithdownload_withoutGame_obfs_20180211_105126.jar')
     //Gson
     api 'com.google.code.gson:gson:+'
     api files('libs/Baidu_Mtj_3.8.1.1.jar')
@@ -69,5 +76,4 @@ dependencies {
     //https://github.com/Tencent/VasSonic/blob/master/sonic-android/docs/Sonic%E6%8E%A5%E5%85%A5%E6%8C%87%E5%BC%95.md
     api 'com.tencent.sonic:sdk:3.0.0-alpha'
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
-    implementation files('libs/tbs_sdk_thirdapp_v3.5.0.1004_43500_sharewithdownload_withoutGame_obfs_20170801_113025.jar')
 }

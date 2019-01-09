@@ -5,7 +5,9 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -14,9 +16,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mobile.android.Constants;
 import com.mobile.android.MainActivity;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
+import com.mobile.android.app.register.RegisterActivity;
+import com.mobile.android.app.web.CommonWebActivity;
 import com.mobile.android.entity.User;
 import com.mobile.android.retrofit.ApiContstants;
 import com.mobile.android.retrofit.RetrofitManager;
@@ -33,12 +38,14 @@ import com.mobile.hyoukalibrary.manager.ActivityManager;
 import com.mobile.hyoukalibrary.utils.L;
 import com.mobile.hyoukalibrary.utils.SPUtil;
 import com.mobile.hyoukalibrary.utils.ToastUtil;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author wangqiang
@@ -55,6 +62,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     TextView mTvLoginSure;
     @BindView(R.id.myVideo)
     SurfaceView myVideo;
+    @BindView(R.id.tv_login_id)
+    TextView tvLoginId;
+    @BindView(R.id.all_recept)
+    AutoLinearLayout allRecept;
+    @BindView(R.id.tv_login_mimi)
+    TextView tvLoginMimi;
+    @BindView(R.id.all_yinsi)
+    AutoLinearLayout allYinsi;
+    @BindView(R.id.tv_to_register)
+    TextView tvToRegister;
     private LoadingDialog mLoadingDialog;
     private SurfaceHolder holder;
     private MediaPlayer mediaPlayer;
@@ -70,8 +87,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         ButterKnife.bind(this);
-        mTvLoginSure.setOnClickListener(this);
         initViewVideo();
+
+        TextChange textChange = new TextChange();
+        mEtLoginNumber.addTextChangedListener(textChange);
+        mEtLoginPassword.addTextChangedListener(textChange);
     }
 
     private void initViewVideo() {
@@ -121,12 +141,27 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     }
 
-    @Override
+    @OnClick({R.id.tv_login_sure, R.id.tv_login_id, R.id.tv_login_mimi, R.id.tv_to_register})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login_sure:
 //                login();
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                break;
+            case R.id.tv_login_id:
+                Intent intent = new Intent(LoginActivity.this, CommonWebActivity.class);
+                intent.putExtra("url", Constants.URL_ID);
+                intent.putExtra("title", "用户协议");
+                startWebActivity(Constants.URL_ID, intent);
+                break;
+            case R.id.tv_login_mimi:
+                Intent intent1 = new Intent(LoginActivity.this, CommonWebActivity.class);
+                intent1.putExtra("url", Constants.URL_MIMI);
+                intent1.putExtra("title", "隐私条款");
+                startWebActivity(Constants.URL_MIMI, intent1);
+                break;
+            case R.id.tv_to_register:
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
             default:
                 break;
@@ -209,6 +244,26 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         super.onDestroy();
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
+        }
+    }
+
+    private class TextChange implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (mEtLoginNumber.getText().toString().length() > 0 && mEtLoginPassword.getText().toString().length() > 0) {
+                mTvLoginSure.setBackgroundResource(R.drawable.tv_login);
+            } else {
+                mTvLoginSure.setBackgroundResource(R.drawable.bg_tv_gray);
+            }
         }
     }
 }

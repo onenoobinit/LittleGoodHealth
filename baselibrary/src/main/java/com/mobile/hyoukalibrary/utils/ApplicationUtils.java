@@ -197,6 +197,7 @@ public class ApplicationUtils
 		return SDCardUtil.getSDCardPath()+folderName+File.separator+"log"+File.separator;
 	}
 
+
     /**
      * 调用系统浏览器下载
      * @param context
@@ -212,4 +213,9 @@ public class ApplicationUtils
         }
     }
 
+    public static String getSDFilePackagePath(Context applicationContext) {
+        String packgeName = ApplicationUtils.getPackgeName(applicationContext);
+        String folderName = packgeName.substring(packgeName.lastIndexOf(".")+1);
+        return SDCardUtil.getSDCardPath()+folderName+File.separator+"log"+File.separator;
+    }
 }

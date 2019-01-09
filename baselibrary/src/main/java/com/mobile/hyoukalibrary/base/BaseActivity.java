@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,16 +19,20 @@ import android.widget.Toast;
 import com.baidu.mobstat.StatService;
 import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
-import com.tencent.sonic.sdk.SonicEngine;
-import com.tencent.sonic.sdk.SonicSessionConfig;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.mobile.hyoukalibrary.manager.ActivityManager;
 import com.mobile.hyoukalibrary.rxbus.RxBus;
 import com.mobile.hyoukalibrary.service.HideService;
 import com.mobile.hyoukalibrary.sonic.SonicJavaScriptInterface;
+import com.mobile.hyoukalibrary.sonic.SonicSessionClientImpl;
 import com.mobile.hyoukalibrary.utils.L;
 import com.mobile.hyoukalibrary.utils.NetworkUtils;
 import com.mobile.hyoukalibrary.utils.StatusBarCompat;
+import com.mobile.hyoukalibrary.x5_web_view.BaseWebView;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.sonic.sdk.SonicEngine;
+import com.tencent.sonic.sdk.SonicSession;
+import com.tencent.sonic.sdk.SonicSessionConfig;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -48,7 +53,7 @@ import io.reactivex.schedulers.Schedulers;
  * 描述:Acitivity基类
  * <p>
  * 工程:
- * #0000    Tian Xiao    2016-09-06 13:38
+ * #0000    wangqiang    2016-09-06 13:38
  *
  * @author Administrator
  */
@@ -60,6 +65,20 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected Map<String, Object> params = new HashMap<String, Object>();
 
     protected Gson gson = new Gson();
+
+    /**
+     * ----------------TBS 配置--------------------
+     */
+
+    protected WebSettings mWebSetting;
+
+    private String appCacheDir;
+
+    protected BaseWebView mTBSWebView;
+    protected String url;
+    protected SonicSession sonicSession;
+    protected SonicSessionClientImpl sonicSessionClient;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,8 +103,61 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         ActivityManager.getInstance().addActivity(this);
         RxBus.get().register(this);
         startHideService();
+        if (mTBSWebView != null) {
+            initializeWebSetting(url);
+        }
         initWebView();
 
+    }
+
+    /**
+     * TBSWebSetting，TbsWeb缓存
+     */
+    private void initializeWebSetting(@Nullable String url) {
+        // 如果是声波模式，在第一时间启动声波会议。
+        SonicSessionConfig.Builder sessionConfigBuilder = new SonicSessionConfig.Builder();
+        sessionConfigBuilder.setSupportLocalServer(true);
+        // 创建声波会话并运行音速流
+        if (!TextUtils.isEmpty(url)) {
+            sonicSession = SonicEngine.getInstance().createSession(url, sessionConfigBuilder.build());
+        }
+        if (null != sonicSession) {
+            sonicSession.bindClient(sonicSessionClient = new SonicSessionClientImpl());
+            Intent intent = new Intent();
+            intent.putExtra(SonicJavaScriptInterface.PARAM_LOAD_URL_TIME, System.currentTimeMillis());
+            mTBSWebView.removeJavascriptInterface("searchBoxJavaBridge_");
+            mTBSWebView.addJavascriptInterface(new SonicJavaScriptInterface(sonicSessionClient, intent), "sonic");
+        }
+        //获取WebSettings
+        mWebSetting = mTBSWebView.getSettings();
+        mWebSetting.setDefaultTextEncodingName("utf-8"); //设置文本编码
+        //确认加载JS
+        mWebSetting.setJavaScriptEnabled(true);
+        mWebSetting.setLoadWithOverviewMode(true);
+        mWebSetting.setJavaScriptCanOpenWindowsAutomatically(true);
+        //设置自适应屏幕，两者合用
+        mWebSetting.setUseWideViewPort(true); //将图片调整到适合webview的大小
+        mWebSetting.setDomStorageEnabled(true);//存储机制
+        mWebSetting.setAllowFileAccess(true);// 允许访问文件
+        mWebSetting.setLoadsImagesAutomatically(true); //支持自动加载图片
+        mWebSetting.setSupportZoom(true);
+        mWebSetting.setBuiltInZoomControls(true);
+        mTBSWebView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return true;
+            }
+        });
+    }
+
+    public void loadUrl(String url) {
+        // WebView是准备好了，就告诉客户绑定会话
+        if (sonicSessionClient != null) {
+            sonicSessionClient.bindWebView(mTBSWebView);
+            sonicSessionClient.clientReady();
+        } else { // 默认模式
+            mTBSWebView.loadUrl(url);
+        }
     }
 
     /**
@@ -158,6 +230,17 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (mTBSWebView != null) {
+            //释放资源
+            mTBSWebView.stopLoading();
+            mTBSWebView.removeAllViews();
+            mTBSWebView.destroy();
+            mTBSWebView = null;
+        }
+        if (null != sonicSession) {
+            sonicSession.destroy();
+            sonicSession = null;
+        }
         RxBus.get().unregister(this);
         ActivityManager.getInstance().finishActivity(this);
         stopHideService();
@@ -218,6 +301,10 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected void onResume() {
         super.onResume();
         L.i("onResume:" + this.getClass().getSimpleName());
+        if (mTBSWebView != null) {
+            mTBSWebView.onResume();
+            mTBSWebView.resumeTimers();
+        }
         StatService.onResume(this);
     }
 
@@ -225,6 +312,10 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected void onPause() {
         L.i("onPause:" + this.getClass().getSimpleName());
         super.onPause();
+        if (mTBSWebView != null) {
+            mTBSWebView.onPause();
+            mTBSWebView.pauseTimers();
+        }
         StatService.onPause(this);
     }
 
