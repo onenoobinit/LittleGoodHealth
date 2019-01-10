@@ -22,20 +22,14 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.jaeger.library.StatusBarUtil;
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.L;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.widgets.dialog.ListSelectDialog;
 import com.mobile.android.widgets.dialog.LoadingDialog;
 import com.mobile.android.widgets.pop.AddPopWindow;
+import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.utils.L;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoFrameLayout;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
@@ -48,7 +42,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import butterknife.BindView;
@@ -843,7 +836,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
         is_need_jiaju = ArrayList2String(arr);
         params.clear();
         params.put("token", SupervisorApp.getUser().getToken());
-        params.put("uid", SupervisorApp.getUser().getUid());
+//        params.put("uid", SupervisorApp.getUser().getUid());
         params.put("baoming_id", baoming_id);
         params.put("type", dType);
         params.put("text", et_lf_beizhu.getText().toString().trim());
@@ -858,7 +851,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
         params.put("zx_type", z_type);
         params.put("add_designer", json);
         L.i("量房参数", params + "");
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .getsigin(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -878,7 +871,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
                         super.onFinally();
                         loadingDialog.dismiss();
                     }
-                });
+                });*/
     }
 
 
@@ -903,13 +896,13 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
         is_need_jiaju = ArrayList2String(arr);
         params.clear();
         params.put("token", SupervisorApp.getUser().getToken());
-        params.put("uid", SupervisorApp.getUser().getUid());
+//        params.put("uid", SupervisorApp.getUser().getUid());
         params.put("baoming_id", baoming_id);
         params.put("type", dType);
         params.put("is_only_jiaju", is_only_jiaju);
         params.put("is_need_jiaju", is_need_jiaju);
         L.i("仅家具需求参数", params + "");
-        RetrofitManager.getInstance().create(CommonService.class)
+       /* RetrofitManager.getInstance().create(CommonService.class)
                 .getsigin(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -929,7 +922,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
                         super.onFinally();
                         loadingDialog.dismiss();
                     }
-                });
+                });*/
     }
 
     /**
@@ -975,7 +968,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
     private void getsiginData() {
         params.clear();
         params.put("token", SupervisorApp.getUser().getToken());
-        params.put("uid", SupervisorApp.getUser().getUid());
+//        params.put("uid", SupervisorApp.getUser().getUid());
         params.put("baoming_id", baoming_id);
         params.put("type", dType);//3.正常陪签4.陪签改约
         params.put("text", et_describe.getText().toString().trim());
@@ -1019,7 +1012,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
             params.put("tg_time", tv_tg_time.getText().toString().trim());
         }
         L.i("设计师参数", params + "");
-        RetrofitManager.getInstance().create(CommonService.class)
+       /* RetrofitManager.getInstance().create(CommonService.class)
                 .getsigin(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -1039,7 +1032,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
                         super.onFinally();
                         loadingDialog.dismiss();
                     }
-                });
+                });*/
     }
 
     /**
@@ -1048,11 +1041,11 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
     private void getnormalBack() {
         params.clear();
         params.put("token", SupervisorApp.getUser().getToken());
-        params.put("uid", SupervisorApp.getUser().getUid());
+//        params.put("uid", SupervisorApp.getUser().getUid());
         params.put("baoming_id", baoming_id);
         params.put("type", dType);
         params.put("text", text);
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .getnormalBack(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -1072,7 +1065,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
                         super.onFinally();
                         loadingDialog.dismiss();
                     }
-                });
+                });*/
     }
 
     private void showPromptDialog() {

@@ -8,22 +8,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
-import com.mobile.android.entity.MemoRandomDetailBean;
 import com.mobile.android.retrofit.ApiContstants;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.widgets.dialog.LoadingDialog;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import com.mobile.hyoukalibrary.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,14 +48,14 @@ public class MemoRandumDetailActivity extends BaseActivity {
      */
     private void getBwDetailInfo() {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put("remark_id", mBwId + "");
         if (null == mLoadingDialog) {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .getBwDetail(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -85,7 +74,7 @@ public class MemoRandumDetailActivity extends BaseActivity {
                         mBwDate = data.getRemark_time();
                         mBwContent = data.getRemark_txt();
                     }
-                });
+                });*/
     }
 
 
@@ -136,14 +125,14 @@ public class MemoRandumDetailActivity extends BaseActivity {
      */
     private void deleteBw() {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put("remark_id", mBwId + "");
         if (null == mLoadingDialog) {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .deleteBw(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -162,7 +151,7 @@ public class MemoRandumDetailActivity extends BaseActivity {
                         ToastUtil.show(MemoRandumDetailActivity.this, "备忘删除成功");
                         finish();
                     }
-                });
+                });*/
     }
 
     @Override

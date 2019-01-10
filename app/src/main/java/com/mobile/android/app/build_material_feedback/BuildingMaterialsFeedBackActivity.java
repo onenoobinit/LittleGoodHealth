@@ -1,8 +1,6 @@
 package com.mobile.android.app.build_material_feedback;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -10,29 +8,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.L;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
 import com.mobile.android.entity.JcFeedBackType;
 import com.mobile.android.entity.JcOwnerOrderInfo;
 import com.mobile.android.retrofit.ApiContstants;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.widgets.dialog.ListSelectDialog;
 import com.mobile.android.widgets.dialog.LoadingDialog;
 import com.mobile.android.widgets.pop.AddPopWindow;
+import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,13 +70,13 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         ButterKnife.bind(this);
-        initData();
+//        initData();
         initListener();
     }
 
     /**
      * 获取反馈类型
-     */
+     *//*
     private void initData() {
         params.clear();
         params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
@@ -101,7 +91,7 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
                 .compose(RxSchedulers.<BaseEntity<JcFeedBackType>>io_main())
-                .subscribe(new BaseObserver<JcFeedBackType>() {
+                .subscribe(new BaseObserver() {
                     @Override
                     protected void onFinally() {
                         super.onFinally();
@@ -131,7 +121,7 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
                     }
                 });
 
-    }
+    }*/
 
     private void initListener() {
         mEditFeedbackContent.addTextChangedListener(new TextWatcher() {
@@ -197,7 +187,7 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
      */
     private void submit() {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         if (mFkTypeId == 0) {
             ToastUtil.show(this, "请选择反馈类型");
@@ -233,7 +223,7 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+       /* RetrofitManager.getInstance().create(CommonService.class)
                 .jcFkSubmit(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -263,7 +253,7 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
                                     }
                                 }).show();
                     }
-                });
+                });*/
     }
 
     /**
@@ -293,14 +283,14 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
             return;
         }
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put(ApiContstants.BM_ID, ownerId);
         if (null == mLoadingDialog) {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .getJcOwnerOrderInfo(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -324,6 +314,6 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
                             mSelectTypes.add(mOrderInfos.get(i).getAllot_id() + "");
                         }
                     }
-                });
+                });*/
     }
 }

@@ -5,6 +5,8 @@ package com.mobile.android.retrofit;
  */
 public class ApiContstants {
 
+    //参数名
+    public static final String ACT = "act";
     //用户名
     public static final String USERNAME = "username";
     //密码

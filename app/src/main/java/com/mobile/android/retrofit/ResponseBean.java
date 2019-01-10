@@ -55,6 +55,4 @@ public class ResponseBean {
     public void setData(String data) {
         this.data = data;
     }
-
-
 }

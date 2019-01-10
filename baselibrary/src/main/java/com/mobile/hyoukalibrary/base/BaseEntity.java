@@ -9,49 +9,42 @@ import java.io.Serializable;
  * #0000     mwy     创建日期: 2017-06-06 14:14
  */
 
-public class BaseEntity<T> implements Serializable{
-    private Class<T> type;
-    private T data;
-    private int status;
-    private int error_code;
-    private String message;
-    public BaseEntity() {
-        this.type = (Class<T>) getClass();
+public class BaseEntity implements Serializable {
+
+    private String generalErrMsg;
+    private String errMsg;
+    private String success;
+
+    public String getSuccess() {
+        return success;
     }
 
-    public void setType(Class<T> type) {
-        this.type = type;
-    }
-    public int getStatus() {
-        return status;
-    }
-    public void setStatus(int status) {
-        this.status = status;
-    }
-    public int getError() {
-        return error_code;
-    }
-    public void setError(int error) {
-        this.error_code = error;
+    public void setSuccess(String success) {
+        this.success = success;
     }
 
-    public String getMessage() {
-        return message;
+    public String getGeneralErrMsg() {
+        return generalErrMsg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setGeneralErrMsg(String generalErrMsg) {
+        this.generalErrMsg = generalErrMsg;
     }
 
-    public T getData() {
-        return data;
+    public String getErrMsg() {
+        return errMsg;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 
-    public Class<T> getType() {
-        return type;
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "generalErrMsg='" + generalErrMsg + '\'' +
+                ", errMsg='" + errMsg + '\'' +
+                ", success='" + success + '\'' +
+                '}';
     }
 }

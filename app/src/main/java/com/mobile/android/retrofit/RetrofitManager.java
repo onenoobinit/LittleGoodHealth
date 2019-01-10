@@ -1,10 +1,12 @@
 package com.mobile.android.retrofit;
 
 
-import com.mobile.hyoukalibrary.OkhttpCacheInterceptor.CacheInterceptor;
-import com.mobile.hyoukalibrary.utils.HttpsUtils;
+import com.google.gson.GsonBuilder;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
+import com.mobile.hyoukalibrary.OkhttpCacheInterceptor.CacheInterceptor;
+import com.mobile.hyoukalibrary.base.BaseEntity;
+import com.mobile.hyoukalibrary.utils.HttpsUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -76,9 +78,11 @@ public class RetrofitManager {
     }
 
     private RetrofitManager() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(BaseEntity.class, new ResponseBeanDeserializer());
         retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                //.addConverterFactory(new EmptyString2ObjConverterFactory())
+                .addConverterFactory(GsonConverterFactory.create(builder.create()))
                 //.addConverterFactory(new ToStringConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -104,14 +108,11 @@ public class RetrofitManager {
     public static final String NOTICE_RULE_URL = "https://m.youjuke.com/designer/designer_incentive_rules";
 
 
-
-         //---------------------------------------线上-------------------------------------------------
-    public static String baseUrl = "https://zx.youjuke.com/supervisorapi/";
-    public static final String INVITE_GET_MONEY_URL = "http://api.youjuke.com/Designer/designer_share?";
-    public static String fileUrl="http://image.youjuke.com/images/firms/budget/";
+    //---------------------------------------线上-------------------------------------------------
+//    public static String baseUrl = "https://zx.youjuke.com/supervisorapi/";
 
 
-//     ---------------------------------------线下-------------------------------------------------
-//    public static final String INVITE_GET_MONEY_URL = "http://preapi.51youjuke.com/Designer/designer_share?";
-//    public static String baseUrl = "http://prezx.admin.51youjuke.com/supervisorapi/";
+    //     ---------------------------------------线下-------------------------------------------------
+    public static final String baseUrl = "http://211.152.37.158:92/";
+
 }

@@ -12,28 +12,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.L;
-import com.mobile.hyoukalibrary.utils.StatusBarCompat;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
 import com.mobile.android.entity.DesiginerSearchInfo;
 import com.mobile.android.retrofit.ApiContstants;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.widgets.dialog.LoadingDialog;
 import com.mobile.android.widgets.pop.AddPopWindow;
+import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.utils.StatusBarCompat;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoFrameLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -135,10 +127,10 @@ public class DesiginerSearchActivity extends BaseActivity implements View.OnClic
     private void getTypeData() {
         params.clear();
         params.put("token", SupervisorApp.getUser().getToken());
-        params.put("uid", SupervisorApp.getUser().getUid());
+//        params.put("uid", SupervisorApp.getUser().getUid());
         params.put("baoming_id", baoming_id);
         params.put("type", dType);
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .getdesiginerinfo(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -160,7 +152,7 @@ public class DesiginerSearchActivity extends BaseActivity implements View.OnClic
                         super.onFinally();
                         loadingDialog.dismiss();
                     }
-                });
+                });*/
     }
 
     private void inithaveData() {
@@ -196,7 +188,7 @@ public class DesiginerSearchActivity extends BaseActivity implements View.OnClic
 
     private void call(int position) {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put("type", datas.get(position).getType());
         if (dType == 1) {
@@ -208,7 +200,7 @@ public class DesiginerSearchActivity extends BaseActivity implements View.OnClic
             loadingDialog = new LoadingDialog(this);
         }
         loadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .callOutPhone(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -228,7 +220,7 @@ public class DesiginerSearchActivity extends BaseActivity implements View.OnClic
                             showPromptDialog();
                         }
                     }
-                });
+                });*/
     }
 
     private void showPromptDialog() {

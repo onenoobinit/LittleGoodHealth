@@ -24,11 +24,11 @@ public class ToStringConverter<T> implements Converter<ResponseBody,T> {
             JSONObject jsonObject = new JSONObject(json);
             String data = jsonObject.getString("data");
             //String newData = "1"+data+"1";
-            BaseEntity<String> entity =new BaseEntity<>();
-            entity.setStatus(jsonObject.getInt("status"));
+            BaseEntity entity =new BaseEntity();
+            /*entity.setStatus(jsonObject.getInt("status"));
             entity.setError(jsonObject.getInt("error_code"));
             entity.setMessage(jsonObject.getString("message"));
-            entity.setData(data);
+            entity.setData(data);*/
             /*L.i("newData",newData);
             String newJson = json.replace(data, newData);
             L.i("newJson",newJson);*/

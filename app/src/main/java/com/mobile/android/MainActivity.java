@@ -13,22 +13,12 @@ import android.widget.TextView;
 import com.mobile.android.app.home.IndexFragment;
 import com.mobile.android.app.home.MeFragment;
 import com.mobile.android.app.login.GlobalReceiver;
-import com.mobile.android.entity.TodayBwBean;
 import com.mobile.android.retrofit.ApiContstants;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.updatebyrx2.UpdateManager;
 import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.L;
 import com.mobile.hyoukalibrary.utils.StatusBarCompat;
 import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoLinearLayout;
-
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -184,9 +174,9 @@ public class MainActivity extends BaseActivity {
 
     private void initData() {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .getTodayBw(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -201,7 +191,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     protected void onHandleSuccess(TodayBwBean bean) {
                         L.i("main", bean.toString());
-                       /* mRefreshLayout.finishRefresh();
+                       *//* mRefreshLayout.finishRefresh();
                         if (null != bean) {
                             //设置最新的备忘
                             tvMemberContent.setText(bean.getRemark_txt());
@@ -215,13 +205,13 @@ public class MainActivity extends BaseActivity {
                                 allMemberMore.setVisibility(View.VISIBLE);
                                 remarkId = bean.getRemark_id();
                             }
-                        }*/
+                        }*//*
                     }
-                });
-        final String account = SupervisorApp.getUser().getAccount();
-        if (null != account) {
+                });*/
+//        final String account = SupervisorApp.getUser().getAccount();
+       /* if (null != account) {
 //            tvHadloginNumber.setText("已登录账号: " + account);
-        }
+        }*/
     }
 
     /*private void scrollviewdo() {

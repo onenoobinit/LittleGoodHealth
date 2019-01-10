@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="160px"
                 android:text="三脚猫用户服务协议"
-                android:textColor="@color/c_00A7F7"
+                android:textColor="@drawable/tv_web_click"
                 android:textSize="35px" />
 
             <TextView
@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100px"
                 android:text="隐私协议"
-                android:textColor="@color/c_00A7F7"
+                android:textColor="@drawable/tv_web_click"
                 android:textSize="35px" />
         </com.zhy.autolayout.AutoLinearLayout>
 
@@ -177,7 +177,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="190px"
-        android:textSize="40px"
+        android:text="V1.0.0"
         android:textColor="@color/c_AAAAAA"
-        android:text="V1.0.0" />
+        android:textSize="40px" />
 </com.zhy.autolayout.AutoRelativeLayout>

@@ -2,7 +2,6 @@ package com.mobile.android.app.contact_owner;
 
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,24 +10,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.L;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
 import com.mobile.android.entity.ContactOwerBean;
 import com.mobile.android.retrofit.ApiContstants;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.widgets.dialog.LoadingDialog;
+import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,10 +89,10 @@ public class ContactOwnerActivity extends BaseActivity {
         }
         mLoadingDialog.show();
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put(ApiContstants.BM_ID, id);
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .getOwnerInfo(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -123,7 +114,7 @@ public class ContactOwnerActivity extends BaseActivity {
                         mData.addAll(data);
                         initRecyclerView();
                     }
-                });
+                });*/
     }
 
     private void initRecyclerView() {
@@ -147,7 +138,7 @@ public class ContactOwnerActivity extends BaseActivity {
      */
     private void contactOwner(ContactOwerBean bean) {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put(ApiContstants.BM_ID, bean.getBaoming_id());
         params.put("type", bean.getType());
@@ -156,7 +147,7 @@ public class ContactOwnerActivity extends BaseActivity {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+       /* RetrofitManager.getInstance().create(CommonService.class)
                 .callOutPhone(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -175,7 +166,7 @@ public class ContactOwnerActivity extends BaseActivity {
                             showPromptDialog();
                         }
                     }
-                });
+                });*/
     }
 
     private void showPromptDialog() {

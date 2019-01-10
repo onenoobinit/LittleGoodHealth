@@ -1,33 +1,23 @@
 package com.mobile.android.app.sms_send;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
-import com.mobile.android.entity.SmsContentBean;
 import com.mobile.android.entity.SmsSendCodeBean;
 import com.mobile.android.retrofit.ApiContstants;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.widgets.dialog.ListSelectDialog;
 import com.mobile.android.widgets.dialog.LoadingDialog;
+import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -102,7 +92,7 @@ public class SmsSendActivity extends BaseActivity {
      */
     private void sendMsg() {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         if (mMsgContent == null) {
             ToastUtil.show(this, "请先选择发送节点");
@@ -120,7 +110,7 @@ public class SmsSendActivity extends BaseActivity {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+       /* RetrofitManager.getInstance().create(CommonService.class)
                 .sendMsg(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -147,7 +137,7 @@ public class SmsSendActivity extends BaseActivity {
                                     }
                                 }).show();
                     }
-                });
+                });*/
     }
 
     /**
@@ -177,7 +167,7 @@ public class SmsSendActivity extends BaseActivity {
      */
     private void getSmsTemplateByNode(SmsSendCodeBean.NodeBean nodeBean) {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put("message_id", nodeBean.getMessage_id());
         if (!TextUtils.isEmpty(mOwnerId)) {
@@ -190,7 +180,7 @@ public class SmsSendActivity extends BaseActivity {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+       /* RetrofitManager.getInstance().create(CommonService.class)
                 .getSmsContent(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -209,7 +199,7 @@ public class SmsSendActivity extends BaseActivity {
                         mMsgContent = data.getContent();
                         mMsgId = nodeBean.getMessage_id();
                     }
-                });
+                });*/
     }
 
     private void search() {
@@ -219,14 +209,14 @@ public class SmsSendActivity extends BaseActivity {
             return;
         }
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put(ApiContstants.BM_ID, ownerId);
         if (null == mLoadingDialog) {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+       /* RetrofitManager.getInstance().create(CommonService.class)
                 .getSmsNode(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -247,6 +237,6 @@ public class SmsSendActivity extends BaseActivity {
                         mOwnerId = ownerId;
                         mSmsNodeBeans.addAll(data.getNode());
                     }
-                });
+                });*/
     }
 }

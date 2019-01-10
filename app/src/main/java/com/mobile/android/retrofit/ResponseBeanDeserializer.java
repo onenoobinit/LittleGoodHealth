@@ -3,7 +3,9 @@ package com.mobile.android.retrofit;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.mobile.hyoukalibrary.base.BaseEntity;
 import com.mobile.hyoukalibrary.utils.L;
 
 import org.json.JSONException;
@@ -18,25 +20,23 @@ import java.lang.reflect.Type;
  * 工程:
  * #0000     mwy     创建日期: 2016-09-13 19:57
  */
-public class ResponseBeanDeserializer implements JsonDeserializer<ResponseBean> {
+public class ResponseBeanDeserializer implements JsonDeserializer<BaseEntity> {
     @Override
-    public ResponseBean deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-
-        //final JsonObject jsonObject = json. getAsJsonObject();
+    public BaseEntity deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        final JsonObject jsonObject = json.getAsJsonObject();
         JSONObject jsono = null;
-        final ResponseBean responseBean = new ResponseBean();
+        final BaseEntity baseEntity = new BaseEntity();
         try {
-            String mjson=json.toString();
-            mjson.substring(mjson.indexOf("{"),mjson.lastIndexOf("}"));
-            L.d("获取的json"+mjson);
+            String mjson = json.toString();
+            mjson.substring(mjson.indexOf("{"), mjson.lastIndexOf("}"));
+            L.d("获取的json" + mjson);
             jsono = new JSONObject(mjson);
-            responseBean.setError(jsono.getString("error"));
-            responseBean.setMessage(jsono.getString("message"));
-            responseBean.setStatus(jsono.getString("status"));
-            responseBean.setData(jsono.getString("data"));
+            baseEntity.setGeneralErrMsg(jsono.getString("generalErrMsg"));
+            baseEntity.setErrMsg(jsono.getString("errMsg"));
+            baseEntity.setSuccess(jsono.getString("success"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return responseBean;
+        return baseEntity;
     }
 }

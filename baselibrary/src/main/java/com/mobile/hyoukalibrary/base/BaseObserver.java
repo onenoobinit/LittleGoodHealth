@@ -1,6 +1,5 @@
 package com.mobile.hyoukalibrary.base;
 
-import android.content.Intent;
 import android.view.Gravity;
 
 import com.google.gson.JsonSyntaxException;
@@ -23,29 +22,14 @@ import io.reactivex.observers.DisposableObserver;
  * 调用dispose()取消请求，也可以在onNext方法内dispose()
  */
 
-public abstract class BaseObserver<T> extends DisposableObserver<BaseEntity<T>> {
-    private final int SUCCESS_CODE = 200;
-    private final int ERROR_CODE = 400;
-    private final int NOT_LOGIN_CODE = 020;
-    private final int TOKEN_INVALID_CODE = 4001;
-
-
+public abstract class BaseObserver extends DisposableObserver<BaseEntity> {
     @Override
-    public void onNext(@NonNull BaseEntity<T> tBaseEntity) {
-        if (SUCCESS_CODE == (tBaseEntity.getStatus())) {
-            T t = tBaseEntity.getData();
-            onHandleSuccess(t);
-        } else if (ERROR_CODE == (tBaseEntity.getStatus())) {
-            onHandleFailed(tBaseEntity.getStatus(), tBaseEntity.getMessage());
-            if (NOT_LOGIN_CODE == (tBaseEntity.getError()) || TOKEN_INVALID_CODE == (tBaseEntity.getError())) {
-                BaseApplication.getInstance().sendBroadcast(new Intent("android.content.BroadcastReceiver.ACTION_TO_LOGIN"));
-            }
-            T t = tBaseEntity.getData();
-            onStatusNotSuccssed(tBaseEntity.getStatus(),t);
+    public void onNext(@NonNull BaseEntity tBaseEntity) {
+        if (tBaseEntity != null) {
+            onHandleSuccess(tBaseEntity);
         } else {
-            L.e("BaseObserver", tBaseEntity.getStatus() + "--" + tBaseEntity.getMessage());
+            L.e("BaseObserver", tBaseEntity.getGeneralErrMsg() + "--" + tBaseEntity.getErrMsg());
             ToastUtil.show(BaseApplication.getInstance(), "服务器异常，请稍后再试", Gravity.CENTER);
-
         }
         onFinally();
     }
@@ -53,9 +37,11 @@ public abstract class BaseObserver<T> extends DisposableObserver<BaseEntity<T>> 
     @Override
     public void onError(@NonNull Throwable e) {
         e.printStackTrace();
+        //有数据和没有数据时接口返回格式有问题 TODO
         if (e instanceof JsonSyntaxException) {
             ToastUtil.show(BaseApplication.getInstance(), "数据异常，请稍后再试", Gravity.CENTER);
-        } else if (!(e instanceof UnknownHostException)) {
+        } else
+        if (!(e instanceof UnknownHostException)) {
             ToastUtil.show(BaseApplication.getInstance(), "服务器异常，请稍后再试", Gravity.CENTER);
         }
         if (!NetworkUtils.isConnected(BaseApplication.getInstance())) {
@@ -68,19 +54,16 @@ public abstract class BaseObserver<T> extends DisposableObserver<BaseEntity<T>> 
     public void onComplete() {
     }
 
-    protected abstract void onHandleSuccess(T t);
+    protected abstract void onHandleSuccess(BaseEntity baseEntity);
 
     protected void onFinally() {
     }
 
-    protected void onHandleFailed(int error_code, String message) {
-        if (error_code==TOKEN_INVALID_CODE){
-            ToastUtil.showLong(BaseApplication.getInstance(),message,Gravity.CENTER);
-        }else {
-            ToastUtil.show(BaseApplication.getInstance(), message, Gravity.CENTER);
-        }
-    }
-    protected void onStatusNotSuccssed(int error_code, T t) {
+    /*protected void onHandleFailed(String message) {
+        ToastUtil.show(BaseApplication.getInstance(), message, Gravity.CENTER);
+    }*/
+
+    protected void onStatusNotSuccssed(BaseEntity baseEntity) {
 
     }
 

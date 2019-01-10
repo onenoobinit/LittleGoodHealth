@@ -11,24 +11,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.L;
-import com.mobile.hyoukalibrary.utils.NetworkUtils;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
 import com.mobile.android.entity.MemoRandomListBean;
 import com.mobile.android.retrofit.ApiContstants;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.widgets.dialog.LoadingDialog;
+import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.utils.L;
+import com.mobile.hyoukalibrary.utils.NetworkUtils;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +58,7 @@ public class MemorandumActivity extends BaseActivity {
      */
     private void getBwList(boolean isRefresh) {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         if (!isRefresh) {
             if (null == mLoadingDialog) {
@@ -73,7 +66,7 @@ public class MemorandumActivity extends BaseActivity {
             }
             mLoadingDialog.show();
         }
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .getBwList(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -101,7 +94,7 @@ public class MemorandumActivity extends BaseActivity {
                             mAdapter.setNewData(mData);
                         }
                     }
-                });
+                });*/
     }
 
     private void initRefresh() {

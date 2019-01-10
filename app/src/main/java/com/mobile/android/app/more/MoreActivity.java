@@ -1,28 +1,13 @@
 package com.mobile.android.app.more;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.manager.ActivityManager;
-import com.mobile.hyoukalibrary.utils.SPUtil;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
-import com.mobile.android.app.login.LoginActivity;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
-import com.mobile.android.utils.Constant;
 import com.mobile.android.widgets.dialog.LoadingDialog;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import com.mobile.hyoukalibrary.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,15 +55,15 @@ public class MoreActivity extends BaseActivity {
 
     private void exitLogin() {
         params.clear();
-        String uid = SupervisorApp.getUser().getUid();
+//        String uid = SupervisorApp.getUser().getUid();
         String token = SupervisorApp.getUser().getToken();
-        params.put("uid", uid);
+//        params.put("uid", uid);
         params.put("token", token);
         if (mLoadingDialog == null) {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .loginOut(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -101,6 +86,6 @@ public class MoreActivity extends BaseActivity {
                             ActivityManager.getInstance().finishActivity(MoreActivity.class);
                         }
                     }
-                });
+                });*/
     }
 }

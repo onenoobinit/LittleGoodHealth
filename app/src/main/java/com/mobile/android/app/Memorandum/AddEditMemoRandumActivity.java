@@ -1,6 +1,5 @@
 package com.mobile.android.app.Memorandum;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
@@ -13,25 +12,17 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
-import com.mobile.hyoukalibrary.base.BaseActivity;
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
 import com.mobile.android.retrofit.ApiContstants;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.utils.DateUtils;
 import com.mobile.android.widgets.dialog.LoadingDialog;
+import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -151,7 +142,7 @@ public class AddEditMemoRandumActivity extends BaseActivity {
 
     private void addBw() {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         if (!TextUtils.isEmpty(mBwDate)) {
             params.put("remark_time", mBwDate);
@@ -170,7 +161,7 @@ public class AddEditMemoRandumActivity extends BaseActivity {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .addBw(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -188,12 +179,12 @@ public class AddEditMemoRandumActivity extends BaseActivity {
                         ToastUtil.show(AddEditMemoRandumActivity.this, "添加成功");
                         finish();
                     }
-                });
+                });*/
     }
 
     private void editBw() {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put("remark_id", mBwId);
         if (!TextUtils.isEmpty(mBwDate)) {
@@ -208,7 +199,7 @@ public class AddEditMemoRandumActivity extends BaseActivity {
             mLoadingDialog = new LoadingDialog(this);
         }
         mLoadingDialog.show();
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .editBw(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -228,7 +219,7 @@ public class AddEditMemoRandumActivity extends BaseActivity {
                         ToastUtil.show(AddEditMemoRandumActivity.this, "修改成功");
                         finish();
                     }
-                });
+                });*/
     }
 
     /**

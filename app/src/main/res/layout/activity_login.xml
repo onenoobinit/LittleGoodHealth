@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="《三脚猫用户协议》"
-            android:textColor="@color/c_00A7F7"
+            android:textColor="@drawable/tv_web_click"
             android:textSize="35px" />
     </com.zhy.autolayout.AutoLinearLayout>
 
@@ -131,7 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="《三脚猫隐私条款》"
-            android:textColor="@color/c_00A7F7"
+            android:textColor="@drawable/tv_web_click"
             android:textSize="35px" />
     </com.zhy.autolayout.AutoLinearLayout>
 
@@ -144,6 +144,6 @@
         android:layout_marginBottom="153px"
         android:alpha="0.8"
         android:text="没有账号？去注册"
-        android:textColor="@color/c_00A7F7"
+        android:textColor="@drawable/tv_web_click"
         android:textSize="35px" />
 </com.zhy.autolayout.AutoRelativeLayout>

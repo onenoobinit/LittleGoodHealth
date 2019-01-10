@@ -9,17 +9,40 @@ import java.io.Serializable;
  */
 
 public class User implements Serializable {
-
-
     /**
+     * token : 718D3E327ECD7958248F8B19A934670609D18960D600A771
+     * msg : ok
+     */
+
+    private String token;
+    private String msg;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+
+   /* *//**
      * uid : 1582
      * realname : 夏天
      * token : EBsjdEVRtH-MzJqi9ScSr-VpTQUMDdQu-oUuV3NYNdG-1527492518
-     */
+     *//*
 
     private String uid;
     private String realname;
-    private String token;
+//    private String token;
     private String account;
 
     public String getUid() {
@@ -38,13 +61,13 @@ public class User implements Serializable {
         this.realname = realname;
     }
 
-    public String getToken() {
+    *//*public String getToken() {
         return token;
     }
 
     public void setToken(String token) {
         this.token = token;
-    }
+    }*//*
 
     public String getAccount() {
         return account;
@@ -52,5 +75,5 @@ public class User implements Serializable {
 
     public void setAccount(String account) {
         this.account = account;
-    }
+    }*/
 }

@@ -4,20 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.mobile.hyoukalibrary.base.BaseEntity;
-import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.L;
 import com.mobile.android.SupervisorApp;
 import com.mobile.android.entity.UpdateInfoBean;
 import com.mobile.android.retrofit.ApiContstants;
-import com.mobile.android.retrofit.RetrofitManager;
-import com.mobile.android.retrofit.RetryWhenNetworkException;
-import com.mobile.android.retrofit.RxSchedulers;
-import com.mobile.android.retrofit.api.CommonService;
+import com.mobile.hyoukalibrary.utils.L;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 基于此修改
@@ -44,11 +37,11 @@ public class UpdateManager {
      */
     public void checkUpdate(Context context) {
         params.clear();
-        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
+//        params.put(ApiContstants.UID, SupervisorApp.getUser().getUid());
         params.put(ApiContstants.TOKEN, SupervisorApp.getUser().getToken());
         params.put("new_code", getVersionName());
         L.i("update1", params.toString());
-        RetrofitManager.getInstance().create(CommonService.class)
+        /*RetrofitManager.getInstance().create(CommonService.class)
                 .checkUpdate(params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
@@ -69,9 +62,9 @@ public class UpdateManager {
                     }
 
                     @Override
-                    protected void onHandleFailed(int error_code, String message) {
+                    protected void onHandleFailed(String message) {
                     }
-                });
+                });*/
     }
 
     private String getVersionName() {
