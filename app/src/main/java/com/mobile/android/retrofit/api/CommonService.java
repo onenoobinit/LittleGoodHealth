@@ -38,6 +38,14 @@ public interface CommonService {
     Observable<BaseEntity> login(@FieldMap Map<String, Object> params);
 
     /**
+     * 个人中心
+     */
+    @FormUrlEncoded
+    @Headers("token:534C44F6241F708343B83172D69141B441E257D64F8B0E3E")
+    @POST("personalCenterHandler/common/PersonalCenterCommonHandler.ashx")
+    Observable<BaseEntity> me(@FieldMap Map<String, Object> params);
+
+    /**
      * 退出登录
      */
     @FormUrlEncoded
@@ -169,7 +177,8 @@ public interface CommonService {
      * 装修反馈接口
      */
     @FormUrlEncoded
-    @POST("set_custom_service_notes_info")//接口名重复
+    @POST("set_custom_service_notes_info")
+//接口名重复
     Observable<BaseEntity> getsigin(@FieldMap Map<String, Object> params);
 
     /**

@@ -60,7 +60,7 @@ public class RetrofitManager {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request newRequest = chain.request().newBuilder()
-                                .addHeader("platform", "android")
+                                .addHeader("Platform", "android")
                                 .build();
                         return chain.proceed(newRequest);
                     }

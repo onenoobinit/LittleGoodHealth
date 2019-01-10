@@ -17,7 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.android.Constants;
+import com.mobile.android.MainActivity;
 import com.mobile.android.R;
+import com.mobile.android.SupervisorApp;
 import com.mobile.android.app.register.RegisterActivity;
 import com.mobile.android.app.web.CommonWebActivity;
 import com.mobile.android.entity.User;
@@ -27,11 +29,14 @@ import com.mobile.android.retrofit.RetryWhenNetworkException;
 import com.mobile.android.retrofit.RxSchedulers;
 import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.utils.AESUtils;
+import com.mobile.android.utils.Constant;
 import com.mobile.android.widgets.dialog.LoadingDialog;
 import com.mobile.hyoukalibrary.base.BaseActivity;
 import com.mobile.hyoukalibrary.base.BaseEntity;
 import com.mobile.hyoukalibrary.base.BaseObserver;
+import com.mobile.hyoukalibrary.manager.ActivityManager;
 import com.mobile.hyoukalibrary.utils.L;
+import com.mobile.hyoukalibrary.utils.SPUtil;
 import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoLinearLayout;
 
@@ -67,6 +72,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     AutoLinearLayout allYinsi;
     @BindView(R.id.tv_to_register)
     TextView tvToRegister;
+    @BindView(R.id.iv_login_left)
+    ImageView ivLoginLeft;
     private LoadingDialog mLoadingDialog;
     private SurfaceHolder holder;
     private MediaPlayer mediaPlayer;
@@ -90,9 +97,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void initViewVideo() {
-       /* myVideo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.myview));
-        myVideo.start();
-        myVideo.setOnCompletionListener(mediaPlayer -> myVideo.start());*/
         holder = myVideo.getHolder();
         holder.addCallback(this);
         holder.setKeepScreenOn(true);
@@ -127,7 +131,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     protected void onStop() {
-//        myVideo.stopPlayback();
         super.onStop();
     }
 
@@ -136,12 +139,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     }
 
-    @OnClick({R.id.tv_login_sure, R.id.tv_login_id, R.id.tv_login_mimi, R.id.tv_to_register})
+    @OnClick({R.id.tv_login_sure, R.id.tv_login_id, R.id.tv_login_mimi, R.id.tv_to_register, R.id.iv_login_left})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.iv_login_left:
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                ActivityManager.getInstance().finishActivity();
+                break;
             case R.id.tv_login_sure:
                 login();
-//                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             case R.id.tv_login_id:
                 Intent intent = new Intent(LoginActivity.this, CommonWebActivity.class);
@@ -199,16 +205,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 User user = gson.fromJson(baseEntity.getSuccess(), User.class);
                                 String token = user.getToken();
                                 ToastUtil.show(LoginActivity.this, token);
-                                /*SPUtil.put(getApplicationContext(), Constant.IS_LOGIN, true);
+                                L.i("token", token);
                                 SupervisorApp.setUser(null);
                                 SPUtil.setObject(SupervisorApp.getInstance(), Constant.USER, user);
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 ToastUtil.show(LoginActivity.this, "登录成功");
-                                ActivityManager.getInstance().finishActivity();*/
+                                ActivityManager.getInstance().finishActivity();
                             }
                         }
                     });
-
         }
 
     }

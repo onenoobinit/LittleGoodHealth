@@ -2,6 +2,7 @@ package com.mobile.android.app.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,9 +12,19 @@ import android.widget.TextView;
 import com.mobile.android.R;
 import com.mobile.android.app.order.OrderActivity;
 import com.mobile.android.app.set.SetActivity;
+import com.mobile.android.entity.MeInfo;
+import com.mobile.android.retrofit.RetrofitManager;
+import com.mobile.android.retrofit.RetryWhenNetworkException;
+import com.mobile.android.retrofit.RxSchedulers;
+import com.mobile.android.retrofit.api.CommonService;
+import com.mobile.hyoukalibrary.base.BaseEntity;
 import com.mobile.hyoukalibrary.base.BaseFragment;
+import com.mobile.hyoukalibrary.base.BaseObserver;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,6 +79,11 @@ public class MeFragment extends BaseFragment {
     int old_offset = 0;
     int viewHeight = 0;
 
+    public static MeFragment newInstance() {
+        return new MeFragment();
+    }
+
+
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_me;
@@ -77,6 +93,34 @@ public class MeFragment extends BaseFragment {
     public void finishCreateView(Bundle state) {
         unbinder = ButterKnife.bind(this, parentView);
         initScrollMove();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getMedata();
+    }
+
+    private void getMedata() {
+        params.clear();
+        params.put("act", "getUserInfoData");
+//        params.put("token", SupervisorApp.getUser().getToken());
+        RetrofitManager.getInstance().create(CommonService.class)
+                .me(params)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .retryWhen(new RetryWhenNetworkException(2, 500, 500))
+                .compose(RxSchedulers.io_main())
+                .subscribe(new BaseObserver() {
+                    @Override
+                    protected void onHandleSuccess(BaseEntity baseEntity) {
+                        if (!TextUtils.isEmpty(baseEntity.getErrMsg())) {
+                            ToastUtil.show(mContext, baseEntity.getErrMsg());
+                            return;
+                        } else {
+                            MeInfo meInfo = gson.fromJson(baseEntity.getSuccess(), MeInfo.class);
+                        }
+                    }
+                });
     }
 
     /*
@@ -103,15 +147,10 @@ public class MeFragment extends BaseFragment {
                 lp1.height = -1;
                 old_offset = 0;
                 arlHeadView.setLayoutParams(lp1);
-                /*//刷新数据
-                if () {
-                }*/
+                //刷新数据
+                getMedata();
             }
         });
-    }
-
-    public static MeFragment newInstance() {
-        return new MeFragment();
     }
 
     @Override

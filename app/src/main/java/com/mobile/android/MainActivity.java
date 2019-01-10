@@ -253,39 +253,6 @@ public class MainActivity extends BaseActivity {
     @OnClick({R.id.all_sy, R.id.all_me})
     public void onClick(View view) {
         switch (view.getId()) {
-            /*case R.id.all_member_more://今日备忘更多
-                final Intent intent = new Intent(MainActivity.this, MemoRandumDetailActivity.class);
-                intent.putExtra("bw_id", remarkId);
-                startActivity(intent);
-                break;
-            case R.id.arl_main_contact://联系业主
-                startActivity(new Intent(MainActivity.this, ContactOwnerActivity.class));
-                break;
-            case R.id.all_main_misscall://未接来电
-                startActivity(new Intent(MainActivity.this, MissedCallsActivity.class));
-                break;
-            case R.id.arl_main_desiginer://设计师查询
-                startActivity(new Intent(MainActivity.this, DesiginerSearchActivity.class));
-                break;
-            case R.id.arl_main_dec://装修反馈
-                startActivity(new Intent(MainActivity.this, DecFeedbackActivity.class));
-                break;
-            case R.id.arl_main_material://建材反馈
-                if (!NetworkUtils.isConnected(this)) {
-                    ToastUtil.show(this, "网络连接不可用，请检查你的网络");
-                    return;
-                }
-                startActivity(new Intent(this, BuildingMaterialsFeedBackActivity.class));
-                break;
-            case R.id.arl_main_member://备忘管理
-                startActivity(new Intent(MainActivity.this, MemorandumActivity.class));
-                break;
-            case R.id.arl_main_message://短信发送
-                startActivity(new Intent(this, SmsSendActivity.class));
-                break;
-            case R.id.arl_main_more://更多功能
-                startActivity(new Intent(this, MoreActivity.class));
-                break;*/
             case R.id.all_sy://首页
                 selectedCurrent = 0;
                 setShowingFrament(0, true);
