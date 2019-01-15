@@ -134,6 +134,7 @@ public class IndexFragment extends BaseFragment {
             @Override
             public void endCloseClick(TextView textView, ImageView iv) {
                 textView.setText("目的地");
+                textView.setTextColor(Color.parseColor("#969696"));
                 iv.setVisibility(View.GONE);
             }
 

@@ -3,6 +3,7 @@ package com.mobile.android.widgets.dialog;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -140,6 +141,7 @@ public abstract class IndexDialog extends Dialog {
 
     public void setPort(String port) {
         tv_index_end.setText(port);
+        tv_index_end.setTextColor(Color.parseColor("#000000"));
         iv_index_dialog_close2.setVisibility(View.VISIBLE);
     }
 }
