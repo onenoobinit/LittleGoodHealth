@@ -6,9 +6,10 @@ import java.util.List;
  * Created by wangqiang on 2019/1/10.
  */
 public class MeInfo {
+
     /**
-     * accDetail : {"accPeriodExpiration":{"expirationDate":"--","expirationDetail":[],"expirationVotes":"0"},"accPeriodWarn":{"warnDate":"--","warnDetail":[],"warnPercentage":"0","warnVotes":"0"},"allQuota":"500000.00","overQuota":"191617.81"}
-     * userDetail : {"address":"+989+6","birthday":"2014-09-02","couponCount":"0","email":"6*******6@qq.com","exportContractDate":"已过期","headPortrait":"10.png","importContractDate":"已过期","integral":"23","mobile":"139*****450","nickName":"测试账号wqwq","personalInfoPerfection":"100","phone":"6543","qq":"男男女女t","sex":"保密","userName":"wqwq","weChat":"3254"}
+     * accDetail : {"accPeriodExpiration":{"expirationDate":"--","expirationDetail":[],"expirationVotes":"0"},"accPeriodWarn":{"warnDate":"--","warnDetail":[],"warnPercentage":"0","warnVotes":"0"},"allQuota":"500000.00","overQuota":"157961.31"}
+     * userDetail : {"address":"+989+6","birthday":"2014-09-02","couponCount":"0","email":"6*******6@qq.com","exportContractDate":"已过期","headPortrait":"10.png","importContractDate":"已过期","integral":"24","mobile":"139*****450","nickName":"测试账号wqwq","personalInfoPerfection":"100","phone":"6543","qq":"男男女女t","sex":"保密","userName":"wqwq","weChat":"3254"}
      */
 
     private AccDetailBean accDetail;
@@ -35,7 +36,7 @@ public class MeInfo {
          * accPeriodExpiration : {"expirationDate":"--","expirationDetail":[],"expirationVotes":"0"}
          * accPeriodWarn : {"warnDate":"--","warnDetail":[],"warnPercentage":"0","warnVotes":"0"}
          * allQuota : 500000.00
-         * overQuota : 191617.81
+         * overQuota : 157961.31
          */
 
         private AccPeriodExpirationBean accPeriodExpiration;
@@ -167,7 +168,7 @@ public class MeInfo {
          * exportContractDate : 已过期
          * headPortrait : 10.png
          * importContractDate : 已过期
-         * integral : 23
+         * integral : 24
          * mobile : 139*****450
          * nickName : 测试账号wqwq
          * personalInfoPerfection : 100

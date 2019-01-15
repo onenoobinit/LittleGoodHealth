@@ -54,7 +54,7 @@
             android:background="@drawable/bg_register_item"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:hint="用户名"
-            android:inputType="number|textEmailAddress"
+            android:inputType="textVisiblePassword"
             android:maxLength="16"
             android:paddingLeft="66px"
             android:textColorHint="@color/c_9b9b9b"
@@ -80,6 +80,7 @@
             android:hint="输入密码"
             android:maxLength="16"
             android:paddingLeft="66px"
+            android:inputType="textPassword"
             android:textColorHint="@color/c_9b9b9b"
             android:textSize="40px" />
 
@@ -92,6 +93,7 @@
             android:background="@drawable/bg_register_item"
             android:hint="确认密码"
             android:maxLength="16"
+            android:inputType="textPassword"
             android:paddingLeft="66px"
             android:textColorHint="@color/c_9b9b9b"
             android:textSize="40px" />

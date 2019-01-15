@@ -12,6 +12,7 @@ import com.mobile.android.Constants;
 import com.mobile.android.R;
 import com.mobile.android.app.web.CommonWebActivity;
 import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.utils.ApplicationUtils;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import butterknife.BindView;
@@ -43,6 +44,8 @@ public class AboutActivity extends BaseActivity {
     protected void initViews(Bundle savedInstanceState) {
         StatusBarUtil.setColor(this, Color.parseColor("#F5A623"), 0);
         ButterKnife.bind(this);
+        String verName = ApplicationUtils.getVerName(AboutActivity.this);
+        tvAboutVersionCode.setText(verName);
     }
 
     @Override

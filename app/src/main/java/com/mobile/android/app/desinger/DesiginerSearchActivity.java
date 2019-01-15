@@ -119,7 +119,7 @@ public class DesiginerSearchActivity extends BaseActivity implements View.OnClic
                 }
                 break;
             case R.id.arl_desiginer_selector:
-                addPopWindow.showPopupWindow(mArlDesiginerSelector, sList);
+//                addPopWindow.showPopupWindow(mArlDesiginerSelector, sList);
                 break;
         }
     }

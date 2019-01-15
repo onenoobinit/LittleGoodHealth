@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -7,4 +8,212 @@
     android:orientation="vertical"
     android:overScrollMode="never">
 
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/arl_header"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:orientation="horizontal"
+        android:translationZ="1px">
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20px"
+            android:layout_marginLeft="46px"
+            android:layout_marginTop="20px"
+            android:layout_weight="1"
+            android:background="@drawable/bg_search_head"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="37px"
+                android:layout_height="37px"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20px"
+                android:src="@mipmap/sy_fdj_icon" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="46px"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="搜索内容"
+                android:imeOptions="actionSearch"
+                android:textColor="@color/c_575757"
+                android:textColorHint="@color/c_9b9b9b"
+                android:textSize="35px" />
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/arl_X"
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:background="@drawable/bg_search_x"
+                android:padding="8px"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_search_x"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/wrong" />
+            </com.zhy.autolayout.AutoRelativeLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <TextView
+            android:id="@+id/tv_search_cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="29px"
+            android:layout_marginRight="46px"
+            android:text="取消" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/arl_header"
+        android:background="@color/c_efefef"></View>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/v_line"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabBackground="@android:color/transparent"
+            android:elevation="0dp">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_collapseMode="pin">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:id="@+id/all_program_dialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/c_F2F1F1"
+                        android:orientation="vertical">
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="46px"
+                                android:layout_marginTop="49px"
+                                android:text="最近"
+                                android:textColor="@color/c_575757"
+                                android:textSize="46px" />
+
+                            <ImageView
+                                android:id="@+id/iv_search_remove"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="46px"
+                                android:layout_marginTop="49px"
+                                android:src="@mipmap/remove" />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_history"
+                            android:layout_width="match_parent"
+                            android:layout_height="70px"
+                            android:layout_marginBottom="60px"
+                            android:layout_marginLeft="46px"
+                            android:layout_marginTop="50px">
+
+                        </android.support.v7.widget.RecyclerView>
+
+                        <TextView
+                            android:id="@+id/tv_history_none"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="60px"
+                            android:layout_marginLeft="46px"
+                            android:layout_marginTop="50px"
+                            android:text="无最近搜索记录"
+                            android:visibility="gone" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="none">
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+                </com.zhy.autolayout.AutoLinearLayout>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <com.mobile.android.widgets.ObservableScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.mobile.android.widgets.ObservableScrollView>
+    </android.support.design.widget.CoordinatorLayout>
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/arl_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/v_line"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_resutl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    </com.zhy.autolayout.AutoRelativeLayout>
 </com.zhy.autolayout.AutoRelativeLayout>

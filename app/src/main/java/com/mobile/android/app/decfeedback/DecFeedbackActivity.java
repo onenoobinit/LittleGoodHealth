@@ -558,7 +558,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
                 }
                 break;
             case R.id.arl_dec_selector://反馈类型
-                addPopWindow.showPopupWindow(arlDecSelector, sList);
+//                addPopWindow.showPopupWindow(arlDecSelector, sList);
                 break;
 
             case R.id.tv_dec_submit://提交

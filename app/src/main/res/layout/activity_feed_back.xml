@@ -84,7 +84,7 @@
         android:layout_marginLeft="46px"
         android:layout_marginRight="46px"
         android:layout_marginTop="78px"
-        android:background="@drawable/bg_set_out"
+        android:background="@drawable/bg_tv_gray"
         android:gravity="center"
         android:text="提交"
         android:textColor="@color/white"

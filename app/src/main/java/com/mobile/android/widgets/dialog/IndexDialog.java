@@ -68,7 +68,7 @@ public abstract class IndexDialog extends Dialog {
 
         iv_index_dialog_close1.setOnClickListener(view -> startCloseClick(tv_index_start, iv_index_dialog_close1));
 
-        iv_index_dialog_close2.setOnClickListener(view -> endCloseClick());
+        iv_index_dialog_close2.setOnClickListener(view -> endCloseClick(tv_index_end,iv_index_dialog_close2));
 
         et_show1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -128,7 +128,7 @@ public abstract class IndexDialog extends Dialog {
 
     public abstract void startCloseClick(TextView tv, ImageView iv);
 
-    public abstract void endCloseClick();
+    public abstract void endCloseClick(TextView tv, ImageView iv);
 
     public abstract void numberListener(String number);
 
@@ -138,4 +138,8 @@ public abstract class IndexDialog extends Dialog {
 
     public abstract void sureClick(TextView tv1, TextView tv2, EditText et_show1, EditText et_show2, EditText et_show3, TextView tv3);
 
+    public void setPort(String port) {
+        tv_index_end.setText(port);
+        iv_index_dialog_close2.setVisibility(View.VISIBLE);
+    }
 }

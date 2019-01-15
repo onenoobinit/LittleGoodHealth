@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
@@ -52,9 +51,9 @@ public class AddPopWindow extends PopupWindow implements AdapterView.OnItemClick
                 setWidth(view.getWidth());
             }
         });*/
-       setWidth(i);
+        setWidth(i);
         // 设置SelectPicPopupWindow弹出窗体的高
-        this.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+        this.setHeight(500);
         // 设置SelectPicPopupWindow弹出窗体可点击
         this.setOutsideTouchable(true);
         // 刷新状态
@@ -120,7 +119,7 @@ public class AddPopWindow extends PopupWindow implements AdapterView.OnItemClick
             gridviewAdapter.selectIndex = position;
             gridviewAdapter.notifyDataSetChanged();
         }
-        if (popupItemClickListener2!=null){
+        if (popupItemClickListener2 != null) {
             popupItemClickListener2.popupItemClick(position);
             gridviewAdapter.selectIndex = position;
             gridviewAdapter.notifyDataSetChanged();

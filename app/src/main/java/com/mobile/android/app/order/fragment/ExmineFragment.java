@@ -3,16 +3,29 @@ package com.mobile.android.app.order.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.mobile.android.R;
+import com.mobile.android.SupervisorApp;
 import com.mobile.android.app.order.adapter.WholeAdapter;
-import com.mobile.hyoukalibrary.base.BaseFragment;
+import com.mobile.android.entity.OrderInfo;
+import com.mobile.android.retrofit.RetrofitManager;
+import com.mobile.android.retrofit.RetryWhenNetworkException;
+import com.mobile.android.retrofit.RxSchedulers;
+import com.mobile.android.retrofit.api.CommonService;
+import com.mobile.android.widgets.dialog.MyDialog;
+import com.mobile.hyoukalibrary.base.BaseEntity;
+import com.mobile.hyoukalibrary.base.BaseObserver;
+import com.mobile.hyoukalibrary.base.LazyFragment;
+import com.mobile.hyoukalibrary.utils.L;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,10 +34,10 @@ import butterknife.Unbinder;
 /**
  * Created by wangqiang on 2019/1/4.
  */
-public class ExmineFragment extends BaseFragment {
+public class ExmineFragment extends LazyFragment {
 
-    @BindView(R.id.rv_whole)
-    RecyclerView rvWhole;
+    @BindView(R.id.rv_exmine)
+    RecyclerView rvExmine;
     @BindView(R.id.arl_have_data)
     AutoRelativeLayout arlHaveData;
     @BindView(R.id.arl_no_data)
@@ -33,12 +46,14 @@ public class ExmineFragment extends BaseFragment {
     SmartRefreshLayout refreshLayout;
     Unbinder unbinder;
     private int page = 1;
-    private ArrayList<String> complains = new ArrayList<>();
+    private ArrayList<OrderInfo.OrderBillListInfoBean> complains = new ArrayList<>();
     private int count_page;
-
+    private String TOKEN = "";
     //定义当前的刷新的状态
     private LOADSTATE mCurrentState = LOADSTATE.IDLE;//第一次进来空闲状态
     private WholeAdapter exmineAdapter;
+    private boolean isPrepared;
+    private MyDialog myDialog;
 
     //上拉,下拉,空闲
     private enum LOADSTATE {
@@ -52,6 +67,7 @@ public class ExmineFragment extends BaseFragment {
         return fragment;
     }
 
+
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_exmine;
@@ -60,7 +76,9 @@ public class ExmineFragment extends BaseFragment {
     @Override
     public void finishCreateView(Bundle state) {
         unbinder = ButterKnife.bind(this, parentView);
-        getWhole();
+        TOKEN = SupervisorApp.getUser().getToken();
+        isPrepared = true;
+        lazyLoad();
 
         refreshLayout.setOnRefreshListener(refreshLayout1 -> {
             refreshLayout.autoRefresh();
@@ -71,7 +89,7 @@ public class ExmineFragment extends BaseFragment {
             getMoreWhole();
         });
 
-        rvWhole.setOnTouchListener(new View.OnTouchListener() {
+        rvExmine.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (mCurrentState == LOADSTATE.LOAD) {
@@ -81,22 +99,28 @@ public class ExmineFragment extends BaseFragment {
                 }
             }
         });
-        complains.add("dfk");
-        complains.add("dfk");
-        complains.add("dfk");
-        complains.add("dfk");
+
         LinearLayoutManager manager = new LinearLayoutManager(mContext);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        rvWhole.setLayoutManager(manager);
+        rvExmine.setLayoutManager(manager);
         exmineAdapter = new WholeAdapter(mContext, 1, complains);
-        rvWhole.setAdapter(exmineAdapter);
+        rvExmine.setAdapter(exmineAdapter);
     }
 
-    private void getMoreWhole() {
-        /*if (mCurrentState != LOADSTATE.IDLE) {
+    @Override
+    protected void lazyLoad() {
+        if (!isPrepared || !isVisible) {
             return;
         }
-        if (page == count_page) {
+        getWhole();
+    }
+
+
+    private void getMoreWhole() {
+        if (mCurrentState != LOADSTATE.IDLE) {
+            return;
+        }
+        if (page == count_page || count_page == 0) {
             refreshLayout.finishLoadMore();
             ToastUtil.show(mContext, "没有更多的信息了！");
             return;
@@ -104,19 +128,17 @@ public class ExmineFragment extends BaseFragment {
         mCurrentState = LOADSTATE.MORE;
         params.clear();
         page += 1;
-        params.put("token", SaleApp.getUser().getToken());
-        params.put("member_id", SaleApp.getUser().getMember_id());
-        params.put("version", ApplicationUtils.getVerCode(mContext));
-        params.put("model", "1");
-        params.put("type", "1");
-        params.put("page", page);
+        params.put("act", "getExportOrderBillList");
+        params.put("orderType", "1");
+        params.put("limitPage", "10");
+        params.put("pageNumber", page);
         L.i("参数", params + "");
         RetrofitManager.getInstance().create(CommonService.class)
-                .getcomplain(params)
+                .getOrder(TOKEN, params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
-                .compose(RxSchedulers.<BaseEntity<ComplainInfo>>io_main())
-                .subscribe(new BaseObserver<ComplainInfo>() {
+                .compose(RxSchedulers.io_main())
+                .subscribe(new BaseObserver() {
 
                     @Override
                     public void onError(Throwable e) {
@@ -127,16 +149,17 @@ public class ExmineFragment extends BaseFragment {
                     }
 
                     @Override
-                    protected void onHandleSuccess(ComplainInfo complainInfo) {
+                    protected void onHandleSuccess(BaseEntity baseEntity) {
                         if (refreshLayout != null) {
                             refreshLayout.finishLoadMore();
                         }
-                        mCurrentState = LOADSTATE.IDLE;
-                        List<ComplainInfo.ListBean> list = complainInfo.getList();
-                        if (list == null || list.size() == 0) {
-                            initNodataView();
-                        } else if (list != null && list.size() > 0) {
-                            initHaveDataView();
+                        if (!TextUtils.isEmpty(baseEntity.getErrMsg())) {
+                            ToastUtil.show(mContext, baseEntity.getErrMsg());
+                            return;
+                        } else if (TextUtils.isEmpty(baseEntity.getErrMsg()) && baseEntity.getSuccess() != null) {
+                            mCurrentState = LOADSTATE.IDLE;
+                            OrderInfo orderInfo = gson.fromJson(baseEntity.getSuccess(), OrderInfo.class);
+                            ArrayList<OrderInfo.OrderBillListInfoBean> list = (ArrayList<OrderInfo.OrderBillListInfoBean>) orderInfo.getOrderBillListInfo();
                             complains.addAll(list);
                             refreshData(complains, true);
                         }
@@ -150,66 +173,76 @@ public class ExmineFragment extends BaseFragment {
                         }
                         mCurrentState = LOADSTATE.IDLE;
                     }
-                });*/
+                });
     }
 
     private void getWhole() {
-        /*if (mCurrentState != LOADSTATE.IDLE) {
+        if (myDialog == null) {
+            myDialog = new MyDialog(mContext);
+        }
+        myDialog.showDialog();
+        if (mCurrentState != LOADSTATE.IDLE) {
             return;
         }
         mCurrentState = LOADSTATE.LOAD;
         complains.clear();
         params.clear();
         page = 1;
-        params.put("token", SaleApp.getUser().getToken());
-        params.put("member_id", SaleApp.getUser().getMember_id());
-        params.put("version", ApplicationUtils.getVerCode(mContext));
-        params.put("model", "1");
-        params.put("type", "1");
-        params.put("page", page);
+        params.put("act", "getExportOrderBillList");
+        params.put("orderType", "1");
+        params.put("limitPage", "10");
+        params.put("pageNumber", page);
         L.i("参数", params + "");
         RetrofitManager.getInstance().create(CommonService.class)
-                .getcomplain(params)
+                .getOrder(TOKEN, params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
-                .compose(RxSchedulers.<BaseEntity<ComplainInfo>>io_main())
-                .subscribe(new BaseObserver<ComplainInfo>() {
-
+                .compose(RxSchedulers.io_main())
+                .subscribe(new BaseObserver() {
                     @Override
-                    protected void onHandleSuccess(ComplainInfo complainInfo) {
-                        L.i("coutpage", complainInfo.toString());
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        if (myDialog != null) {
+                            myDialog.dismissDialog();
+                        }
                         if (refreshLayout != null) {
                             refreshLayout.finishRefresh();
                         }
-                        ArrayList<ComplainInfo.ListBean> list = (ArrayList<ComplainInfo.ListBean>) complainInfo.getList();
-                        count_page = complainInfo.getCount_page();
-                        if (list == null || list.size() == 0) {
-                            initNodataView();
-                        } else if (list != null && list.size() > 0) {
-                            initHaveDataView();
-                            complainAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    protected void onHandleSuccess(BaseEntity baseEntity) {
+                        if (myDialog != null) {
+                            myDialog.dismissDialog();
+                        }
+                        if (refreshLayout != null) {
+                            refreshLayout.finishRefresh();
+                        }
+                        if (!TextUtils.isEmpty(baseEntity.getErrMsg())) {
+                            ToastUtil.show(mContext, baseEntity.getErrMsg());
+                            return;
+                        } else if (TextUtils.isEmpty(baseEntity.getErrMsg()) && baseEntity.getSuccess() != null) {
+                            OrderInfo orderInfo = gson.fromJson(baseEntity.getSuccess(), OrderInfo.class);
+                            ArrayList<OrderInfo.OrderBillListInfoBean> list = (ArrayList<OrderInfo.OrderBillListInfoBean>) orderInfo.getOrderBillListInfo();
+                            count_page = Integer.parseInt(orderInfo.getAllCount()) / 10;
+                            exmineAdapter.notifyDataSetChanged();
                             complains = list;
                             refreshData(complains, false);
                         }
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
-                        if (refreshLayout != null) {
-                            refreshLayout.finishRefresh();
-                        }
-                    }
-
-                    @Override
                     protected void onFinally() {
                         super.onFinally();
+                        if (myDialog != null) {
+                            myDialog.dismissDialog();
+                        }
                         if (refreshLayout != null) {
                             refreshLayout.finishRefresh();
                         }
                         mCurrentState = LOADSTATE.IDLE;
                     }
-                });*/
+                });
     }
 
     @Override
@@ -218,16 +251,16 @@ public class ExmineFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    private void refreshData(ArrayList<String> datas, boolean b) {
+    private void refreshData(ArrayList<OrderInfo.OrderBillListInfoBean> datas, boolean b) {
         int size = exmineAdapter.getData().size();
         if (!b) {
             exmineAdapter.notifyItemRangeRemoved(0, exmineAdapter.getData().size());
         }
         exmineAdapter.setData(datas);
         if (b) {
-            rvWhole.getAdapter().notifyItemInserted(size);
+            rvExmine.getAdapter().notifyItemInserted(size);
         } else {
-            rvWhole.getAdapter().notifyDataSetChanged();
+            rvExmine.getAdapter().notifyDataSetChanged();
         }
     }
 }

@@ -169,7 +169,7 @@ public class BuildingMaterialsFeedBackActivity extends BaseActivity {
                 break;
             //反馈类型
             case R.id.arl_feedback_selector:
-                mFeedBackTypeWindow.showPopupWindow(mArlFeedbackSelector, mFeedBackTypes);
+//                mFeedBackTypeWindow.showPopupWindow(mArlFeedbackSelector, mFeedBackTypes);
                 break;
             case R.id.iv_search:
                 search();

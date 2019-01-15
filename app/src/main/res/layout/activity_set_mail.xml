@@ -59,9 +59,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="30px"
             android:background="@null"
-            android:inputType="phone"
-            android:maxEms="11"
-            android:maxLength="11"
             android:textColor="@color/c_000000"
             android:textSize="40px" />
     </com.zhy.autolayout.AutoLinearLayout>

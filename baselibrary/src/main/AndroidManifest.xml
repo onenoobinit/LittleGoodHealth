@@ -25,10 +25,6 @@
         <service
             android:name=".service.HideService"
             android:process=":pointread"/>
-        <!-- 渠道商编号 -->
-        <meta-data
-            android:name="BaiduMobAd_CHANNEL"
-            android:value="Baidu Market"/>
         <!-- 您从百度网站获取的APP KEY -->
         <meta-data
             android:name="BaiduMobAd_STAT_ID"

@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 /**
  * 描述:
  * 校验器：利用正则表达式校验邮箱、手机号等 <p>
- *
- *
+ * <p>
+ * <p>
  * 工程:
  * #0000    Tian Xiao    2016-09-13 10:48
  */
@@ -54,16 +54,22 @@ public class Validator {
     /**
      * 正则表达式:验证手机验证码纯5为数字
      */
-    public static final String REGEX_CODE= "^[0-9]{5}$" ;
+    public static final String REGEX_CODE = "^[0-9]{5}$";
+
+    /**
+     * 正则表达式:验证8-16位 包含数字和字母 区分大小写
+     */
+    public static final String REGISTER_CODE = "^(?![^a-zA-Z]+$)(?!\\\\D+$).{8,16}$";
 
 
     /**
      * 验证验证么5位数字
+     *
      * @param code
      * @return
      */
-    public static boolean isCode(String code){
-        return Pattern.matches(REGEX_CODE,code);
+    public static boolean isCode(String code) {
+        return Pattern.matches(REGEX_CODE, code);
     }
 
     /**
@@ -144,5 +150,15 @@ public class Validator {
      */
     public static boolean isIPAddr(String ipAddr) {
         return Pattern.matches(REGEX_IP_ADDR, ipAddr);
+    }
+
+    /**
+     * 校验IP地址
+     *
+     * @param register
+     * @return
+     */
+    public static boolean isregister(String register) {
+        return Pattern.matches(REGISTER_CODE, register);
     }
 }

@@ -41,7 +41,7 @@
         android:background="@drawable/bg_login_name"
         android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:hint="用户名"
-        android:inputType="number|textEmailAddress"
+        android:inputType="textVisiblePassword"
         android:paddingLeft="66px"
         android:textColorHint="@color/c_9b9b9b"
         android:textSize="40px" />

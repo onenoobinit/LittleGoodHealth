@@ -188,7 +188,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             params.put(ApiContstants.USERNAME, account);
             params.put(ApiContstants.PASSWORD, pwd);
             params.put("autoLoginType", 0);
-            params.put("tokenType", "1");
+            params.put("tokenType", "2");//2是android
             RetrofitManager.getInstance().create(CommonService.class)
                     .login(params)
                     .throttleFirst(1, TimeUnit.SECONDS)
@@ -197,16 +197,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     .subscribe(new BaseObserver() {
                         @Override
                         protected void onHandleSuccess(BaseEntity baseEntity) {
-
                             if (!TextUtils.isEmpty(baseEntity.getErrMsg())) {
                                 ToastUtil.show(LoginActivity.this, baseEntity.getErrMsg());
                                 return;
-                            } else {
+                            } else if (TextUtils.isEmpty(baseEntity.getErrMsg()) && baseEntity.getSuccess() != null) {
                                 User user = gson.fromJson(baseEntity.getSuccess(), User.class);
                                 String token = user.getToken();
-                                ToastUtil.show(LoginActivity.this, token);
-                                L.i("token", token);
-                                SupervisorApp.setUser(null);
+                                SupervisorApp.setUser(user);
+                                SPUtil.put(getApplicationContext(), Constant.IS_LOGIN, true);
                                 SPUtil.setObject(SupervisorApp.getInstance(), Constant.USER, user);
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 ToastUtil.show(LoginActivity.this, "登录成功");

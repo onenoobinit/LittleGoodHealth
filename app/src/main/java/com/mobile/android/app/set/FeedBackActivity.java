@@ -4,14 +4,26 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
 import com.mobile.android.R;
+import com.mobile.android.SupervisorApp;
+import com.mobile.android.entity.OutInfo;
+import com.mobile.android.retrofit.RetrofitManager;
+import com.mobile.android.retrofit.RetryWhenNetworkException;
+import com.mobile.android.retrofit.RxSchedulers;
+import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.base.BaseEntity;
+import com.mobile.hyoukalibrary.base.BaseObserver;
+import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoRelativeLayout;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,11 +46,13 @@ public class FeedBackActivity extends BaseActivity {
     @BindView(R.id.tv_feed_submit)
     TextView tvFeedSubmit;
     private String text;
+    private String TOKEN;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         StatusBarUtil.setColor(this, Color.parseColor("#F5A623"), 0);
         ButterKnife.bind(this);
+        TOKEN = SupervisorApp.getUser().getToken();
         initListener();
     }
 
@@ -57,8 +71,13 @@ public class FeedBackActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                text = editFeedbackContent.getText().toString().trim();
-                tvContentCount.setText(text.trim().length() + "");
+                String sContent = editable.toString();
+                if (!TextUtils.isEmpty(sContent) && sContent.length() > 0) {
+                    tvFeedSubmit.setBackgroundResource(R.drawable.bg_set_out);
+                } else {
+                    tvFeedSubmit.setBackgroundResource(R.drawable.bg_tv_gray);
+                }
+                tvContentCount.setText(sContent.trim().length() + "");
             }
         });
     }
@@ -75,6 +94,39 @@ public class FeedBackActivity extends BaseActivity {
 
     @OnClick(R.id.tv_feed_submit)
     public void onClick() {
+        getFeedBack();
+    }
 
+    private void getFeedBack() {
+        params.clear();
+        params.put("act", "postFeedbackData");
+        params.put("type", "1");
+        params.put("feedback", editFeedbackContent.getText().toString().trim());
+        TOKEN = SupervisorApp.getUser().getToken();
+        RetrofitManager.getInstance().create(CommonService.class)
+                .feedBack(TOKEN, params)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .retryWhen(new RetryWhenNetworkException(2, 500, 500))
+                .compose(RxSchedulers.io_main())
+                .subscribe(new BaseObserver() {
+                    @Override
+                    protected void onHandleSuccess(BaseEntity baseEntity) {
+                        if (!TextUtils.isEmpty(baseEntity.getErrMsg())) {
+                            ToastUtil.show(FeedBackActivity.this, baseEntity.getErrMsg());
+                            return;
+                        } else {
+                            OutInfo outInfo = gson.fromJson(baseEntity.getSuccess(), OutInfo.class);
+                            if ("ok".equals(outInfo.getMsg())) {
+                                showPromptDialog();
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void showPromptDialog() {
+        new android.support.v7.app.AlertDialog.Builder(this)
+                .setMessage("提交成功")
+                .setPositiveButton("我知道了", (dialogInterface, i) -> finish()).show();
     }
 }

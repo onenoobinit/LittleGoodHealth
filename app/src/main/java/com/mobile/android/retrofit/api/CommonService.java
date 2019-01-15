@@ -11,6 +11,7 @@ import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -41,145 +42,110 @@ public interface CommonService {
      * 个人中心
      */
     @FormUrlEncoded
-    @Headers("token:534C44F6241F708343B83172D69141B441E257D64F8B0E3E")
     @POST("personalCenterHandler/common/PersonalCenterCommonHandler.ashx")
-    Observable<BaseEntity> me(@FieldMap Map<String, Object> params);
+    Observable<BaseEntity> me(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 退出登录
+     * 订单角标
      */
     @FormUrlEncoded
-    @POST("login_out")
-    Observable<BaseEntity> loginOut(@FieldMap Map<String, Object> params);
-
+    @POST("PersonalCenterMobile/CargoQuery/ExportBusiness/ExportMainHandler.ashx")
+    Observable<BaseEntity> meMarker(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 设计师查询
+     * 订单列表
      */
     @FormUrlEncoded
-    @POST("get_des_show_number_list")
-    Observable<BaseEntity> getdesiginerinfo(@FieldMap Map<String, Object> params);
-
-
-    /**
-     * 业主查询
-     */
-    @FormUrlEncoded
-    @POST("search_user_message")
-    Observable<BaseEntity> getOwnerInfo(@FieldMap Map<String, Object> params);
+    @POST("PersonalCenterMobile/CargoQuery/ExportBusiness/ExportMainHandler.ashx")
+    Observable<BaseEntity> getOrder(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 拨号接口
+     * 设置
      */
     @FormUrlEncoded
-    @POST("callout_phone")
-    Observable<BaseEntity> callOutPhone(@FieldMap Map<String, Object> params);
+    @POST("personalCenterHandler/personalInfo/PersonalInfoHandler.ashx")
+    Observable<BaseEntity> getSet(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 未接来电列表
+     * 退出
      */
     @FormUrlEncoded
-    @POST("missed_calls")
-    Observable<BaseEntity> missedCalls(@FieldMap Map<String, Object> params);
+    @POST("personalCenterHandler/common/PersonalCenterCommonHandler.ashx")
+    Observable<BaseEntity> out(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 获取短信发送节点
+     * 绑定手机、邮箱获取验证码
      */
     @FormUrlEncoded
-    @POST("message_node")
-    Observable<BaseEntity> getSmsNode(@FieldMap Map<String, Object> params);
+    @POST("personalCenterHandler/common/PersonalCenterCommonHandler.ashx")
+    Observable<BaseEntity> getCode(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 获取短信发送模板
+     * 验证手机、邮箱验证码
      */
     @FormUrlEncoded
-    @POST("get_node_message")
-    Observable<BaseEntity> getSmsContent(@FieldMap Map<String, Object> params);
+    @POST("personalCenterHandler/common/PersonalCenterCommonHandler.ashx")
+    Observable<BaseEntity> checkCode(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 发送短信
+     * 意见反馈
      */
     @FormUrlEncoded
-    @POST("send_message")
-    Observable<BaseEntity> sendMsg(@FieldMap Map<String, Object> params);
+    @POST("personalCenterHandler/common/PersonalCenterCommonHandler.ashx")
+    Observable<BaseEntity> feedBack(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 装修反馈：正常反馈、两房改约、取消量房
+     * 修改密码
      */
     @FormUrlEncoded
-    @POST("set_custom_service_notes_info")
-    Observable<BaseEntity> getnormalBack(@FieldMap Map<String, Object> params);
+    @POST("personalCenterHandler/accountCenter/SecurityCenterHandler.ashx")
+    Observable<BaseEntity> setPassWord(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 获取建材反馈类型
+     * 注册
      */
     @FormUrlEncoded
-    @POST("get_jc_config")
-    Observable<BaseEntity> getJcConfig(@FieldMap Map<String, Object> params);
+    @POST("personalCenterHandler/common/PersonalCenterCommonHandler.ashx")
+    Observable<BaseEntity> register(@FieldMap Map<String, Object> params);
 
     /**
-     * 获取建材反馈业主订单
+     * 始发港
      */
     @FormUrlEncoded
-    @POST("get_jc_allot_baomings_info")
-    Observable<BaseEntity> getJcOwnerOrderInfo(@FieldMap Map<String, Object> params);
+    @POST("SmartProductsHandler/Common/CommonHandler.ashx")
+    Observable<BaseEntity> getPort(@Header("token") String token, @FieldMap Map<String, Object> params);
 
     /**
-     * 建材反馈提交
+     * 目的地
      */
     @FormUrlEncoded
-    @POST("set_fk_info")
-    Observable<BaseEntity> jcFkSubmit(@FieldMap Map<String, Object> params);
+    @POST("SmartProductsHandler/Common/CommonHandler.ashx")
+    Observable<BaseEntity> getStart(@Header("token") String token, @FieldMap Map<String, Object> params);
 
-    /**
-     * 获取今日备忘
-     */
-    @FormUrlEncoded
-    @POST("get_today_remark")
-    Observable<BaseEntity> getTodayBw(@FieldMap Map<String, Object> params);
 
-    /**
-     * 备忘录列表
-     */
-    @FormUrlEncoded
-    @POST("memorandum_management")
-    Observable<BaseEntity> getBwList(@FieldMap Map<String, Object> params);
 
-    /**
-     * 备忘录详情
-     */
-    @FormUrlEncoded
-    @POST("see_memorandum")
-    Observable<BaseEntity> getBwDetail(@FieldMap Map<String, Object> params);
 
-    /**
-     * 增加备忘
-     */
-    @FormUrlEncoded
-    @POST("add_memorandum")
-    Observable<BaseEntity> addBw(@FieldMap Map<String, Object> params);
 
-    /**
-     * 编辑备忘
-     */
-    @FormUrlEncoded
-    @POST("edit_memorandum")
-    Observable<BaseEntity> editBw(@FieldMap Map<String, Object> params);
 
-    /**
-     * 删除备忘
-     */
-    @FormUrlEncoded
-    @POST("delete_memorandum")
-    Observable<BaseEntity> deleteBw(@FieldMap Map<String, Object> params);
 
-    /**
-     * 装修反馈接口
-     */
-    @FormUrlEncoded
-    @POST("set_custom_service_notes_info")
-//接口名重复
-    Observable<BaseEntity> getsigin(@FieldMap Map<String, Object> params);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 检查更新
