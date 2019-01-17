@@ -1,11 +1,12 @@
 package com.mobile.android.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by wangqiang on 2019/1/14.
  */
-public class StartInfo {
+public class StartInfo implements Serializable {
     private List<StartPortBean> startPort;
 
     public List<StartPortBean> getStartPort() {
@@ -16,7 +17,7 @@ public class StartInfo {
         this.startPort = startPort;
     }
 
-    public static class StartPortBean {
+    public static class StartPortBean implements Serializable {
         /**
          * nameC : 郑州市
          * port : CGO

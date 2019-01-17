@@ -122,11 +122,19 @@ public interface CommonService {
     @POST("SmartProductsHandler/Common/CommonHandler.ashx")
     Observable<BaseEntity> getStart(@Header("token") String token, @FieldMap Map<String, Object> params);
 
+    /**
+     * 方案选择1
+     */
+    @FormUrlEncoded
+    @POST("SmartProductsHandler/ProductSearch/ProductQueryV2Handler.ashx")
+    Observable<BaseEntity> getSelect(@Header("token") String token, @FieldMap Map<String, Object> params);
 
-
-
-
-
+    /**
+     * 产品详情
+     */
+    @FormUrlEncoded
+    @POST("SmartProductsHandler/ProductSearch/ProductResultHandler.ashx")
+    Observable<BaseEntity> getProdetail(@Header("token") String token, @FieldMap Map<String, Object> params);
 
 
 

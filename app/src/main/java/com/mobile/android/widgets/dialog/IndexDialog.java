@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,11 +32,14 @@ public abstract class IndexDialog extends Dialog {
     private final TextView tv_index_sure;
     private final View v_bottom1;
     public static int bWidth;
+    private final String type;//0首页 1 方案选择  2 方案选择次页
+    private String portCity = "";
 
     @SuppressLint("WrongViewCast")
-    public IndexDialog(final Context context) {
+    public IndexDialog(final Context context, String type) {
         super(context, R.style.fullWindowDialogStyle);
         this.context = context;
+        this.type = type;
         setContentView(R.layout.dialog_index);
         setCanceledOnTouchOutside(false);
         iv_index_dialog_colse = findViewById(R.id.iv_index_dialog_colse);
@@ -60,7 +61,7 @@ public abstract class IndexDialog extends Dialog {
         iv_index_dialog_colse.setOnClickListener(view -> dismiss());
 
         tv_index_sure.setOnClickListener(view -> {
-            sureClick(tv_index_start, tv_index_end, et_show1, et_show2, et_show3, tv_tips);
+            sureClick(tv_index_start, tv_index_end, et_show1, et_show2, et_show3, tv_tips, portCity);
         });
         arl_show1.setOnClickListener(view -> {
             startClick(v_bottom1, tv_index_start, iv_index_dialog_close1);
@@ -69,58 +70,8 @@ public abstract class IndexDialog extends Dialog {
 
         iv_index_dialog_close1.setOnClickListener(view -> startCloseClick(tv_index_start, iv_index_dialog_close1));
 
-        iv_index_dialog_close2.setOnClickListener(view -> endCloseClick(tv_index_end,iv_index_dialog_close2));
+        iv_index_dialog_close2.setOnClickListener(view -> endCloseClick(tv_index_end, iv_index_dialog_close2));
 
-        et_show1.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                numberListener(String.valueOf(editable));
-            }
-        });
-
-        et_show2.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                weightListener(String.valueOf(editable));
-            }
-        });
-
-        et_show3.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                volListener(String.valueOf(editable));
-            }
-        });
     }
 
     public abstract void startClick(View view, TextView tv, ImageView iv);
@@ -131,17 +82,40 @@ public abstract class IndexDialog extends Dialog {
 
     public abstract void endCloseClick(TextView tv, ImageView iv);
 
-    public abstract void numberListener(String number);
-
-    public abstract void weightListener(String weight);
-
-    public abstract void volListener(String vol);
-
-    public abstract void sureClick(TextView tv1, TextView tv2, EditText et_show1, EditText et_show2, EditText et_show3, TextView tv3);
+    public abstract void sureClick(TextView tv1, TextView tv2, EditText et_show1, EditText et_show2, EditText et_show3, TextView tv3, String portCity);
 
     public void setPort(String port) {
         tv_index_end.setText(port);
         tv_index_end.setTextColor(Color.parseColor("#000000"));
         iv_index_dialog_close2.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        tv_tips.setVisibility(View.INVISIBLE);
+        tv_tips.setText("");
+    }
+
+    public void setPortCity(String endHY) {
+        portCity = endHY;
+    }
+
+    public void setStart(String start) {
+        tv_index_start.setText(start);
+        tv_index_start.setTextColor(Color.parseColor("#000000"));
+        iv_index_dialog_close1.setVisibility(View.VISIBLE);
+    }
+
+    public void setNumber(String number) {
+        et_show1.setText(number);
+    }
+
+    public void setWeight(String weight) {
+        et_show2.setText(weight);
+    }
+
+    public void setVol(String vol) {
+        et_show3.setText(vol);
     }
 }

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_select_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="46px"
+            android:layout_marginTop="23px"
+            android:text="PVG-AMS"
+            android:textColor="@color/c_000000"
+            android:textSize="46px" />
+
+        <TextView
+            android:id="@+id/tv_select_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="46px"
+            android:layout_marginTop="23px"
+            android:text="xxx"
+            android:textColor="@color/c_9b9b9b"
+            android:textSize="46px" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_select_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="46px"
+        android:layout_marginTop="9px"
+        android:text="单价：12.99/KG"
+        android:textColor="@color/c_000000"
+        android:textSize="40px" />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="35px"
+                    android:layout_height="35px"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="46px"
+                    android:src="@mipmap/shop" />
+
+                <TextView
+                    android:id="@+id/tv_select_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20px"
+                    android:text="恒丰国际"
+                    android:textColor="@color/c_00A7F7"
+                    android:textSize="30px" />
+
+                <ImageView
+                    android:layout_width="35px"
+                    android:layout_height="35px"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20px"
+                    android:src="@mipmap/chat" />
+
+                <TextView
+                    android:id="@+id/tv_select_over"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="50px"
+                    android:text="剩余舱位30%"
+                    android:textColor="@color/c_24253D"
+                    android:textSize="30px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <ProgressBar
+                android:id="@+id/pv_select"
+                android:layout_width="match_parent"
+                android:layout_height="17px"
+                android:layout_marginLeft="46px"
+                android:layout_marginTop="15px" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <TextView
+            android:id="@+id/tv_select_look"
+            android:layout_width="156px"
+            android:layout_height="63px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="75px"
+            android:background="@drawable/bg_tv_look"
+            android:gravity="center"
+            android:text="查看"
+            android:textColor="@color/white"
+            android:textSize="35px" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>

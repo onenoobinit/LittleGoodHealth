@@ -1,4 +1,4 @@
-package com.mobile.android.app.search;
+package com.mobile.android.app.program.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,53 +13,44 @@ import com.mobile.android.R;
 import java.util.List;
 
 /**
- * Created by wangqiang on 2019/1/14.
+ * Created by wangqiang on 2019/1/17.
  */
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
+public class ProDetailAdpater extends RecyclerView.Adapter<ProDetailAdpater.MyViewHolder> {
+
     private final Context mContext;
     private List<String> datas;
+    private int type;
 
-
-    public HistoryAdapter(Context context, List<String> data) {
+    public ProDetailAdpater(Context context, int i, List<String> complains) {
         this.mContext = context;
-        this.datas = data;
+        this.type = i;
+        this.datas = complains;
     }
 
-    public void setData(List<String> data) {
-        this.datas = data;
-    }
-
-    public List<String> getData() {
-        return datas;
-    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(mContext).inflate(R.layout.adapter_history, parent, false));
+        return new MyViewHolder(LayoutInflater.from(mContext).inflate(R.layout.adapter_pro_detail, null, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv_his_item.setText(datas.get(position));
+        holder.tv_case.setText(datas.get(position));
     }
+
 
     @Override
     public int getItemCount() {
-        if (datas.size() > 5) {
-            return 5;
-        } else {
-            return datas != null ? datas.size() : 0;
-        }
+        return datas != null ? datas.size() : 0;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tv_his_item;
-
+        private final TextView tv_case;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tv_his_item = itemView.findViewById(R.id.tv_his_item);
+            tv_case = itemView.findViewById(R.id.tv_case);
 
         }
     }

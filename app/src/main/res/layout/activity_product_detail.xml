@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:overScrollMode="never">
@@ -47,31 +48,755 @@
             app:srlTextSizeTitle="16sp"
             app:srlTextTimeMarginTop="2dp" />
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:id="@+id/arl_have_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_whole"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.zhy.autolayout.AutoRelativeLayout>
-
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:id="@+id/arl_no_data"
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"></com.zhy.autolayout.AutoRelativeLayout>
+                android:background="@color/white"
+                android:orientation="vertical">
 
-        </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:id="@+id/arl_have_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="46px"
+                    android:layout_marginRight="46px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100px"
+                        android:text="普货装载要求"
+                        android:textColor="@color/c_00A7F7"
+                        android:textSize="46px" />
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="直飞/中转"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_fly_type"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textColor="@color/c_1A1A1A"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="单件尺寸限制"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_detail_vol"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:maxLines="2"
+                            android:text=""
+                            android:textColor="@color/c_1A1A1A"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="单件重量限制"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_deatail_weight"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textColor="@color/c_1A1A1A"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="最低承运重量"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_weight_min"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textColor="@color/c_1A1A1A"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="化工品包装要求"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_bao_zhuang"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textColor="@color/c_1A1A1A"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="锂电池型号"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_li_dian"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textColor="@color/c_1A1A1A"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="包装限制"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_bao_xian"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textColor="@color/c_1A1A1A"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="备注"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_bei_zhu"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textColor="@color/c_1A1A1A"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:layout_marginTop="40px"
+                        android:background="@drawable/bg_xuxian"
+                        android:layerType="software" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60px"
+                        android:text="交货情况"
+                        android:textColor="@color/c_00A7F7"
+                        android:textSize="46px" />
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20px"
+                        android:orientation="horizontal">
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.9">
+
+                            <com.zhy.autolayout.AutoLinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="航班号"
+                                    android:textColor="@color/c_808080"
+                                    android:textSize="35px" />
+
+                                <TextView
+                                    android:id="@+id/tv_sec1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="50px"
+                                    android:text="- -"
+                                    android:textColor="@color/c_808080"
+                                    android:textSize="35px"
+                                    android:visibility="gone" />
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/rv_item1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="50px"></android.support.v7.widget.RecyclerView>
+                            </com.zhy.autolayout.AutoLinearLayout>
+
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <com.zhy.autolayout.AutoLinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="交货城市"
+                                    android:textColor="@color/c_808080"
+                                    android:textSize="35px" />
+
+                                <TextView
+                                    android:id="@+id/tv_sec2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="50px"
+                                    android:text="- -"
+                                    android:textColor="@color/c_808080"
+                                    android:textSize="35px"
+                                    android:visibility="gone" />
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/rv_item2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="50px"></android.support.v7.widget.RecyclerView>
+                            </com.zhy.autolayout.AutoLinearLayout>
+
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <com.zhy.autolayout.AutoLinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="交货时间"
+                                    android:textColor="@color/c_808080"
+                                    android:textSize="35px" />
+
+                                <TextView
+                                    android:id="@+id/tv_sec3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="50px"
+                                    android:text="- -"
+                                    android:textColor="@color/c_808080"
+                                    android:textSize="35px"
+                                    android:visibility="gone" />
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/rv_item3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="50px"></android.support.v7.widget.RecyclerView>
+                            </com.zhy.autolayout.AutoLinearLayout>
+
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <com.zhy.autolayout.AutoLinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="进仓时间"
+                                    android:textColor="@color/c_808080"
+                                    android:textSize="35px" />
+
+                                <TextView
+                                    android:id="@+id/tv_sec4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="50px"
+                                    android:text="- -"
+                                    android:textColor="@color/c_808080"
+                                    android:textSize="35px"
+                                    android:visibility="gone" />
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/rv_item4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="50px"></android.support.v7.widget.RecyclerView>
+                            </com.zhy.autolayout.AutoLinearLayout>
+
+                        </com.zhy.autolayout.AutoRelativeLayout>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:layout_marginTop="40px"
+                        android:background="@drawable/bg_xuxian"
+                        android:layerType="software" />
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="60px"
+                            android:text="航班头信息"
+                            android:textColor="@color/c_00A7F7"
+                            android:textSize="46px" />
+
+                        <TextView
+                            android:id="@+id/tv_tou_cheng"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35px"
+                            android:layout_marginTop="60px"
+                            android:text="头程情况PVG-AMS"
+                            android:textColor="@color/c_00A7F7"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="航班号"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_fly_number"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.5"
+                            android:text=""
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="运输工具"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_yun_gong"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.5"
+                            android:text=""
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="起运时间"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_fly_time"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.5"
+                            android:text=""
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="到达时间"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_arrive_time"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.5"
+                            android:text=""
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="航班班次"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_hang_ban"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.5"
+                            android:text=""
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="机型"
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+
+                        <TextView
+                            android:id="@+id/tv_ji_xing"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.5"
+                            android:text=""
+                            android:textColor="@color/c_808080"
+                            android:textSize="35px" />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:id="@+id/all_second"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2px"
+                            android:layout_marginTop="40px"
+                            android:background="@drawable/bg_xuxian"
+                            android:layerType="software" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="60px"
+                            android:text="二程情况"
+                            android:textColor="@color/c_00A7F7"
+                            android:textSize="46px" />
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30px"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="航班号"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:id="@+id/tv_ban_hao"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5"
+                                android:text=""
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30px"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="运输工具"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:id="@+id/tv_gong_ju"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5"
+                                android:text=""
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30px"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="起运时间"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:id="@+id/tv_yun_time"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5"
+                                android:text=""
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30px"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="到达时间"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:id="@+id/tv_dao_time"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5"
+                                android:text=""
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30px"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="航班班次"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:id="@+id/tv_ban_ci"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5"
+                                android:text=""
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30px"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="机型"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:id="@+id/tv_er_ji"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.5"
+                                android:text=""
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+                        </com.zhy.autolayout.AutoLinearLayout>
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="40px" />
+
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/arl_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"></com.zhy.autolayout.AutoRelativeLayout>
+
+            </com.zhy.autolayout.AutoLinearLayout>
+        </ScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

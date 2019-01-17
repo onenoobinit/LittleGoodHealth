@@ -77,7 +77,7 @@ public class DesiginerSearchActivity extends BaseActivity implements View.OnClic
         mIvDesiginerSearch.setOnClickListener(this);
         mArlDesiginerSelector.setOnClickListener(this);
         addPopWindow = new AddPopWindow(DesiginerSearchActivity.this, 400);
-        addPopWindow.setOnPopupItemClickListener(new AddPopWindow.PopupItemClickListener() {
+        /*addPopWindow.setOnPopupItemClickListener(new AddPopWindow.PopupItemClickListener() {
             @Override
             public void popupItemClick(String sid) {
                 mTvDesiginerType.setText(sid);
@@ -88,7 +88,7 @@ public class DesiginerSearchActivity extends BaseActivity implements View.OnClic
                 }
                 flContent.removeAllViews();
             }
-        });
+        });*/
     }
 
     @Override

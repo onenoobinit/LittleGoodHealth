@@ -18,6 +18,8 @@ import java.util.List;
  * Created by wangqiang on 2019/1/15.
  */
 public abstract class FuzzySearchAdapter extends FuzzySearchBaseAdapter<ItemEntity, FuzzySearchAdapter.ItemHolder> {
+    private String cityName = "";
+
     public FuzzySearchAdapter() {
         super(null);
     }
@@ -42,7 +44,7 @@ public abstract class FuzzySearchAdapter extends FuzzySearchBaseAdapter<ItemEnti
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
-
+        cityName = "";
         String value = mDataList.get(position).getValue();
         String[] split = value.split(",");
         holder.tv_result_sx.setText(split[0]);
@@ -51,15 +53,18 @@ public abstract class FuzzySearchAdapter extends FuzzySearchBaseAdapter<ItemEnti
         if (split[1].contains(",")) {
             String[] split1 = split[1].split(",");
             holder.tv_result_name.setText(split1[0]);
+            cityName = split1[0];
         } else if (split[1].contains("，")) {
             String[] split1 = split[1].split("，");
             holder.tv_result_name.setText(split1[0]);
+            cityName = split1[0];
         } else {
             holder.tv_result_name.setText(split[1]);
+            cityName = split[1];
         }
 
         holder.all_result_item.setOnClickListener(view -> {
-            setOnItemClickListener(split[0]);
+            setOnItemClickListener(split[0] + "," + cityName);
         });
     }
 

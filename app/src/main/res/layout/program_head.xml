@@ -56,8 +56,8 @@
                 android:id="@+id/tv_start_py"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="---"
+                android:layout_gravity="start"
+                android:text="--"
                 android:textColor="@color/c_00A7F7"
                 android:textSize="52px"
                 android:textStyle="bold" />
@@ -66,8 +66,7 @@
                 android:id="@+id/tv_start_hy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="9px"
+                android:layout_gravity="start"
                 android:text=""
                 android:textColor="@color/c_00A7F7"
                 android:textSize="29px" />
@@ -89,7 +88,7 @@
                 android:id="@+id/tv_end_py"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="right"
                 android:layout_marginLeft="9px"
                 android:text="BCN"
                 android:textColor="@color/c_00A7F7"
@@ -99,8 +98,8 @@
                 android:id="@+id/tv_end_hy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="巴塞罗那"
+                android:layout_gravity="right"
+                android:text="巴塞"
                 android:textColor="@color/c_00A7F7"
                 android:textSize="29px" />
 
@@ -134,6 +133,7 @@
                 android:textSize="29px" />
 
             <TextView
+                android:id="@+id/tv_head_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5px"
@@ -156,6 +156,7 @@
                 android:textSize="29px" />
 
             <TextView
+                android:id="@+id/tv_head_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5px"
@@ -178,6 +179,7 @@
                 android:textSize="29px" />
 
             <TextView
+                android:id="@+id/tv_head_vol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5px"
@@ -200,10 +202,11 @@
                 android:textSize="29px" />
 
             <TextView
+                android:id="@+id/tv_head_portion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5px"
-                android:text="填入"
+                android:text="- -"
                 android:textColor="@color/c_9b9b9b"
                 android:textSize="29px" />
         </com.zhy.autolayout.AutoLinearLayout>

@@ -115,7 +115,7 @@ public class AddPopWindow extends PopupWindow implements AdapterView.OnItemClick
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (popupItemClickListener != null) {
-            popupItemClickListener.popupItemClick(list.get(position));
+            popupItemClickListener.popupItemClick(list.get(position), position);
             gridviewAdapter.selectIndex = position;
             gridviewAdapter.notifyDataSetChanged();
         }
@@ -130,7 +130,7 @@ public class AddPopWindow extends PopupWindow implements AdapterView.OnItemClick
 
     //设置回调方法，在popupwindow条目点击事件中调用，传递值给activity刷新数据
     public interface PopupItemClickListener {
-        void popupItemClick(String sid);
+        void popupItemClick(String sid, int postion);
     }
 
     //设置回调方法，在popupwindow条目点击事件中调用，传递值给activity刷新数据

@@ -178,7 +178,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
             finish();
         });
         addPopWindow = new AddPopWindow(DecFeedbackActivity.this, 400);
-        addPopWindow.setOnPopupItemClickListener(new AddPopWindow.PopupItemClickListener() {
+        /*addPopWindow.setOnPopupItemClickListener(new AddPopWindow.PopupItemClickListener() {
             @Override
             public void popupItemClick(String sid) {
                 flContent.removeAllViews();
@@ -199,7 +199,7 @@ public class DecFeedbackActivity extends BaseActivity implements View.OnClickLis
                     dType = 0;
                 }
             }
-        });
+        });*/
     }
 
 

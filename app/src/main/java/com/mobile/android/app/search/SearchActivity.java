@@ -34,6 +34,7 @@ import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -82,7 +83,6 @@ public class SearchActivity extends BaseActivity {
     private String TOKEN;
     private PortInfo portInfo;
     private HistoryAdapter historyAdapter;
-    private List<String> historys = new ArrayList<>();
     private PortItemAdapter portItemAdapter;
     private ArrayList<PortInfo.DestinationListBean> portItems = new ArrayList<>();
     private ArrayList<PortInfo.DestinationListBean.DataListBeanX> contentItems = new ArrayList<>();
@@ -90,15 +90,17 @@ public class SearchActivity extends BaseActivity {
     InputMethodManager managerintype;
     private ArrayList<PortInfo.DestinationListBean.DataListBeanX> destinationListX;
     private ArrayList<PortInfo.DestinationListBean.DataListBeanX> destinationListx;
-    private List history;
+    private List<String> history = new ArrayList();
     private ArrayList<String> tests = new ArrayList<>();
     private FuzzySearchAdapter mFuzzySearchAdapter;
+    private String type;
+    private List<PortInfo.DestinationListAllBean> destinationListAll;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         ButterKnife.bind(this);
         TOKEN = SupervisorApp.getUser().getToken();
-        getPort();
+        type = getIntent().getStringExtra("type");
 
         //分类头部
         LinearLayoutManager managerPort = new LinearLayoutManager(this);
@@ -106,18 +108,16 @@ public class SearchActivity extends BaseActivity {
         rvDate.setLayoutManager(managerPort);
         portItemAdapter = new PortItemAdapter(SearchActivity.this, portItems);
         rvDate.setAdapter(portItemAdapter);
-
         managerintype = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
-        //搜索结果
-
+        history = SPUtil.getObject(SearchActivity.this, "history", List.class);
 
         //浏览记录
         search();
-        history = SPUtil.getObject(SearchActivity.this, "history", List.class);
         if (history == null || history.size() == 0) {
             tvHistoryNone.setVisibility(View.VISIBLE);
             rvHistory.setVisibility(View.GONE);
+            history = new ArrayList<>();
         } else if (history != null && history.size() > 0) {
             tvHistoryNone.setVisibility(View.GONE);
             rvHistory.setVisibility(View.VISIBLE);
@@ -126,9 +126,12 @@ public class SearchActivity extends BaseActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvHistory.setLayoutManager(manager);
+        Collections.reverse(history);
         historyAdapter = new HistoryAdapter(SearchActivity.this, history);
         rvHistory.setAdapter(historyAdapter);
 
+        initData();
+        getPort();
         arlX.setOnClickListener(view -> {
             arlSearchResult.setVisibility(View.GONE);
             etSearch.setText("");
@@ -145,8 +148,15 @@ public class SearchActivity extends BaseActivity {
                 //将搜索存入list
                 history.add(etSearch.getText().toString().trim());
                 SPUtil.setObject(SearchActivity.this, "history", history);
-                arlSearchResult.setVisibility(View.VISIBLE);
-                mFuzzySearchAdapter.getFilter().filter(etSearch.getText().toString().trim());
+
+                if ("0".equals(type)) {
+                    RxBus.get().post("intypeIndex", etSearch.getText().toString().trim());
+                } else if ("1".equals(type)) {
+                    RxBus.get().post("intypeSelect", etSearch.getText().toString().trim());
+                } else if ("2".equals(type)) {
+                    RxBus.get().post("intypeThree", etSearch.getText().toString().trim());
+                }
+                finish();
             }
             return false;
         });
@@ -160,6 +170,8 @@ public class SearchActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 arlX.setVisibility(View.VISIBLE);
+                arlSearchResult.setVisibility(View.VISIBLE);
+                mFuzzySearchAdapter.getFilter().filter(charSequence.toString().trim());
             }
 
             @Override
@@ -191,49 +203,45 @@ public class SearchActivity extends BaseActivity {
                             return;
                         } else {
                             portInfo = gson.fromJson(baseEntity.getSuccess(), PortInfo.class);
-                            initData(portInfo);
+
+                            if (portItems != null) {
+                                portItems.clear();
+                            }
+                            portItems = (ArrayList<PortInfo.DestinationListBean>) portInfo.getDestinationList();
+                            SPUtil.setObject(SearchActivity.this, "portItems", portItems);
+                            initPort();
+
+                            if (destinationListX != null) {
+                                destinationListX.clear();
+                            }
+                            destinationListX = (ArrayList<PortInfo.DestinationListBean.DataListBeanX>) portInfo.getDestinationList().get(0).getDataList();
+                            SPUtil.setObject(SearchActivity.this, "destinationListX", destinationListX);
+                            contentItems.clear();
+                            contentItems = destinationListX;
+                            initContent();
+
+                            if (destinationListAll != null) {
+                                destinationListAll.clear();
+                            }
+                            destinationListAll = portInfo.getDestinationListAll();
+                            SPUtil.setObject(SearchActivity.this, "destinationListAll", destinationListAll);
+                            initAll();
+
+                            //分类头部点击切换
+                            portItemAdapter.setOnContentItemClickListener(postion -> {
+                                destinationListx = (ArrayList<PortInfo.DestinationListBean.DataListBeanX>) portInfo.getDestinationList().get(postion).getDataList();
+                                contentItems.clear();
+                                contentItems.addAll(destinationListx);
+                                refreshDataContent(contentItems, false);
+                            });
+                            initData();
                         }
                     }
                 });
     }
 
-    private void initData(PortInfo portInfo) {
-        ArrayList<PortInfo.DestinationListBean> destinationList = (ArrayList<PortInfo.DestinationListBean>) portInfo.getDestinationList();
-        portItems.clear();
-        portItems.addAll(destinationList);
-        portItemAdapter.notifyDataSetChanged();
-        refreshData(portItems, false);
-
-        //分类内容展示列表
-        LinearLayoutManager managerContent = new LinearLayoutManager(this);
-        managerContent.setOrientation(LinearLayoutManager.VERTICAL);
-        rvContent.setLayoutManager(managerContent);
-        destinationListX = (ArrayList<PortInfo.DestinationListBean.DataListBeanX>) portInfo.getDestinationList().get(0).getDataList();
-        contentItems.addAll(destinationListX);
-        contentAdapter = new ContentAdapter(SearchActivity.this, contentItems) {
-            @Override
-            public void setOnItemCont(String name) {
-                history.add(name);
-                SPUtil.setObject(SearchActivity.this, "history", history);
-
-                etSearch.setText(name);
-                arlSearchResult.setVisibility(View.VISIBLE);
-                mFuzzySearchAdapter.getFilter().filter(name);
-            }
-        };
-        rvContent.setAdapter(contentAdapter);
-
-        //分类头部点击切换
-        portItemAdapter.setOnContentItemClickListener(postion -> {
-            destinationListx = (ArrayList<PortInfo.DestinationListBean.DataListBeanX>) portInfo.getDestinationList().get(postion).getDataList();
-            contentItems.clear();
-            contentItems.addAll(destinationListx);
-            refreshDataContent(contentItems, false);
-        });
-
-
-        //全部数据的转化 然后填充到搜索adapter
-        List<PortInfo.DestinationListAllBean> destinationListAll = portInfo.getDestinationListAll();
+    private void initAll() {
+        tests.clear();
         for (int i = 0; i < destinationListAll.size(); i++) {
             tests.add(destinationListAll.get(i).getAirport() + "," + destinationListAll.get(i).getCityNameC() + "," + destinationListAll.get(i).getCountryNameC());
         }
@@ -246,11 +254,68 @@ public class SearchActivity extends BaseActivity {
         rvResutl.setAdapter(mFuzzySearchAdapter = new FuzzySearchAdapter(itemEntities) {
             @Override
             public void setOnItemClickListener(String position) {
-                RxBus.get().post("port", position);
+                //将搜索存入list
+                String[] split = position.split(",");
+                history.add(split[0]);
+                SPUtil.setObject(SearchActivity.this, "history", history);
+                if ("0".equals(type)) {
+                    RxBus.get().post("port", position);
+                } else if ("1".equals(type)) {
+                    RxBus.get().post("select", position);
+                } else if ("2".equals(type)) {
+                    RxBus.get().post("three", position);
+                }
                 finish();
             }
         });
+    }
 
+    private void initContent() {
+        //分类内容展示列表
+        LinearLayoutManager managerContent = new LinearLayoutManager(this);
+        managerContent.setOrientation(LinearLayoutManager.VERTICAL);
+        rvContent.setLayoutManager(managerContent);
+        contentAdapter = new ContentAdapter(SearchActivity.this, contentItems) {
+            @Override
+            public void setOnItemCont(String name) {
+                history.add(name);
+                SPUtil.setObject(SearchActivity.this, "history", history);
+                etSearch.setText(name);
+                arlSearchResult.setVisibility(View.VISIBLE);
+                mFuzzySearchAdapter.getFilter().filter(name);
+            }
+        };
+        rvContent.setAdapter(contentAdapter);
+    }
+
+    private void initPort() {
+        portItemAdapter.notifyDataSetChanged();
+        refreshData(portItems, false);
+    }
+
+    private void initData() {
+        //数据缓存处理
+        portItems = SPUtil.getObject(SearchActivity.this, "portItems", ArrayList.class);
+        if (portItems != null && portItems.size() > 0) {
+            initPort();
+        } else {
+            portItems = new ArrayList<>();
+        }
+
+        contentItems = SPUtil.getObject(SearchActivity.this, "destinationListX", ArrayList.class);
+        if (contentItems != null && contentItems.size() > 0) {
+            initContent();
+        } else {
+            contentItems = new ArrayList<>();
+        }
+
+        //全部数据的转化 然后填充到搜索adapter
+        destinationListAll = SPUtil.getObject(SearchActivity.this, "destinationListAll", List.class);
+        if (destinationListAll != null && destinationListAll.size() > 0) {
+            initAll();
+        } else {
+            destinationListAll = new ArrayList<>();
+        }
     }
 
     private List<ItemEntity> fillData(String[] date) {
@@ -321,5 +386,4 @@ public class SearchActivity extends BaseActivity {
         history.clear();
         SPUtil.setObject(SearchActivity.this, "history", history);
     }
-
 }

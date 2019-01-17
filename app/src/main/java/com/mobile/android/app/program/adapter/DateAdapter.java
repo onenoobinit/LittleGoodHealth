@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by wangqiang on 2019/1/7.
  */
-public class DateAdapter extends RecyclerView.Adapter<DateAdapter.MyViewHolder> {
+public abstract class DateAdapter extends RecyclerView.Adapter<DateAdapter.MyViewHolder> {
 
     private final Context mContext;
     private ArrayList<String> datas;
@@ -52,6 +52,7 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.MyViewHolder> 
         holder.all_item_date.setOnClickListener(view -> {
             selectPostion = position;
             notifyDataSetChanged();
+            setOnItemDate(datas.get(position));
         });
 
         if (selectPostion == position) {
@@ -84,4 +85,6 @@ public class DateAdapter extends RecyclerView.Adapter<DateAdapter.MyViewHolder> 
 
         }
     }
+
+    public abstract void setOnItemDate(String date);
 }

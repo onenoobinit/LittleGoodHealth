@@ -109,32 +109,43 @@
             </android.support.constraint.ConstraintLayout>
         </android.support.design.widget.AppBarLayout>
 
-        <com.mobile.android.widgets.ObservableScrollView
+        <!--<com.mobile.android.widgets.ObservableScrollView
             android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <com.zhy.autolayout.AutoLinearLayout
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_sort_left"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@color/c_F3F2F2"
+                android:overScrollMode="never" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_sort_right"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:id="@+id/tv_next"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="二级联动" />
-
-            </com.zhy.autolayout.AutoLinearLayout>
-        </com.mobile.android.widgets.ObservableScrollView>
+                android:layout_marginLeft="12sp"
+                android:layout_marginRight="12sp"
+                android:background="@color/white"
+                android:overScrollMode="never" />
+        </com.zhy.autolayout.AutoLinearLayout>
+        <!--</com.mobile.android.widgets.ObservableScrollView>-->
     </android.support.design.widget.CoordinatorLayout>
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="115px"
+        android:background="@color/white"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
