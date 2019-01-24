@@ -78,16 +78,19 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="46px"
+                        android:id="@+id/iv_pro_company"
+                        android:layout_width="140px"
+                        android:layout_height="100px"
+                        android:layout_marginLeft="30px"
                         android:layout_marginTop="46px"
+                        android:scaleType="centerCrop"
                         android:src="@mipmap/ic_launcher" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_pro_company"
+                        android:layout_width="140px"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="30px"
                         android:layout_marginTop="35px"
                         android:ellipsize="end"
                         android:maxLines="2"
@@ -120,8 +123,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="35px"
+                            android:layout_height="35px"
                             android:layout_gravity="center_vertical"
                             android:src="@mipmap/shop" />
 
@@ -136,8 +139,8 @@
                             android:textSize="29px" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="35px"
+                            android:layout_height="35px"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="20px"
                             android:src="@mipmap/chat" />
@@ -239,6 +242,90 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10px"
                 android:src="@mipmap/sure_xian" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/all_detail_trans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40px"
+                    android:text="转运费"
+                    android:textColor="@color/c_00A7F7"
+                    android:textSize="35px" />
+
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="转运费："
+                        android:textColor="@color/c_4A4A4A"
+                        android:textSize="35px" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_zy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/c_4A4A4A"
+                        android:textSize="35px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="最低转运费："
+                        android:textColor="@color/c_4A4A4A"
+                        android:textSize="35px" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_zd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/c_4A4A4A"
+                        android:textSize="35px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="还需补差价："
+                        android:textColor="@color/c_4A4A4A"
+                        android:textSize="35px" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_bc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/c_4A4A4A"
+                        android:textSize="35px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
 
             <View
                 android:layout_width="match_parent"

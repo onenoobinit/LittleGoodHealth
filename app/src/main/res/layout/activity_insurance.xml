@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/logi_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar_height"
+        android:background="@color/white"
+        app:navigationIcon="@mipmap/back_arrow_blue"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="保险条款"
+            android:textColor="@color/c_000000"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+    </android.support.v7.widget.Toolbar>
+
+    <com.mobile.android.widgets.LazyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginTop="30px"
+                android:text="下列原因造成的损失、费用，保险人不负责赔偿："
+                android:textColor="@color/c_1A1A1A"
+                android:textSize="40px" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="60px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(一)"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="航空公司航班取消、延误、维修。"
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="35px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="46px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(二)"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="罢工、骚乱、暴动、劫机。"
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="35px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="46px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(三)"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="货物所订的航班所属的航空公司停飞或者破产"
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="35px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="46px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(四)"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="行政行为或司法行为"
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="35px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="46px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(五)"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="投保人、被保险人及其代表的故意、重大过失行为，违法行为，未及时收、发货。"
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="35px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="46px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(六)"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="货物由于灭失、损坏、被偷盗、被销毁等原因造成事实上无法完成运输过程。"
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="35px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="46px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(七)"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="货物由于海关查验导致的拉货。"
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="35px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="46px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(八)"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="货物由于出运条件的不足导致的拉货。"
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="35px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="46px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(九)"
+                    android:textSize="35px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="货物由于航空公司地面操作代理操作不当导致的拉货，不包括三脚猫交货代理操作不当导致的拉货。"
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="35px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginTop="100px"
+                android:text="注：货物主动延期需要重新选择并购买货延险"
+                android:textColor="@color/c_9b9b9b"
+                android:textSize="30px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:layout_marginTop="10px"
+                android:text="重要提示！为保障您的权益，避免不必要的损失，请再次核对信息均正确、完整，避免无法理赔。如信息错误，请联系我司客服及时更正，"
+                android:textColor="@color/c_9b9b9b"
+                android:textSize="30px" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginTop="10px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="客服热线："
+                    android:textColor="@color/c_9b9b9b"
+                    android:textSize="30px" />
+
+                <TextView
+                    android:id="@+id/tv_insurance_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="400-728-5256"
+                    android:textColor="@color/c_00A7F7"
+                    android:textSize="30px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.mobile.android.widgets.LazyScrollView>
+</com.zhy.autolayout.AutoLinearLayout>
+

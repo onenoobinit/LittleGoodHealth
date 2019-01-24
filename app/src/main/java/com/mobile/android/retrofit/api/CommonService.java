@@ -136,6 +136,33 @@ public interface CommonService {
     @POST("SmartProductsHandler/ProductSearch/ProductResultHandler.ashx")
     Observable<BaseEntity> getProdetail(@Header("token") String token, @FieldMap Map<String, Object> params);
 
+    /**
+     * 产品详情日期
+     */
+    @FormUrlEncoded
+    @POST("SmartProductsHandler/ProductSearch/ProductResultHandler.ashx")
+    Observable<BaseEntity> getDateinfo(@Header("token") String token, @FieldMap Map<String, Object> params);
+
+    /**
+     * 方案选择提交
+     */
+    @FormUrlEncoded
+    @POST("SmartProductsHandler/SubmitOrders/SubmitOrdersHandler.ashx")
+    Observable<BaseEntity> getSubmitData(@Header("token") String token, @FieldMap Map<String, Object> params);
+
+    /**
+     * 托书提交
+     */
+    @FormUrlEncoded
+    @POST("SmartProductsHandler/SubmitOrders/SubmitOrdersHandler.ashx")
+    Observable<BaseEntity> getSubmitNext(@Header("token") String token, @FieldMap Map<String, Object> params);
+
+
+
+
+
+
+
 
 
 

@@ -25,49 +25,17 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="267px"
             android:text="目的港"
+            android:layout_marginBottom="30px"
             android:textColor="@color/c_575757"
             android:textSize="34px"
             android:textStyle="bold" />
     </com.zhy.autolayout.AutoLinearLayout>
 
-    <ScrollView
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_end"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="46px"></android.support.v7.widget.RecyclerView>
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <com.zhy.autolayout.AutoLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="49px"
-                android:layout_marginTop="29px"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="AMS"
-                    android:textColor="@color/c_AAAAAA"
-                    android:textSize="34px" />
-
-                <TextView
-                    android:layout_width="144px"
-                    android:layout_height="69px"
-                    android:background="@drawable/bg_tv_just"
-                    android:text="AMS"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="34px"
-                    android:layout_marginLeft="267px" />
-            </com.zhy.autolayout.AutoLinearLayout>
-
-
-        </com.zhy.autolayout.AutoLinearLayout>
-    </ScrollView>
 </com.zhy.autolayout.AutoLinearLayout>

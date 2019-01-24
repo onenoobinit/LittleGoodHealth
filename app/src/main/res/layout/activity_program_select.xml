@@ -137,7 +137,13 @@
                 android:layout_marginLeft="12sp"
                 android:layout_marginRight="12sp"
                 android:background="@color/white"
+                android:visibility="gone"
                 android:overScrollMode="never" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_test"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
         </com.zhy.autolayout.AutoLinearLayout>
         <!--</com.mobile.android.widgets.ObservableScrollView>-->
     </android.support.design.widget.CoordinatorLayout>
@@ -145,8 +151,8 @@
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="115px"
-        android:background="@color/white"
         android:layout_alignParentBottom="true"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <com.zhy.autolayout.AutoLinearLayout

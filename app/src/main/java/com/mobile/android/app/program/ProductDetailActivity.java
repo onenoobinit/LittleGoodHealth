@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
+import com.mobile.android.app.program.adapter.FlyHeadAdapter;
+import com.mobile.android.app.program.adapter.FlySecondAdapter;
 import com.mobile.android.app.program.adapter.ProDetailAdpater;
 import com.mobile.android.entity.ProductDetailInfo;
 import com.mobile.android.retrofit.RetrofitManager;
@@ -73,36 +75,20 @@ public class ProductDetailActivity extends BaseActivity {
     RecyclerView rvItem4;
     @BindView(R.id.tv_tou_cheng)
     TextView tvTouCheng;
-    @BindView(R.id.tv_fly_number)
-    TextView tvFlyNumber;
-    @BindView(R.id.tv_yun_gong)
-    TextView tvYunGong;
-    @BindView(R.id.tv_fly_time)
-    TextView tvFlyTime;
-    @BindView(R.id.tv_arrive_time)
-    TextView tvArriveTime;
-    @BindView(R.id.tv_hang_ban)
-    TextView tvHangBan;
-    @BindView(R.id.tv_ji_xing)
-    TextView tvJiXing;
-    @BindView(R.id.tv_ban_hao)
-    TextView tvBanHao;
-    @BindView(R.id.tv_gong_ju)
-    TextView tvGongJu;
-    @BindView(R.id.tv_yun_time)
-    TextView tvYunTime;
-    @BindView(R.id.tv_dao_time)
-    TextView tvDaoTime;
-    @BindView(R.id.tv_ban_ci)
-    TextView tvBanCi;
-    @BindView(R.id.tv_er_ji)
-    TextView tvErJi;
     @BindView(R.id.arl_have_data)
     AutoLinearLayout arlHaveData;
     @BindView(R.id.arl_no_data)
     AutoRelativeLayout arlNoData;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.rv_head)
+    RecyclerView rvHead;
+    @BindView(R.id.all_second)
+    AutoLinearLayout allSecond;
+    @BindView(R.id.tv_second_py)
+    TextView tvSecondPy;
+    @BindView(R.id.rv_second)
+    RecyclerView rvSecond;
     private String TOKEN;
     private ProductDetailInfo productDetailInfo;
     private ProDetailAdpater pro1;
@@ -114,13 +100,34 @@ public class ProductDetailActivity extends BaseActivity {
     private List<String> items3 = new ArrayList<>();
     private List<String> items4 = new ArrayList<>();
     private MyDialog myDialog;
+    private List<ProductDetailInfo.ProductAttachInfoBean.FlightInfoBean.TheFirstFlightBean.DetailDataBean> detailData = new ArrayList<>();
+    private FlyHeadAdapter flyHeadAdapter;
+    private List<ProductDetailInfo.ProductAttachInfoBean.FlightInfoBean.TheSecondaryFlightBean.DetailDataBeanX> detailData1 = new ArrayList<>();
+    private String productNo;
+    private String productDate;
+    private String destination;
+    private String goodNumber;
+    private String goodWeight;
+    private String goodVolume;
+    private String bookingPosition;
+    private String packageWay;
+    private String proportion;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         ButterKnife.bind(this);
         TOKEN = SupervisorApp.getUser().getToken();
-        getDetail();
 
+        productNo = getIntent().getStringExtra("productNo");
+        productDate = getIntent().getStringExtra("productDate");
+        destination = getIntent().getStringExtra("destination");
+        goodNumber = getIntent().getStringExtra("goodNumber");
+        goodWeight = getIntent().getStringExtra("goodWeight");
+        goodVolume = getIntent().getStringExtra("goodVolume");
+        bookingPosition = getIntent().getStringExtra("bookingPosition");
+        packageWay = getIntent().getStringExtra("packageWay");
+        proportion = getIntent().getStringExtra("proportion");
+        getDetail();
         refreshLayout.setOnRefreshListener(refreshLayout1 -> {
             refreshLayout.autoRefresh();
             getDetail();
@@ -134,16 +141,16 @@ public class ProductDetailActivity extends BaseActivity {
         myDialog.showDialog();
         params.clear();
         params.put("act", "getProductsDetailData");
-        params.put("productNo", "4801");
+        params.put("productNo", productNo);
 //        params.put("startPort", "");
-        params.put("productDate", "2018-01-19");
-        params.put("destination", "AMS");
-        params.put("goodNumber", "");
-        params.put("goodWeight", "");
-        params.put("goodVolume", "");
-        params.put("bookingPosition", "0");
-        params.put("packageWay", "0");
-        params.put("proportion", "");
+        params.put("productDate", productDate);
+        params.put("destination", destination);
+        params.put("goodNumber", goodNumber);
+        params.put("goodWeight", goodWeight);
+        params.put("goodVolume", goodVolume);
+        params.put("bookingPosition", bookingPosition);
+        params.put("packageWay", packageWay);
+        params.put("proportion", proportion);
 
 
         L.i("详情参数", params.toString());
@@ -245,13 +252,31 @@ public class ProductDetailActivity extends BaseActivity {
 
         //航班
         tvTouCheng.setText("头程情况" + flightInfo.getTheFirstFlight().getRoute());
+        detailData = flightInfo.getTheFirstFlight().getDetailData();
 
-        tvFlyNumber.setText(flightInfo.getTheFirstFlight().getDetailData().get(0).getFlightNumber());
-        tvYunGong.setText(flightInfo.getTheFirstFlight().getDetailData().get(0).getTransportation());
-        tvFlyTime.setText(flightInfo.getTheFirstFlight().getDetailData().get(0).getStartDate());
-        tvArriveTime.setText(flightInfo.getTheFirstFlight().getDetailData().get(0).getArrivalDate());
-        tvHangBan.setText(flightInfo.getTheFirstFlight().getDetailData().get(0).getFlightShift());
-        tvJiXing.setText(flightInfo.getTheFirstFlight().getDetailData().get(0).getAircraftType());
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rvHead.setLayoutManager(manager);
+        flyHeadAdapter = new FlyHeadAdapter(this, this.detailData);
+        rvHead.setAdapter(flyHeadAdapter);
+
+        if (flightInfo.getTheSecondaryFlight() != null) {
+            detailData1 = flightInfo.getTheSecondaryFlight().getDetailData();
+
+            if (detailData1 != null && detailData1.size() > 0) {
+                allSecond.setVisibility(View.VISIBLE);
+                tvSecondPy.setText(flightInfo.getTheSecondaryFlight().getRoute());
+
+                LinearLayoutManager managersecond = new LinearLayoutManager(this);
+                managersecond.setOrientation(LinearLayoutManager.HORIZONTAL);
+                rvSecond.setLayoutManager(managersecond);
+                FlySecondAdapter flySecondAdapter = new FlySecondAdapter(this, this.detailData1);
+                rvSecond.setAdapter(flySecondAdapter);
+            }
+        } else {
+            allSecond.setVisibility(View.GONE);
+        }
+
     }
 
     @Override

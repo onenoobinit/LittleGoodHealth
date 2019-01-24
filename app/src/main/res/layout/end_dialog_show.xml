@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_end_dialog_item"
+        android:layout_width="144px"
+        android:layout_height="69px"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="17px"
+        android:layout_marginLeft="267px"
+        android:layout_marginTop="17px"
+        android:background="@drawable/bg_tv_target"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/c_9b9b9b"
+        android:textSize="34px" />
+</com.zhy.autolayout.AutoRelativeLayout>

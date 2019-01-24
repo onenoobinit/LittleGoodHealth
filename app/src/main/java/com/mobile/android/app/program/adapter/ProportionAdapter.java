@@ -10,29 +10,28 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mobile.android.R;
+import com.mobile.android.entity.ProductDetailInfo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wangqiang on 2019/1/8.
  */
-public class ProportionAdapter extends RecyclerView.Adapter<ProportionAdapter.MyViewHolder> {
+public abstract class ProportionAdapter extends RecyclerView.Adapter<ProportionAdapter.MyViewHolder> {
     private final Context mContext;
-    private ArrayList<String> datas;
-    private int selectPostion = 0;
+    private final int type;
+    private List<ProductDetailInfo.ProportionListBean.ProportionBean> datas;
+    public static int selectPostion = 0;
+    public static String active = "";
 
-    public ProportionAdapter(Context context, ArrayList<String> data) {
+
+    public ProportionAdapter(Context context, List<ProductDetailInfo.ProportionListBean.ProportionBean> proportion1,
+                             int type) {
         this.mContext = context;
-        this.datas = data;
+        this.datas = proportion1;
+        this.type = type;
     }
 
-    public void setData(ArrayList<String> data) {
-        this.datas = data;
-    }
-
-    public ArrayList<String> getData() {
-        return datas;
-    }
 
     @NonNull
     @Override
@@ -42,10 +41,16 @@ public class ProportionAdapter extends RecyclerView.Adapter<ProportionAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.tv_item_proportion.setText("1:" + datas.get(position).getData());
 
+        if (type == 1 && active.equals(datas.get(position).getData())) {
+            holder.tv_proprot_select.setVisibility(View.VISIBLE);
+        } else {
+            holder.tv_proprot_select.setVisibility(View.GONE);
+        }
         holder.tv_item_proportion.setOnClickListener(view -> {
             selectPostion = position;
-            notifyDataSetChanged();
+            setOnItemClick(datas.get(position).getData(), active);
         });
 
         if (selectPostion == position) {
@@ -53,8 +58,10 @@ public class ProportionAdapter extends RecyclerView.Adapter<ProportionAdapter.My
             holder.tv_item_proportion.setTextColor(Color.parseColor("#ffffff"));
         } else {
             holder.tv_item_proportion.setBackgroundResource(R.drawable.bg_item_proportion_no);
-            holder.tv_item_proportion.setTextColor(Color.parseColor("#F5A623"));
+            holder.tv_item_proportion.setTextColor(Color.parseColor("#9b9b9b"));
         }
+
+
     }
 
     @Override
@@ -64,10 +71,14 @@ public class ProportionAdapter extends RecyclerView.Adapter<ProportionAdapter.My
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView tv_item_proportion;
+        private final TextView tv_proprot_select;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tv_item_proportion = itemView.findViewById(R.id.tv_item_proportion);
+            tv_proprot_select = itemView.findViewById(R.id.tv_proprot_select);
         }
     }
+
+    public abstract void setOnItemClick(String proportion, String active);
 }

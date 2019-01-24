@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_fj"
+            android:layout_width="42px"
+            android:layout_height="42px"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/forbidden"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/cb_bg"
+            android:layout_width="42px"
+            android:layout_height="42px"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_rb"
+            android:button="@null"
+            android:checked="true"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_fj"
+            android:layout_width="127px"
+            android:layout_height="63px"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="46px"
+            android:background="@drawable/bg_tv_cb"
+            android:gravity="center"
+            android:text="报关"
+            android:textColor="@color/c_575757"
+            android:textSize="35px" />
+
+        <TextView
+            android:id="@+id/tv_fj_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="60px"
+            android:text=""
+            android:textColor="@color/c_575757"
+            android:textSize="35px" />
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

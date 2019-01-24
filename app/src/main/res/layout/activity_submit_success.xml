@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/logi_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar_height"
+        android:background="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="订单详情"
+            android:textColor="@color/c_000000"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <ImageView
+        android:id="@+id/iv_success"
+        android:layout_width="222px"
+        android:layout_height="222px"
+        android:layout_below="@+id/logi_tool_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="225px"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/book_success" />
+
+    <TextView
+        android:id="@+id/tv_sucess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_success"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130px"
+        android:text="您的订单提交成功！" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_sucess"
+        android:layout_marginTop="250px"
+        android:orientation="horizontal">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_look_order"
+                android:layout_width="320px"
+                android:layout_height="130px"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_tv_success"
+                android:gravity="center"
+                android:text="查看订单" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_look_index"
+                android:layout_width="320px"
+                android:layout_height="130px"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_tv_success"
+                android:gravity="center"
+                android:text="首页逛逛" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

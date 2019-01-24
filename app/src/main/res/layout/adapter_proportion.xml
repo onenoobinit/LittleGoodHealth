@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="173px"
-    android:layout_height="81px">
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220px"
+    android:layout_height="81px"
+    android:layout_marginLeft="46px"
+    android:background="@color/white">
+
 
     <TextView
         android:id="@+id/tv_item_proportion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="46px"
-        android:background="@drawable/bg_item_proportion"
+        android:background="@drawable/bg_item_proportion_no"
         android:gravity="center"
         android:text="1:0"
-        android:textColor="@color/white"
+        android:textColor="@color/c_9b9b9b"
         android:textSize="46px" />
-</com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:id="@+id/tv_proprot_select"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_proport_check"
+        android:visibility="gone" />
+</com.zhy.autolayout.AutoRelativeLayout>

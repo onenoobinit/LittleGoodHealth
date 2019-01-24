@@ -12,51 +12,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="1吨可定"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text=""
         android:textColor="@color/c_575757"
         android:textSize="27px" />
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/all_boot"
         android:layout_width="match_parent"
-        android:layout_height="150px"
+        android:layout_height="160px"
         android:layout_marginTop="20px"
-        android:background="@mipmap/time"
-        android:orientation="vertical">
+        android:background="@mipmap/time">
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <ImageView
+            android:id="@+id/iv_date_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/date_select"
+            android:visibility="gone" />
+
+        <com.zhy.autolayout.AutoRelativeLayout
             android:id="@+id/all_bg_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_item_date">
 
-            <com.zhy.autolayout.AutoLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_item_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60px"
+                android:text="01-07"
+                android:textColor="@color/c_575757"
+                android:textSize="29px" />
 
-                <TextView
-                    android:id="@+id/tv_item_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="60px"
-                    android:text="01-07"
-                    android:textColor="@color/c_575757"
-                    android:textSize="29px" />
-
-                <TextView
-                    android:id="@+id/tv_item_week"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="9px"
-                    android:text="周一"
-                    android:textColor="@color/c_575757"
-                    android:textSize="29px" />
-
-            </com.zhy.autolayout.AutoLinearLayout>
-        </com.zhy.autolayout.AutoLinearLayout>
-    </com.zhy.autolayout.AutoLinearLayout>
+            <TextView
+                android:id="@+id/tv_item_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_item_date"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="9px"
+                android:text="周一"
+                android:textColor="@color/c_575757"
+                android:textSize="29px" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
 
     <TextView
         android:id="@+id/tv_item_price"
@@ -64,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="26px"
-        android:text="¥0.00"
+        android:text=""
         android:textColor="@color/c_D0021B"
         android:textSize="29px" />
 </com.zhy.autolayout.AutoLinearLayout>

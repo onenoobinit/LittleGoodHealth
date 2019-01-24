@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_end_name"
+        android:layout_width="150px"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25px"
+        android:text=""
+        android:textColor="@color/c_AAAAAA"
+        android:textSize="34px" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

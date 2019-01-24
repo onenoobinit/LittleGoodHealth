@@ -21,6 +21,7 @@ import com.mobile.android.SupervisorApp;
 import com.mobile.android.app.program.adapter.DateAdapter;
 import com.mobile.android.app.program.adapter.LeftAdapter;
 import com.mobile.android.app.program.adapter.RightAdapter;
+import com.mobile.android.app.program.adapter.TestAdapter;
 import com.mobile.android.app.search.SearchActivity;
 import com.mobile.android.entity.ItemType;
 import com.mobile.android.entity.ProgramSelectInfo;
@@ -126,6 +127,8 @@ public class ProgramSelectActivity extends BaseActivity {
     RecyclerView rvSortLeft;
     @BindView(R.id.rv_sort_right)
     RecyclerView rvSortRight;
+    @BindView(R.id.rv_test)
+    RecyclerView rvTest;
     private DateAdapter dateAdapter;
     private ArrayList<String> dates = new ArrayList();
     private String start;
@@ -219,9 +222,8 @@ public class ProgramSelectActivity extends BaseActivity {
     }
 
     /*private void initSort() {
-        for (int i = 0; i < mLeftList.size(); i++) {
-            ProgramSelectInfo.AirlineListBean bean = new ProgramSelectInfo.AirlineListBean();
-            bean.bigSortId = i;
+     *//* for (int i = 0; i < airlineList.size(); i++) {
+            programSelectInfo.getAirlineList().bigSortId = i;
             bean.bigSortName = "大分类" + i;
             List<ProgramSelectInfo.ProductCardListBean> list = new ArrayList<>();
             for (int j = 0; j < productCardList.size(); j++) {
@@ -231,7 +233,7 @@ public class ProgramSelectActivity extends BaseActivity {
                 list.add(listBean);
             }
             mLeftList.add(bean);
-        }
+        }*//*
 
         // 右侧的list是将每一个大类和小类按次序添加，并且标记大类的位置
         for (int i = 0; i < mLeftList.size(); i++) {
@@ -245,8 +247,8 @@ public class ProgramSelectActivity extends BaseActivity {
             for (int j = 0; j < mLeftList.size(); j++) {
                 SortItem smallItem = new SortItem();
                 smallItem.viewType = ItemType.SMALL_SORT;
-                *//*smallItem.id = mLeftList.get(i).list.get(j).smallSortId;
-                smallItem.name = mLeftList.get(i).list.get(j).smallSortName;*//*
+                smallItem.id = mLeftList.get(i).list.get(j).smallSortId;
+                smallItem.name = mLeftList.get(i).list.get(j).smallSortName;
                 mRightList.add(smallItem);
             }
         }
@@ -317,6 +319,47 @@ public class ProgramSelectActivity extends BaseActivity {
 
             }
         });
+
+        //测试右边
+        LinearLayoutManager weightmanager = new LinearLayoutManager(this);
+        weightmanager.setOrientation(LinearLayoutManager.VERTICAL);
+        rvTest.setLayoutManager(weightmanager);
+        TestAdapter testAdapter = new TestAdapter(ProgramSelectActivity.this, productCardList) {
+            @Override
+            public void seOnItemClick(int selectPostion) {
+                Intent newintent = new Intent(ProgramSelectActivity.this, ProgramDetailActivity.class);
+                newintent.putExtra("productNo", productCardList.get(selectPostion).getProductNo());
+                newintent.putExtra("startEnd", productCardList.get(selectPostion).getStartPort());
+                newintent.putExtra("productDate", productCardList.get(selectPostion).getProductDate());
+                if ("填入".equals(tvHeadNumber.getText().toString().trim())) {
+                    newintent.putExtra("goodNumber", "");
+                } else {
+                    newintent.putExtra("goodNumber", tvHeadNumber.getText().toString().trim());
+                }
+
+                if ("填入".equals(tvHeadWeight.getText().toString().trim())) {
+                    newintent.putExtra("goodWeight", "");
+                } else {
+                    newintent.putExtra("goodWeight", tvHeadWeight.getText().toString().trim());
+                }
+
+                if ("填入".equals(tvHeadVol.getText().toString().trim())) {
+                    newintent.putExtra("goodVolume", "");
+                } else {
+                    newintent.putExtra("goodVolume", tvHeadVol.getText().toString().trim());
+                }
+
+                if ("- -".equals(tvHeadPortion.getText().toString().trim())) {
+                    newintent.putExtra("proportion", "");
+                } else {
+                    newintent.putExtra("proportion", tvHeadPortion.getText().toString().trim());
+                }
+                newintent.putExtra("bookingPosition", book);
+                newintent.putExtra("packageWay", packget);
+                startActivity(newintent);
+            }
+        };
+        rvTest.setAdapter(testAdapter);
     }
 
 
@@ -614,7 +657,7 @@ public class ProgramSelectActivity extends BaseActivity {
                 break;
             case R.id.all_compresive_sort://综合筛选
                 initSortColor(0);
-                startActivity(new Intent(this, ProductDetailActivity.class));
+                startActivity(new Intent(this, ProgramDetailActivity.class));
                 break;
             case R.id.all_sale_sort://销售筛选
                 initSortColor(1);

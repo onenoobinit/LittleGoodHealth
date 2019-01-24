@@ -153,8 +153,6 @@ public class SearchActivity extends BaseActivity {
                     RxBus.get().post("intypeIndex", etSearch.getText().toString().trim());
                 } else if ("1".equals(type)) {
                     RxBus.get().post("intypeSelect", etSearch.getText().toString().trim());
-                } else if ("2".equals(type)) {
-                    RxBus.get().post("intypeThree", etSearch.getText().toString().trim());
                 }
                 finish();
             }

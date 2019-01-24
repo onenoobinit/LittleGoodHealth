@@ -23,14 +23,14 @@
             android:textColor="@color/c_A8A8A8"
             android:textSize="29px" />
 
-        <!--<TextView
+        <TextView
             android:id="@+id/tv_item_order_date"
             android:layout_width="wrap_content"
-            android:text="9月9日"
+            android:text=""
             android:textSize="40px"
             android:layout_centerInParent="true"
             android:textColor="@color/c_181818"
-            android:layout_height="wrap_content" />-->
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="巴塞"
+                android:text=""
                 android:textColor="@color/c_00A7F7"
                 android:textSize="29px" />
 

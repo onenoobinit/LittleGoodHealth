@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/all_contact_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_contact_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="46px"
+        android:layout_marginTop="40px"
+        android:text=""
+        android:textColor="@color/c_575757"
+        android:textSize="40px" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="46px"
+        android:layout_marginRight="46px"
+        android:layout_marginTop="26px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_contact_mobile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:text=""
+            android:textColor="@color/c_575757"
+            android:textSize="35px" />
+
+        <TextView
+            android:id="@+id/tv_contact_qq"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=""
+            android:textColor="@color/c_575757"
+            android:textSize="35px" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="46px"
+        android:layout_marginRight="46px"
+        android:layout_marginTop="26px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_contact_mail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:text=""
+            android:textColor="@color/c_575757"
+            android:textSize="35px" />
+
+        <TextView
+            android:id="@+id/tv_contact_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=""
+            android:textColor="@color/c_575757"
+            android:textSize="35px" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="46px"
+        android:layout_marginRight="46px"
+        android:layout_marginTop="40px"
+        android:background="@color/c_BBBBBB"></View>
+</com.zhy.autolayout.AutoLinearLayout>

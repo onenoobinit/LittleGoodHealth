@@ -135,8 +135,7 @@
         <!-- 方案选择详情 -->
         <activity
             android:name=".app.program.ProgramDetailActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:screenOrientation="portrait" />
         <!-- 产品详情 -->
         <activity
             android:name=".app.program.ProductDetailActivity"
@@ -181,6 +180,26 @@
         <!-- 搜索 -->
         <activity
             android:name=".app.search.SearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 提交 -->
+        <activity
+            android:name=".app.submit.SubmitActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 计费方式 -->
+        <activity
+            android:name=".app.submit.PayStyleActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 保险 -->
+        <activity
+            android:name=".app.submit.InsureanceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 历史联系人 -->
+        <activity
+            android:name=".app.submit.ContactHistoryActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
