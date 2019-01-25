@@ -162,7 +162,6 @@ public class ProgramDetailActivity extends BaseActivity {
     private ProgramDetailNexDialog programDetailNexDialog;
     private String priceCheckId;
     private String quotedPriceId;
-    private boolean isFrist = true;
     private int overSpace;
     private String errData;
     private String weightSize;
@@ -171,7 +170,8 @@ public class ProgramDetailActivity extends BaseActivity {
     private String realTotal = "";
     private int transWight;
     private String mFrist = "0";
-
+    private String airline;
+    private String endHy;
 
 
     @Override
@@ -194,12 +194,21 @@ public class ProgramDetailActivity extends BaseActivity {
         book = getIntent().getStringExtra("bookingPosition");
         packget = getIntent().getStringExtra("packageWay");
         proportion = getIntent().getStringExtra("proportion");
+        endHy = getIntent().getStringExtra("endHy");
+        tvEndHy.setText(endHy);
 
         splitDate = productDate.split("-");
         tvItemOrderDate.setText(splitDate[1] + "月" + splitDate[2] + "日");
         String[] split = destination.split("-");
         start = split[0];
         end = split[1];
+        List<StartInfo.StartPortBean> startList = SPUtil.getObject(ProgramDetailActivity.this, "startList", List.class);
+        for (int i = 0; i < startList.size(); i++) {
+            if (start.equals(startList.get(i).getPort())) {
+                tvStartHy.setText(startList.get(i).getNameC());
+            }
+        }
+
         tvStartPy.setText(start);
         tvEndPy.setText(end);
         if (TextUtils.isEmpty(goodNumber)) {
@@ -319,11 +328,12 @@ public class ProgramDetailActivity extends BaseActivity {
         tvDetailStart.setText(productDetailInfo.getPortData().getTransit());
         destinationList = productDetailInfo.getPortData().getDestination();
 
-        if (isFrist = true) {
-            priceCheckId = productDetailInfo.getTotalPrice().getPriceCheckId();
-            quotedPriceId = productDetailInfo.getTotalPrice().getQuotedPriceId();
+        if ("0".equals(mFrist)) {
             realTotal = productDetailInfo.getTotalPrice().getTotal();
         }
+        priceCheckId = productDetailInfo.getTotalPrice().getPriceCheckId();
+        quotedPriceId = productDetailInfo.getTotalPrice().getQuotedPriceId();
+        airline = productDetailInfo.getProductDetail().getAirline();
 
         throwingGoodsLimit = productDetailInfo.getTotalPrice().getThrowingGoodsLimit();
 
@@ -359,14 +369,14 @@ public class ProgramDetailActivity extends BaseActivity {
 
         //比重
         String active1 = productDetailInfo.getProportionList().getActive();
-        L.i("AAAAclick", isFrist + "");
-        /*if (isFrist = true) {
+        if ("0".equals(mFrist)) {
             ProportionAdapter.active = active1;
-        }*/
+        }
+
         proportion1 = productDetailInfo.getProportionList().getProportion();
         for (int i = 0; i < proportion1.size(); i++) {
             if (active1.equals(proportion1.get(i).getData())) {
-                if (isFrist == true) {
+                if ("0".equals(mFrist)) {
                     ProportionAdapter.selectPostion = i;
                 }
             }
@@ -377,11 +387,9 @@ public class ProgramDetailActivity extends BaseActivity {
         proportionAdapter = new ProportionAdapter(ProgramDetailActivity.this, proportion1, proportType) {
             @Override
             public void setOnItemClick(String proportion, String active) {
-                isFrist = false;
-                L.i("AAAAclick", isFrist + "");
+                mFrist = "1";
                 changeProport = proportion;
                 getDateInfo();
-                notifyDataSetChanged();
             }
         };
         rvProportion.setAdapter(proportionAdapter);
@@ -452,7 +460,10 @@ public class ProgramDetailActivity extends BaseActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvDetail.setLayoutManager(manager);
-        if (isFrist = true) {
+        rvDetail.setFocusableInTouchMode(false);
+        rvDetail.setFocusable(false);
+        rvDetail.setHasFixedSize(true);
+        if ("0".equals(mFrist)) {
             overSpace = Integer.parseInt(productDateList.get(0).getSpace().getOverSpace());
         }
         dateAdapter = new DetailDateAdapter(ProgramDetailActivity.this, productDateList, book) {
@@ -473,8 +484,6 @@ public class ProgramDetailActivity extends BaseActivity {
             }
         };
         rvDetail.setAdapter(dateAdapter);
-
-
     }
 
     @Override
@@ -579,6 +588,7 @@ public class ProgramDetailActivity extends BaseActivity {
                 targetDialog.show();
                 break;
             case R.id.tv_detail_next://下一步
+                System.out.println("AAAA" + overSpace);
                 if ("填入".equals(tvHeadNumber.getText().toString().trim()) && "填入".equals(tvHeadWeight.getText().toString().trim()) && "填入".equals(tvHeadVol.getText().toString().trim())) {
                     if (programDetailDialog == null) {
                         initNewDialog();
@@ -616,10 +626,9 @@ public class ProgramDetailActivity extends BaseActivity {
                 } else if ("100".equals(suit)) {
                     showPromptDialog("该产品当前日期已无剩余舱位！");
                     return;
-                }  else if ("-.-".equals(tvDetailMoney.getText().toString().trim())) {
+                } else if ("-.-".equals(tvDetailMoney.getText().toString().trim())) {
                     showPromptDialog("该产品没有当前重量报价，无法订舱！");
                 } else {
-                    System.out.println("AAAA" + overSpace);
                     if (programDetailNexDialog == null) {
                         programDetailNexDialog = new ProgramDetailNexDialog(this) {
                             @Override
@@ -638,6 +647,7 @@ public class ProgramDetailActivity extends BaseActivity {
                                 intent1.putExtra("priceCheckId", priceCheckId);
                                 intent1.putExtra("proportion", tvHeadPortion.getText().toString().trim());
                                 intent1.putExtra("realTotal", realTotal);
+                                intent1.putExtra("airline", airline);
                                 startActivity(intent1);
                                 dismiss();
                             }
@@ -690,9 +700,7 @@ public class ProgramDetailActivity extends BaseActivity {
                         return;
                     } else {
                         tvStartPy.setText(tv1.getText().toString().trim());
-                        tvStartHy.setText("");
                         tvEndPy.setText(tv2.getText().toString().trim());
-                        tvEndHy.setText("");
 
                         if (!TextUtils.isEmpty(et_show1.getText().toString().trim())) {
                             tvHeadNumber.setText(et_show1.getText().toString().trim());
@@ -726,14 +734,12 @@ public class ProgramDetailActivity extends BaseActivity {
                         tv3.setVisibility(View.INVISIBLE);
                         tv3.setText("");
                         dismiss();
-                        isFrist = true;
+                        mFrist = "0";
                         getDateInfo();
                     }
                 } else {
                     tvStartPy.setText(tv1.getText().toString().trim());
-                    tvStartHy.setText("");
                     tvEndPy.setText(tv2.getText().toString().trim());
-                    tvEndHy.setText("");
                     if (!TextUtils.isEmpty(et_show1.getText().toString().trim())) {
                         tvHeadNumber.setText(et_show1.getText().toString().trim());
                     } else {
@@ -766,7 +772,7 @@ public class ProgramDetailActivity extends BaseActivity {
                     tv3.setVisibility(View.INVISIBLE);
                     tv3.setText("");
                     dismiss();
-                    isFrist = true;
+                    mFrist = "0";
                     getDateInfo();
                 }
             }

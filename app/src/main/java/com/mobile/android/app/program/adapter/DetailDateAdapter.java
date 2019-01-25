@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mobile.android.R;
@@ -53,6 +54,7 @@ public abstract class DetailDateAdapter extends RecyclerView.Adapter<DetailDateA
 
 
         if (!TextUtils.isEmpty(datas.get(position).getErrData())) {
+            holder.iv_date_select.setVisibility(View.INVISIBLE);
             holder.tv_weight_number.setVisibility(View.INVISIBLE);
             holder.tv_item_price.setText(datas.get(position).getErrData());
             if ("无报价".equals(datas.get(position).getErrData())) {
@@ -66,33 +68,17 @@ public abstract class DetailDateAdapter extends RecyclerView.Adapter<DetailDateA
             holder.all_item_date.setClickable(true);
             holder.tv_weight_number.setVisibility(View.VISIBLE);
             holder.tv_item_price.setText("¥" + datas.get(position).getPrice());
-            holder.iv_date_select.setVisibility(View.GONE);
             overSpace = Integer.parseInt(datas.get(position).getSpace().getOverSpace());
             if (overSpace < 100) {
+                holder.iv_date_select.setVisibility(View.INVISIBLE);
                 holder.all_boot.setBackgroundResource(R.mipmap.blow_up);
                 holder.tv_weight_number.setText("爆仓");
                 holder.tv_weight_number.setTextColor(Color.parseColor("#D0021B"));
                 holder.tv_item_week.setTextColor(Color.parseColor("#ffffff"));
                 holder.tv_item_date.setTextColor(Color.parseColor("#ffffff"));
             } else {
+                holder.all_boot.setBackgroundResource(R.mipmap.time);
                 holder.iv_date_select.setVisibility(View.VISIBLE);
-                holder.tv_item_week.setTextColor(Color.parseColor("#575757"));
-                holder.tv_item_date.setTextColor(Color.parseColor("#575757"));
-                if (overSpace >= 10 && overSpace < 1000) {
-                    holder.all_boot.setBackgroundResource(R.mipmap.time);
-                    holder.tv_weight_number.setTextColor(Color.parseColor("#575757"));
-                    holder.tv_weight_number.setText(overSpace + "");
-                } else if (overSpace > 1000) {
-                    int number = overSpace / 1000;
-                    if (number > 3) {
-                        holder.tv_weight_number.setText("3吨可定");
-                    } else {
-                        holder.all_boot.setBackgroundResource(R.mipmap.time);
-                        holder.tv_weight_number.setTextColor(Color.parseColor("#575757"));
-                        holder.tv_weight_number.setText(number + "吨可定");
-                    }
-                }
-
                 if ("0".equals(book)) {
                     book1 = Double.parseDouble(datas.get(position).getSpace().getSuit());
                 } else if ("1".equals(book)) {
@@ -100,11 +86,27 @@ public abstract class DetailDateAdapter extends RecyclerView.Adapter<DetailDateA
                 }
 
                 book2 = book1 / 100;
-//                book2 = 0.1 * (position + 1);
-                ViewGroup.LayoutParams layoutParams = holder.iv_date_select.getLayoutParams();
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) holder.iv_date_select.getLayoutParams();
                 int measuredHeight = holder.all_bg_item.getMeasuredHeight();
-                layoutParams.height = (int) (measuredHeight * book2);
+                layoutParams.height = (int) (160 * book2);
                 holder.iv_date_select.setLayoutParams(layoutParams);
+
+
+                holder.tv_item_week.setTextColor(Color.parseColor("#575757"));
+                holder.tv_item_date.setTextColor(Color.parseColor("#575757"));
+                if (overSpace >= 10 && overSpace < 1000) {
+                    holder.tv_weight_number.setTextColor(Color.parseColor("#575757"));
+                    holder.tv_weight_number.setText(overSpace + "");
+                } else if (overSpace > 1000) {
+                    int number = overSpace / 1000;
+                    if (number > 3) {
+                        holder.tv_weight_number.setText("3吨可定");
+                    } else {
+                        holder.tv_weight_number.setTextColor(Color.parseColor("#575757"));
+                        holder.tv_weight_number.setText(number + "吨可定");
+                    }
+                }
+
             }
 
             holder.all_item_date.setOnClickListener(view -> {

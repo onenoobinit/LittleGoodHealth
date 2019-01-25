@@ -8,6 +8,7 @@ import com.mobile.android.utils.Constant;
 import com.mobile.android.utils.CrashHandler;
 import com.mobile.hyoukalibrary.base.BaseApplication;
 import com.mobile.hyoukalibrary.utils.SPUtil;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zhy.autolayout.config.AutoLayoutConifg;
 
 /**
@@ -57,6 +58,7 @@ public class SupervisorApp extends BaseApplication {
         super.onCreate();
         //自动布局
         AutoLayoutConifg.getInstance().useDeviceSize();
+        CrashReport.initCrashReport(getApplicationContext(), "bfdee4d1c8", false);
     }
 
     @Override

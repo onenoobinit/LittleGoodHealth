@@ -18,22 +18,27 @@ import android.widget.TextView;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
 import com.mobile.android.entity.SubmitInfo;
+import com.mobile.android.entity.SubmitSuccessInfo;
 import com.mobile.android.retrofit.RetrofitManager;
 import com.mobile.android.retrofit.RetryWhenNetworkException;
 import com.mobile.android.retrofit.RxSchedulers;
 import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.widgets.dialog.MyDialog;
+import com.mobile.android.widgets.dialog.SubmitShowDialog;
+import com.mobile.android.widgets.dialog.SubmitSuccessDialog;
+import com.mobile.android.widgets.dialog.SubmitTipsDialog;
 import com.mobile.hyoukalibrary.base.BaseActivity;
 import com.mobile.hyoukalibrary.base.BaseEntity;
 import com.mobile.hyoukalibrary.base.BaseObserver;
-import com.mobile.hyoukalibrary.utils.DensityUtil;
 import com.mobile.hyoukalibrary.utils.L;
 import com.mobile.hyoukalibrary.utils.SPUtil;
 import com.mobile.hyoukalibrary.utils.ToastUtil;
-import com.tmall.ultraviewpager.UltraViewPager;
 import com.zhy.autolayout.AutoLinearLayout;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,8 +126,7 @@ public class SubmitActivity extends BaseActivity {
     TextView tvSubmitSure;
     @BindView(R.id.tv_bzsj)
     TextView tvBzsj;
-    @BindView(R.id.vp_ask_banner1)
-    UltraViewPager vpAskBanner1;
+
     @BindView(R.id.tv_trans_type)
     TextView tvTransType;
     @BindView(R.id.iv_hyx)
@@ -136,6 +140,8 @@ public class SubmitActivity extends BaseActivity {
     RecyclerView rvShowTips;
     @BindView(R.id.rv_fj)
     RecyclerView rvFj;
+    @BindView(R.id.rv_show)
+    RecyclerView rvShow;
     private ExpertAskBannerOneAdapter mBannerOneAdapter;
     private String TOKEN;
     private String productNo;
@@ -161,16 +167,14 @@ public class SubmitActivity extends BaseActivity {
     private List<SubmitInfo.OrderBillBean.ContactInfoBean> contactInfo;
     private String realTotal;
     private List<SubmitInfo.AttachServiceBean> attachService = new ArrayList<>();
-    private boolean isFjChek = true;
-    private Double realTotalMoney;
-    private int fjNunmber;
+    private boolean isFjChek = false;
     private String fJid;
-    private boolean isHyxCheck = true;
-    private boolean isShbzCheck = true;
+    private boolean isHyxCheck = false;
+    private boolean isShbzCheck = false;
     private int planselect = 2;
-    private Double insureance1;
-    private Double insureance2;
-    private Double insureance3;
+    private BigDecimal insureance1;
+    private BigDecimal insureance2;
+    private BigDecimal insureance3;
     private String validFj;
     private String validSj;
     private String sizeNoteType;
@@ -183,6 +187,21 @@ public class SubmitActivity extends BaseActivity {
     private String productName;
     private String goodsExtensionInsurance;
     private String protectBusiness;
+    private String bookingDate;
+    private BigDecimal realTotalMoney;
+    private BigDecimal fjNunmber;
+    private BigDecimal bigDecimal;
+    private String mChage = "0";
+    private int lastItemPosition;
+    private int firstItemPosition;
+    private SubmitTipsDialog submitTipsDialog;
+    private SubmitShowDialog submitShowDialog;
+    private SubmitSuccessInfo submitSuccessInfo;
+    private SubmitSuccessDialog submitSuccessDialog;
+    protected Map<String, Object> mParams = new HashMap<String, Object>();
+    private String airline;
+    private SubmitInfo.TipsBean tips;
+    private String shownumber;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
@@ -202,23 +221,11 @@ public class SubmitActivity extends BaseActivity {
         priceCheckId = getIntent().getStringExtra("priceCheckId");
         proportion = getIntent().getStringExtra("proportion");
         realTotal = getIntent().getStringExtra("realTotal");
+        airline = getIntent().getStringExtra("airline");
 
-        realTotalMoney = Double.parseDouble(realTotal);
+        realTotalMoney = new BigDecimal(realTotal);
         getSubmit();
-
         initCheckboxListener();
-        vpAskBanner1.setAdapter(new ExpertAskBannerOneAdapter(SubmitActivity.this, plan1, plan2, plan3, validHyx) {
-            @Override
-            public void onItemClick(int position) {
-
-            }
-        });
-        //第一个banner的初始化
-        vpAskBanner1.setOffscreenPageLimit(3);
-        vpAskBanner1.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-        //设定页面循环播放
-        vpAskBanner1.setInfiniteLoop(true);
-        vpAskBanner1.getViewPager().setPageMargin((int) DensityUtil.px2dp(SubmitActivity.this, 60));
         //默认加载第一个
         addViewItem(null);
     }
@@ -299,11 +306,10 @@ public class SubmitActivity extends BaseActivity {
 
         //附加信息
         attachService = submitInfo.getAttachService();
-        fjNunmber = Integer.parseInt(attachService.get(0).getPrice());
+        fjNunmber = new BigDecimal(attachService.get(0).getPrice());
         validFj = attachService.get(0).getValid();
         fJid = attachService.get(0).getId();
         String selected = attachService.get(0).getSelected();
-
         if ("0".equals(selected)) {
             isFjChek = false;
         } else if ("1".equals(selected)) {
@@ -315,13 +321,13 @@ public class SubmitActivity extends BaseActivity {
         FjAdapter fjAdapter = new FjAdapter(this, attachService) {
             @Override
             public void setOnCheckClik(boolean isCheck, String checkId) {
-                int fj = Integer.parseInt(tvSubmitMoney.getText().toString().trim());
+                BigDecimal chebox1 = new BigDecimal(tvSubmitMoney.getText().toString().trim());
                 if (isCheck == false) {
                     isFjChek = false;
-                    tvSubmitMoney.setText("¥" + (fj - fjNunmber));
+                    tvSubmitMoney.setText(chebox1.subtract(fjNunmber) + "");
                 } else if (isCheck == true) {
                     isFjChek = true;
-                    tvSubmitMoney.setText("¥" + (fj + fjNunmber));
+                    tvSubmitMoney.setText(chebox1.add(fjNunmber) + "");
                 }
             }
         };
@@ -337,23 +343,16 @@ public class SubmitActivity extends BaseActivity {
             ivHyx.setVisibility(View.VISIBLE);
             cbHy.setVisibility(View.GONE);
         }
-
         tvCoastName.setText("公司名称：" + submitInfo.getGoodsExtensionInsurance().getUserInfo().getCompanyName());
         tvCoastCode.setText("信用代码：" + submitInfo.getGoodsExtensionInsurance().getUserInfo().getTaxId());
-        insureance1 = Double.parseDouble(submitInfo.getGoodsExtensionInsurance().getPlanList().getPlan1().getInsuranceFee());
-        insureance2 = Double.parseDouble(submitInfo.getGoodsExtensionInsurance().getPlanList().getPlan2().getInsuranceFee());
-        insureance3 = Double.parseDouble(submitInfo.getGoodsExtensionInsurance().getPlanList().getPlan3().getInsuranceFee());
+        insureance1 = new BigDecimal(submitInfo.getGoodsExtensionInsurance().getPlanList().getPlan1().getInsuranceFee());
+        insureance2 = new BigDecimal(submitInfo.getGoodsExtensionInsurance().getPlanList().getPlan2().getInsuranceFee());
+        insureance3 = new BigDecimal(submitInfo.getGoodsExtensionInsurance().getPlanList().getPlan3().getInsuranceFee());
         planList = submitInfo.getGoodsExtensionInsurance().getPlanList();
-
         plan1 = planList.getPlan1();
         plan2 = planList.getPlan2();
         plan3 = planList.getPlan3();
-        if ("0".equals(validHyx)) {
-            realTotalMoney = realTotalMoney;
-        } else if ("1".equals(validHyx)) {
-            realTotalMoney = realTotalMoney + insureance3;
-        }
-        initBanner();
+        initShows();
 
         //商家保障
         validSj = submitInfo.getProtectBusiness().getValid();
@@ -391,87 +390,120 @@ public class SubmitActivity extends BaseActivity {
         SPUtil.setObject(SubmitActivity.this, "contactList", contactInfo);
 
         //初始化总金额
-        if ("0".equals(validFj) && "0".equals(validHyx) && "0".equals(validSj)) {
-            tvSubmitMoney.setText("¥" + realTotalMoney);
-        } else if ("1".equals(validFj) && "0".equals(validHyx) && "0".equals(validSj)) {
-            if (isFjChek == true) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + fjNunmber));
-            } else {
-                tvSubmitMoney.setText("¥" + realTotalMoney);
+        if (isFjChek == true && isShbzCheck == true && isHyxCheck == true) {
+            BigDecimal add = realTotalMoney.add(fjNunmber).add(new BigDecimal("1"));
+            if (planselect == 0) {
+                tvSubmitMoney.setText(realTotalMoney.add(fjNunmber).add(new BigDecimal("1")).add(insureance1) + "");
+            } else if (planselect == 1) {
+                tvSubmitMoney.setText(realTotalMoney.add(fjNunmber).add(new BigDecimal("1")).add(insureance2) + "");
+            } else if (planselect == 2) {
+                tvSubmitMoney.setText(realTotalMoney.add(fjNunmber).add(new BigDecimal("1")).add(insureance3) + "");
             }
-        } else if ("0".equals(validFj) && "1".equals(validHyx) && "0".equals(validSj)) {
-            tvSubmitMoney.setText("¥" + (realTotalMoney + insureance3));
-        } else if ("0".equals(validFj) && "0".equals(validHyx) && "1".equals(validSj)) {
-            if (isShbzCheck == true) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + 1));
-            } else {
-                tvSubmitMoney.setText("¥" + realTotalMoney);
+        } else if (isFjChek == false && isHyxCheck == true && isShbzCheck == true) {
+            if (planselect == 0) {
+                tvSubmitMoney.setText(realTotalMoney.add(new BigDecimal("1").add(insureance1)) + "");
+            } else if (planselect == 1) {
+                tvSubmitMoney.setText(realTotalMoney.add(new BigDecimal("1").add(insureance2)) + "");
+            } else if (planselect == 2) {
+                tvSubmitMoney.setText(realTotalMoney.add(new BigDecimal("1").add(insureance3)) + "");
             }
-        } else if ("1".equals(validFj) && "1".equals(validHyx) && "0".equals(validSj)) {
-            if (isFjChek == true) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + fjNunmber + insureance3));
-            } else {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + fjNunmber + insureance3));
+
+        } else if (isFjChek == true && isHyxCheck == false && isShbzCheck == true) {
+            tvSubmitMoney.setText(realTotalMoney.add(fjNunmber).add(new BigDecimal("1")) + "");
+        } else if (isFjChek == true && isHyxCheck == true && isShbzCheck == false) {
+            if (planselect == 0) {
+                tvSubmitMoney.setText(realTotalMoney.add(fjNunmber).add(insureance1) + "");
+            } else if (planselect == 1) {
+                tvSubmitMoney.setText(realTotalMoney.add(fjNunmber).add(insureance2) + "");
+            } else if (planselect == 2) {
+                tvSubmitMoney.setText(realTotalMoney.add(fjNunmber).add(insureance3) + "");
             }
-        } else if ("1".equals(validFj) && "0".equals(validHyx) && "1".equals(validSj)) {
-            if (isFjChek == true && isShbzCheck == true) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + fjNunmber + 1));
-            } else if (isFjChek == false && isShbzCheck == false) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney));
-            } else if (isFjChek == true && isShbzCheck == false) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + fjNunmber));
-            } else if (isFjChek == false && isShbzCheck == true) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + 1));
+
+        } else if (isFjChek == false && isHyxCheck == false && isShbzCheck == true) {
+            tvSubmitMoney.setText(realTotalMoney.add(new BigDecimal("1")) + "");
+        } else if (isFjChek == false && isHyxCheck == true && isShbzCheck == false) {
+            if (planselect == 0) {
+                tvSubmitMoney.setText(realTotalMoney.add(insureance1) + "");
+            } else if (planselect == 1) {
+                tvSubmitMoney.setText(realTotalMoney.add(insureance2) + "");
+            } else if (planselect == 2) {
+                tvSubmitMoney.setText(realTotalMoney.add(insureance3) + "");
             }
-        } else if ("0".equals(validFj) && "1".equals(validHyx) && "1".equals(validSj)) {
-            if (isShbzCheck == true) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + 1 + insureance3));
-            } else if (isShbzCheck == false) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + 1));
-            }
-        } else if ("1".equals(validFj) && "1".equals(validHyx) && "1".equals(validSj)) {
-            if (isFjChek == true && isShbzCheck == true) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + fjNunmber + 1 + insureance3));
-            } else if (isFjChek == false && isShbzCheck == false) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + insureance3));
-            } else if (isFjChek == true && isShbzCheck == false) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + fjNunmber + insureance3));
-            } else if (isFjChek == false && isShbzCheck == true) {
-                tvSubmitMoney.setText("¥" + (realTotalMoney + 1 + insureance3));
-            }
+        } else if (isFjChek == true && isHyxCheck == false && isShbzCheck == false) {
+            tvSubmitMoney.setText(realTotalMoney.add(fjNunmber) + "");
+        } else if (isFjChek == false && isHyxCheck == false && isShbzCheck == false) {
+            tvSubmitMoney.setText(realTotalMoney + "");
         }
+
     }
 
+    private void initShows() {
 
-    private void initBanner() {
-        //第一个banner的初始化、
-        /*if (planselect == 3) {
-            int hyx = Integer.parseInt(tvSubmitMoney.getText().toString().trim());
-            int base = hyx - insureance3;
-        }*/
-        mBannerOneAdapter = new ExpertAskBannerOneAdapter(SubmitActivity.this, plan1, plan2, plan3, validHyx) {
+        LinearLayoutManager manager3 = new LinearLayoutManager(this);
+        manager3.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rvShow.setLayoutManager(manager3);
+        ShowAdapter showAdapter = new ShowAdapter(this, plan1, plan2, plan3, validHyx) {
             @Override
             public void onItemClick(int position) {
-                ExpertAskBannerOneAdapter.selectPostion = position;
-                notifyDataSetChanged();
-                ToastUtil.show(SubmitActivity.this, "方案" + position + "被点击了");
+                if (isHyxCheck == false) {
+                    bigDecimal = new BigDecimal(tvSubmitMoney.getText().toString().trim());
+                }
+                ShowAdapter.selectPostion = position;
                 planselect = position;
-
+                cbHy.setChecked(true);
+                if (position == 0) {
+                    tvSubmitMoney.setText(bigDecimal.add(insureance1) + "");
+                } else if (position == 1) {
+                    tvSubmitMoney.setText(bigDecimal.add(insureance2) + "");
+                } else if (position == 2) {
+                    tvSubmitMoney.setText(bigDecimal.add(insureance3) + "");
+                }
+                notifyDataSetChanged();
             }
         };
-        vpAskBanner1.setAdapter(mBannerOneAdapter);
+        rvShow.setAdapter(showAdapter);
+
+//        rvShow.scrollToPosition();
+
     }
+
 
     private void initCheckboxListener() {
         cbBzsj.setOnCheckedChangeListener((button, isCheck) -> {
+            BigDecimal chebox3 = new BigDecimal(tvSubmitMoney.getText().toString().trim());
             if (isCheck) {
                 isShbzCheck = true;
                 tvBzsj.setBackgroundResource(R.drawable.bg_rb_select);
                 tvBzsj.setTextColor(Color.parseColor("#ffffff"));
+                tvSubmitMoney.setText(chebox3.add(new BigDecimal("1")) + "");
             } else {
                 isShbzCheck = false;
                 tvBzsj.setBackgroundResource(R.drawable.bg_tv_cb);
                 tvBzsj.setTextColor(Color.parseColor("#575757"));
+                tvSubmitMoney.setText(chebox3.subtract(new BigDecimal("1")) + "");
+            }
+        });
+
+        cbHy.setOnCheckedChangeListener((button, isCheck) -> {
+            BigDecimal chebox2 = new BigDecimal(tvSubmitMoney.getText().toString().trim());
+            if (isCheck) {
+                isHyxCheck = true;
+                mChage = "1";
+                tvHy.setBackgroundResource(R.drawable.bg_rb_select);
+                tvHy.setTextColor(Color.parseColor("#ffffff"));
+                tvSubmitMoney.setText(chebox2.add(insureance3) + "");
+            } else {
+                isHyxCheck = false;
+                mChage = "0";
+                tvHy.setBackgroundResource(R.drawable.bg_tv_cb);
+                tvHy.setTextColor(Color.parseColor("#575757"));
+                if (planselect == 0) {
+                    tvSubmitMoney.setText(chebox2.subtract(insureance1) + "");
+                } else if (planselect == 1) {
+                    tvSubmitMoney.setText(chebox2.subtract(insureance2) + "");
+                } else if (planselect == 2) {
+                    tvSubmitMoney.setText(chebox2.subtract(insureance3) + "");
+                }
             }
         });
     }
@@ -550,7 +582,7 @@ public class SubmitActivity extends BaseActivity {
             }
 
             fjJson = gson.toJson(fjList);
-            if ("0".equals(validHyx)) {
+            if (isHyxCheck == false) {
                 goodsExtensionInsurance = "0";
             } else {
                 if (planselect == 0) {
@@ -560,6 +592,7 @@ public class SubmitActivity extends BaseActivity {
                 } else if (planselect == 2) {
                     goodsExtensionInsurance = "3";
                 }
+
             }
 
             if (isShbzCheck == true) {
@@ -567,11 +600,49 @@ public class SubmitActivity extends BaseActivity {
             } else {
                 protectBusiness = "0";
             }
-            getSureNext();
+            showFristDialog();
         }
+
+    }
+
+    private void showFristDialog() {
+        if (submitShowDialog == null) {
+            submitShowDialog = new SubmitShowDialog(SubmitActivity.this) {
+                @Override
+                public void setOnSureClick() {
+                    tips = submitInfo.getTips();
+                    shownumber = "1";
+                    showTipsDialog();
+                    dismiss();
+                }
+            };
+        }
+        submitShowDialog.show();
+    }
+
+    private void showTipsDialog() {
+
+        if (submitTipsDialog == null) {
+            submitTipsDialog = new SubmitTipsDialog(SubmitActivity.this, tips, shownumber) {
+                @Override
+                public void setOnSureClick(String s1, String s2) {
+                    if ("1".equals(s1) && "1".equals(s2)) {
+                        shownumber = "2";
+                        dismiss();
+                        showTipsDialog();
+                    } else {
+                        getSureNext();
+                        dismiss();
+                    }
+                }
+            };
+        }
+        submitTipsDialog.show();
     }
 
     private void getSureNext() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        bookingDate = simpleDateFormat.format(new Date(System.currentTimeMillis()));
         if (myDialog == null) {
             myDialog = new MyDialog(this);
         }
@@ -579,7 +650,7 @@ public class SubmitActivity extends BaseActivity {
         params.clear();
         params.put("act", "postSingles2019Data");
         params.put("productNo", productNo);
-        params.put("airline", productName);
+        params.put("airline", airline);
         params.put("quotedPriceId", quotedPriceId);
         params.put("priceCheckId", priceCheckId);
         params.put("productDate", productDate);
@@ -590,7 +661,7 @@ public class SubmitActivity extends BaseActivity {
         params.put("goodVolume", goodVolume);
         params.put("bookingPosition", bookingPosition);
         params.put("packageWay", packageWay);
-
+        params.put("bookingDate", bookingDate);
         params.put("goodsExtensionInsurance", goodsExtensionInsurance);
         params.put("bookingMode", "智能订舱");
         params.put("attachService", fjJson);
@@ -614,8 +685,8 @@ public class SubmitActivity extends BaseActivity {
                             ToastUtil.show(SubmitActivity.this, baseEntity.getErrMsg());
                             return;
                         } else {
-                            /*submitInfo = gson.fromJson(baseEntity.getSuccess(), SubmitInfo.class);
-                            initData();*/
+                            submitSuccessInfo = gson.fromJson(baseEntity.getSuccess(), SubmitSuccessInfo.class);
+                            initSuccess();
                         }
                     }
 
@@ -626,6 +697,56 @@ public class SubmitActivity extends BaseActivity {
                             myDialog.dismissDialog();
                         }
 
+                    }
+                });
+    }
+
+    private void initSuccess() {
+        if (submitSuccessDialog == null) {
+            submitSuccessDialog = new SubmitSuccessDialog(SubmitActivity.this, submitSuccessInfo) {
+                @Override
+                public void setOnSureClick(String mobile) {
+                    submitMobile(mobile);
+                    dismiss();
+                }
+            };
+        }
+        submitSuccessDialog.show();
+    }
+
+    private void submitMobile(String mobile) {
+        if (myDialog == null) {
+            myDialog = new MyDialog(SubmitActivity.this);
+        }
+        myDialog.showDialog();
+        mParams.clear();
+        mParams.put("act", "postManualReviewData");
+        mParams.put("orderBillCode", submitSuccessInfo.getOrderBillCode());
+        mParams.put("mobile", mobile);
+
+        RetrofitManager.getInstance().create(CommonService.class)
+                .getSubmitPhone(TOKEN, mParams)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .retryWhen(new RetryWhenNetworkException(2, 500, 500))
+                .compose(RxSchedulers.io_main())
+                .subscribe(new BaseObserver() {
+                    @Override
+                    protected void onHandleSuccess(BaseEntity baseEntity) {
+                        if (!TextUtils.isEmpty(baseEntity.getErrMsg())) {
+                            ToastUtil.show(SubmitActivity.this, baseEntity.getErrMsg());
+                            return;
+                        } else {
+                            startActivity(new Intent(SubmitActivity.this, SubmitSuccessActivity.class));
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    protected void onFinally() {
+                        super.onFinally();
+                        if (myDialog != null) {
+                            myDialog.dismissDialog();
+                        }
                     }
                 });
     }
@@ -658,11 +779,17 @@ public class SubmitActivity extends BaseActivity {
                     return false;
                 }
             }
-            map.put("length", et_add_chang.getText().toString().trim());
-            map.put("width", et_add_kuan.getText().toString().trim());
-            map.put("high", et_add_gao.getText().toString().trim());
-            map.put("pieces", et_add_number.getText().toString().trim());
-            jsondatas.add(map);
+
+
+            if (TextUtils.isEmpty(et_add_chang.getText().toString().trim()) && TextUtils.isEmpty(et_add_kuan.getText().toString().trim())
+                    && TextUtils.isEmpty(et_add_gao.getText().toString().trim()) && TextUtils.isEmpty(et_add_number.getText().toString().trim())) {
+            } else {
+                map.put("length", et_add_chang.getText().toString().trim());
+                map.put("width", et_add_kuan.getText().toString().trim());
+                map.put("high", et_add_gao.getText().toString().trim());
+                map.put("pieces", et_add_number.getText().toString().trim());
+                jsondatas.add(map);
+            }
         }
         return true;
     }
@@ -687,21 +814,6 @@ public class SubmitActivity extends BaseActivity {
                 .setPositiveButton("确定", null).show();
     }
 
-    /*
-     * 联系人选择结果
-     *//*
-    @Subscribe(
-            thread = EventThread.MAIN_THREAD,
-            tags = {@Tag("submitContact")}
-    )
-    public void submitContact(int postion) {
-        System.out.println("AAAAA"+postion);
-        etContactName.setText(contactInfo.get(postion).getName());
-        etContactPhone.setText(contactInfo.get(postion).getTel());
-        etContactQq.setText(contactInfo.get(postion).getQq());
-        etContactMail.setText(contactInfo.get(postion).getEmail());
-        etContactContent.setText(contactInfo.get(postion).getRemark());
-    }*/
     //添加ViewItem
     private void addViewItem(View view) {
         if (allAddView.getChildCount() == 0) {//如果一个都没有，就添加一个
@@ -781,4 +893,10 @@ public class SubmitActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

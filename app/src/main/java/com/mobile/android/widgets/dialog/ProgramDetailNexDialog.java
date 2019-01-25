@@ -17,7 +17,7 @@ public abstract class ProgramDetailNexDialog extends Dialog {
         super(context, R.style.fullWindowDialogStyle);
         this.context = context;
         setContentView(R.layout.dialog_program_detail_next);
-        setCanceledOnTouchOutside(true);
+        setCanceledOnTouchOutside(false);
         tv = findViewById(R.id.tv_prodetail_sure);
 
         tv.setOnClickListener(view -> {

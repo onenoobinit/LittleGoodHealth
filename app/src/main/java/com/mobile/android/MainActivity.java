@@ -4,6 +4,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -13,12 +14,21 @@ import android.widget.TextView;
 import com.mobile.android.app.home.IndexFragment;
 import com.mobile.android.app.home.MeFragment;
 import com.mobile.android.app.login.GlobalReceiver;
+import com.mobile.android.entity.LoginStautsInfo;
 import com.mobile.android.retrofit.ApiContstants;
+import com.mobile.android.retrofit.RetrofitManager;
+import com.mobile.android.retrofit.RetryWhenNetworkException;
+import com.mobile.android.retrofit.RxSchedulers;
+import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.updatebyrx2.UpdateManager;
 import com.mobile.hyoukalibrary.base.BaseActivity;
+import com.mobile.hyoukalibrary.base.BaseEntity;
+import com.mobile.hyoukalibrary.base.BaseObserver;
 import com.mobile.hyoukalibrary.utils.StatusBarCompat;
 import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoLinearLayout;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,58 +38,6 @@ import butterknife.OnClick;
  * @author wangqiang
  */
 public class MainActivity extends BaseActivity {
-    /* @BindView(R.id.iv_main_logo)
-     ImageView ivMainLogo;
-     @BindView(R.id.tv_hadlogin_number)
-     TextView tvHadloginNumber;
-     @BindView(R.id.all_member_more)
-     AutoLinearLayout allMemberMore;
-     @BindView(R.id.tv_member_content)
-     TextView tvMemberContent;
-     @BindView(R.id.arl_main_toolbar)
-     AutoRelativeLayout arlMainToolbar;
-     @BindView(R.id.iv_main_callyz)
-     ImageView ivMainCallyz;
-     @BindView(R.id.arl_main_contact)
-     AutoRelativeLayout arlMainContact;
-     @BindView(R.id.iv_main_misscall)
-     ImageView ivMainMisscall;
-     @BindView(R.id.all_main_misscall)
-     AutoRelativeLayout allMainMisscall;
-     @BindView(R.id.iv_main_search)
-     ImageView ivMainSearch;
-     @BindView(R.id.arl_main_desiginer)
-     AutoRelativeLayout arlMainDesiginer;
-     @BindView(R.id.iv_main_dec)
-     ImageView ivMainDec;
-     @BindView(R.id.arl_main_dec)
-     AutoRelativeLayout arlMainDec;
-     @BindView(R.id.iv_main_material)
-     ImageView ivMainMaterial;
-     @BindView(R.id.arl_main_material)
-     AutoRelativeLayout arlMainMaterial;
-     @BindView(R.id.iv_main_manager)
-     ImageView ivMainManager;
-     @BindView(R.id.arl_main_member)
-     AutoRelativeLayout arlMainMember;
-     @BindView(R.id.iv_main_message)
-     ImageView ivMainMessage;
-     @BindView(R.id.arl_main_message)
-     AutoRelativeLayout arlMainMessage;
-     @BindView(R.id.iv_main_more)
-     ImageView ivMainMore;
-     @BindView(R.id.arl_main_more)
-     AutoRelativeLayout arlMainMore;
-     @BindView(R.id.sv_scrollview)
-     ScrollView svScrollview;
-     @BindView(R.id.arl_main_toppic)
-     AutoLinearLayout arlMainPic;
-     @BindView(R.id.ll_root)
-     AutoLinearLayout ll_root;
-     @BindView(R.id.iv_toolbar_bgd)
-     ImageView mIvToolbarBgd;
-     @BindView(R.id.refreshLayout)*/
-//    SmartRefreshLayout mRefreshLayout;
     @BindView(R.id.fl_content)
     FrameLayout flContent;
     @BindView(R.id.all_sy)
@@ -112,8 +70,34 @@ public class MainActivity extends BaseActivity {
         registerLoginOut();
 //        scrollviewdo();
 //        initData();
+        checkIsLogin();
         //检查更新
         UpdateManager.getInstance().checkUpdate(this);
+    }
+
+    private void checkIsLogin() {
+        params.clear();
+        params.put("act", "getLoginTypeData");
+
+        RetrofitManager.getInstance().create(CommonService.class)
+                .getLoginStauts(params)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .retryWhen(new RetryWhenNetworkException(2, 500, 500))
+                .compose(RxSchedulers.io_main())
+                .subscribe(new BaseObserver() {
+                    @Override
+                    protected void onHandleSuccess(BaseEntity baseEntity) {
+                        if (!TextUtils.isEmpty(baseEntity.getErrMsg())) {
+                            ToastUtil.show(MainActivity.this, baseEntity.getErrMsg());
+                            return;
+                        } else {
+                            gson.fromJson(baseEntity.getSuccess(), LoginStautsInfo.class);
+
+
+
+                        }
+                    }
+                });
     }
 
     private void initFragments() {

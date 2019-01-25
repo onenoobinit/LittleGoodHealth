@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_funds_dilog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_detail_next"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_submit_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="40dp"
+            android:textScaleX="1"
+            android:lineSpacingMultiplier="1.5"
+            android:text="您的货物数据超出系统限制 现转为人工审核 为了更好的提供服务 系统将推送信息告知审核结果 请填写本人有效手机号码"
+            android:textColor="@color/c_4A4A4A"
+            android:textSize="12sp" />
+
+
+        <EditText
+            android:id="@+id/et_submit_phone"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_sucess_phone"
+            android:inputType="number|numberDecimal"
+            android:textColor="@color/c_4A4A4A"
+            android:textSize="11sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:text="手机号码必须是11位数"
+            android:textColor="@color/c_9b9b9b"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tv_submit_tips_sure"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/tv_login"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</RelativeLayout>

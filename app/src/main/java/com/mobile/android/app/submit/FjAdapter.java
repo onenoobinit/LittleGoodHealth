@@ -44,8 +44,12 @@ public abstract class FjAdapter extends RecyclerView.Adapter<FjAdapter.MyViewHol
             holder.tv_fj_number.setText(datas.get(0).getPrice());
             if ("1".equals(datas.get(0).getSelected())) {
                 holder.cb_bg.setChecked(true);
+                holder.tv_fj.setBackgroundResource(R.drawable.bg_rb_select);
+                holder.tv_fj.setTextColor(Color.parseColor("#ffffff"));
             } else {
                 holder.cb_bg.setChecked(false);
+                holder.tv_fj.setBackgroundResource(R.drawable.bg_tv_cb);
+                holder.tv_fj.setTextColor(Color.parseColor("#575757"));
             }
         } else {
             holder.iv_fj.setVisibility(View.VISIBLE);

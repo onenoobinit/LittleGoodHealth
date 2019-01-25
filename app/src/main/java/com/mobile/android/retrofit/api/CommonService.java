@@ -157,20 +157,20 @@ public interface CommonService {
     @POST("SmartProductsHandler/SubmitOrders/SubmitOrdersHandler.ashx")
     Observable<BaseEntity> getSubmitNext(@Header("token") String token, @FieldMap Map<String, Object> params);
 
+    /**
+     * 托书提交手机号
+     */
+    @FormUrlEncoded
+    @POST("personalCenterHandler/operationCenter/cargoQuery/exportBusiness/ChangeDateHandler.ashx")
+    Observable<BaseEntity> getSubmitPhone(@Header("token") String token, @FieldMap Map<String, Object> params);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * 检测是否登录
+     */
+    @FormUrlEncoded
+    @POST("personalCenterHandler/common/PersonalCenterCommonHandler.ashx")
+    Observable<BaseEntity> getLoginStauts(@FieldMap Map<String, Object> params);
 
 
 

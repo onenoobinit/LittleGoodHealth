@@ -51,6 +51,7 @@ public abstract class ProportionAdapter extends RecyclerView.Adapter<ProportionA
         holder.tv_item_proportion.setOnClickListener(view -> {
             selectPostion = position;
             setOnItemClick(datas.get(position).getData(), active);
+            notifyDataSetChanged();
         });
 
         if (selectPostion == position) {

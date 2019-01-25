@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_funds_dilog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_detail_next"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_submit_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="40dp"
+            android:text=""
+            android:textScaleX="1"
+            android:lineSpacingMultiplier="1.5"
+            android:textColor="@color/c_4A4A4A"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/tv_submit_tips_sure"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/tv_login"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</RelativeLayout>

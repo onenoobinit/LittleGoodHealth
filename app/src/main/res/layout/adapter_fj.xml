@@ -23,7 +23,6 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/bg_rb"
             android:button="@null"
-            android:checked="true"
             android:visibility="visible" />
 
         <TextView

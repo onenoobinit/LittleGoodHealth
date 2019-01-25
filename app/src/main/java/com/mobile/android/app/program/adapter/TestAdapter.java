@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mobile.android.R;
@@ -46,6 +47,7 @@ public abstract class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyVie
         holder.tv_select_shop.setText(datas.get(position).getProductIcons().getSupplierName());
         holder.tv_select_over.setText("剩余舱位" + (100 - Integer.parseInt(datas.get(position).getSuit().getSpace())) + "%");
         holder.tv_select_company.setText(datas.get(position).getProductName());
+//        holder.pv_select.setProgress(datas.get(position).getSuit().getSpace());
     }
 
     @Override
@@ -60,6 +62,7 @@ public abstract class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyVie
         private final TextView tv_select_shop;
         private final TextView tv_select_over;
         private final TextView tv_select_look;
+        private final ProgressBar pv_select;
 
 
         public MyViewHolder(View itemView) {
@@ -70,6 +73,7 @@ public abstract class TestAdapter extends RecyclerView.Adapter<TestAdapter.MyVie
             tv_select_shop = itemView.findViewById(R.id.tv_select_shop);
             tv_select_over = itemView.findViewById(R.id.tv_select_over);
             tv_select_look = itemView.findViewById(R.id.tv_select_look);
+            pv_select = itemView.findViewById(R.id.pv_select);
         }
     }
 

@@ -356,6 +356,7 @@ public class ProgramSelectActivity extends BaseActivity {
                 }
                 newintent.putExtra("bookingPosition", book);
                 newintent.putExtra("packageWay", packget);
+                newintent.putExtra("endHy", tvEndHy.getText().toString().trim());
                 startActivity(newintent);
             }
         };

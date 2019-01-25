@@ -1,12 +1,15 @@
 package com.mobile.android.app.submit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mobile.android.MainActivity;
 import com.mobile.android.R;
+import com.mobile.android.app.order.OrderActivity;
 import com.mobile.hyoukalibrary.base.BaseActivity;
 
 import butterknife.BindView;
@@ -49,8 +52,15 @@ public class SubmitSuccessActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_look_order://查看订单
+                Intent intent1 = new Intent(SubmitSuccessActivity.this, OrderActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent1.putExtra("number", 1);
+                startActivity(intent1);
                 break;
             case R.id.tv_look_index://首页逛逛
+                Intent intent = new Intent(SubmitSuccessActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
         }
     }

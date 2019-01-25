@@ -568,8 +568,7 @@
                     android:layout_height="42px"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/bg_rb"
-                    android:button="@null"
-                    android:checked="true" />
+                    android:button="@null" />
 
                 <TextView
                     android:id="@+id/tv_hy"
@@ -586,14 +585,25 @@
             </com.zhy.autolayout.AutoLinearLayout>
 
 
-            <com.tmall.ultraviewpager.UltraViewPager
-                android:id="@+id/vp_ask_banner1"
+            <!-- <com.tmall.ultraviewpager.UltraViewPager
+                 android:id="@+id/vp_ask_banner1"
+                 android:layout_width="match_parent"
+                 android:layout_height="300px"
+                 android:layout_marginLeft="260px"
+                 android:layout_marginRight="260px"
+                 android:layout_marginTop="40px"
+                 android:clipChildren="false"></com.tmall.ultraviewpager.UltraViewPager>-->
+
+            <com.zhy.autolayout.AutoRelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="300px"
-                android:layout_marginLeft="260px"
-                android:layout_marginRight="260px"
-                android:layout_marginTop="40px"
-                android:clipChildren="false"></com.tmall.ultraviewpager.UltraViewPager>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            </com.zhy.autolayout.AutoRelativeLayout>
 
             <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
@@ -649,8 +659,7 @@
                     android:layout_height="42px"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/bg_rb"
-                    android:button="@null"
-                    android:checked="true" />
+                    android:button="@null" />
 
                 <TextView
                     android:id="@+id/tv_bzsj"
@@ -660,8 +669,8 @@
                     android:layout_marginLeft="46px"
                     android:background="@drawable/bg_tv_cb"
                     android:gravity="center"
-                    android:paddingLeft="10px"
-                    android:paddingRight="10px"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
                     android:text="保障商家"
                     android:textColor="@color/c_575757"
                     android:textSize="35px" />
@@ -1048,6 +1057,16 @@
                 android:text="预计费用"
                 android:textColor="@color/c_4A4A4A"
                 android:textSize="35px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20px"
+                android:text="¥"
+                android:textColor="@color/c_D0021B"
+                android:textSize="58px"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_submit_money"

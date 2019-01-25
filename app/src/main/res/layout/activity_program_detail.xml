@@ -36,6 +36,7 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
             android:orientation="vertical">
 
             <com.zhy.autolayout.AutoLinearLayout
@@ -159,12 +160,18 @@
                     android:textSize="34px" />
             </com.zhy.autolayout.AutoRelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_detail"
+            <com.zhy.autolayout.AutoRelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="14px"
-                android:layout_marginTop="60px"></android.support.v7.widget.RecyclerView>
+                android:overScrollMode="never"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="14px"
+                    android:layout_marginTop="60px"></android.support.v7.widget.RecyclerView>
+            </com.zhy.autolayout.AutoRelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"

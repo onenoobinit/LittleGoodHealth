@@ -73,7 +73,7 @@ public class RetrofitManager {
                 .sslSocketFactory(
                         HttpsUtils.getSSLSocketFactory_Certificate(
                                 SupervisorApp.getInstance(),
-                                "BKS", R.raw.youdecroation))
+                                "BKS", R.raw.jmallhttps))
                 .build();
     }
 
