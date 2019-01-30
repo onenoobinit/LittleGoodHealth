@@ -109,10 +109,10 @@ public class RetrofitManager {
 
 
     //---------------------------------------线上-------------------------------------------------
-//    public static String baseUrl = "https://zx.youjuke.com/supervisorapi/";
+    public static String baseUrl = "https://www.3j-mall.com/";
 
 
     //     ---------------------------------------线下-------------------------------------------------
-    public static final String baseUrl = "http://211.152.37.158:92/";
+//    public static final String baseUrl = "http://211.152.37.158:92/";
 
 }

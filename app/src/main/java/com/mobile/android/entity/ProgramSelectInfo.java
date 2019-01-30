@@ -116,6 +116,24 @@ public class ProgramSelectInfo {
         public int position = -1;
         public int smallSortId;
         public String smallSortName;
+        private SpaceDataBean spaceData;
+        private String totalPrice;
+
+        public SpaceDataBean getSpaceData() {
+            return spaceData;
+        }
+
+        public void setSpaceData(SpaceDataBean spaceData) {
+            this.spaceData = spaceData;
+        }
+
+        public String getTotalPrice() {
+            return totalPrice;
+        }
+
+        public void setTotalPrice(String totalPrice) {
+            this.totalPrice = totalPrice;
+        }
 
         public String getAirline() {
             return airline;
@@ -472,5 +490,72 @@ public class ProgramSelectInfo {
                 this.space = space;
             }
         }
+
+        public static class SpaceDataBean {
+            /**
+             * bookingPosition : 0
+             * overSpace : 500
+             * price : 16.99
+             * reOverSpace : 0
+             * reSpace : 100
+             * space : 0
+             */
+
+            private String bookingPosition;
+            private String overSpace;
+            private String price;
+            private String reOverSpace;
+            private String reSpace;
+            private String space;
+
+            public String getBookingPosition() {
+                return bookingPosition;
+            }
+
+            public void setBookingPosition(String bookingPosition) {
+                this.bookingPosition = bookingPosition;
+            }
+
+            public String getOverSpace() {
+                return overSpace;
+            }
+
+            public void setOverSpace(String overSpace) {
+                this.overSpace = overSpace;
+            }
+
+            public String getPrice() {
+                return price;
+            }
+
+            public void setPrice(String price) {
+                this.price = price;
+            }
+
+            public String getReOverSpace() {
+                return reOverSpace;
+            }
+
+            public void setReOverSpace(String reOverSpace) {
+                this.reOverSpace = reOverSpace;
+            }
+
+            public String getReSpace() {
+                return reSpace;
+            }
+
+            public void setReSpace(String reSpace) {
+                this.reSpace = reSpace;
+            }
+
+            public String getSpace() {
+                return space;
+            }
+
+            public void setSpace(String space) {
+                this.space = space;
+            }
+        }
     }
+
 }

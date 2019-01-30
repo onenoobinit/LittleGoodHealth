@@ -16,6 +16,18 @@ public class User implements Serializable {
 
     private String token;
     private String msg;
+    private Boolean isLogined;
+
+    public Boolean isLogined() {
+        if (isLogined == null) {
+            return false;
+        }
+        return isLogined;
+    }
+
+    public void setLogined(Boolean logined) {
+        isLogined = logined;
+    }
 
     public String getToken() {
         return token;
@@ -34,7 +46,7 @@ public class User implements Serializable {
     }
 
 
-   /* *//**
+    /* *//**
      * uid : 1582
      * realname : 夏天
      * token : EBsjdEVRtH-MzJqi9ScSr-VpTQUMDdQu-oUuV3NYNdG-1527492518

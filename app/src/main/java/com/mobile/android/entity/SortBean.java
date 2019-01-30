@@ -8,13 +8,11 @@ import java.util.List;
 public class SortBean {
     public int bigSortId;
     public String bigSortName;
+    public boolean isSelected;
 
     public List<ProgramSelectInfo.AirlineListBean> list;
-
     public static class ListBean {
         public int smallSortId;
         public String smallSortName;
     }
-
-    public boolean isSelected;
 }

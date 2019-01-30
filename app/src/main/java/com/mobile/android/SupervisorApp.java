@@ -53,6 +53,8 @@ public class SupervisorApp extends BaseApplication {
         this.wifi = wifi;
     }
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();

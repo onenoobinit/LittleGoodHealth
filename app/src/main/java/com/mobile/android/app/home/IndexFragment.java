@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -154,7 +155,8 @@ public class IndexFragment extends BaseFragment {
                 String trim2 = et_show2.getText().toString().trim();
                 String trim3 = et_show3.getText().toString().trim();
                 if ("出发地".equals(tv1.getText().toString()) && "目的地".equals(tv2.getText().toString()) && TextUtils.isEmpty(trim1) && TextUtils.isEmpty(trim2) && TextUtils.isEmpty(trim3)) {
-                    dismiss();
+                    tv3.setVisibility(View.VISIBLE);
+                    tv3.setText("缺少目的港");
                     return;
                 } else if ("目的地".equals(tv2.getText().toString())) {
                     tv3.setVisibility(View.VISIBLE);
@@ -223,6 +225,14 @@ public class IndexFragment extends BaseFragment {
         indexDialog.show();
         int i = IndexDialog.bWidth;
         addPopWindow = new AddPopWindow((Activity) mContext, 672);
+        addPopWindow.setFocusable(true);
+        addPopWindow.setTouchInterceptor((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                addPopWindow.dismiss();
+                return true;
+            }
+            return false;
+        });
     }
 
     /*

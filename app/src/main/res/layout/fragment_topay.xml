@@ -46,7 +46,27 @@
                 android:id="@+id/arl_no_data"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"></com.zhy.autolayout.AutoRelativeLayout>
+                android:background="@color/white"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_no_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="130px"
+                    android:src="@mipmap/xzyhq_x_png" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_no_data"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="90px"
+                    android:text="对不起，暂无数据~"
+                    android:textColor="@color/c_a6a6a6"
+                    android:textSize="40px" />
+            </com.zhy.autolayout.AutoRelativeLayout>
 
         </com.zhy.autolayout.AutoLinearLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

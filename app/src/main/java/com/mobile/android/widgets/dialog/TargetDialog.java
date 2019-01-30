@@ -60,7 +60,7 @@ public abstract class TargetDialog {
         EndSeclectAdapter endSeclectAdapter = new EndSeclectAdapter(context, datas) {
             @Override
             public void setOnFristClick(int position, int secPostion) {
-                setOnTargetClick(datas.get(position).getPortList().get(secPostion).getPort());
+                setOnTargetClick(datas.get(position).getPortList().get(secPostion).getPort(), datas.get(position).getPortList().get(secPostion).getName());
             }
         };
         rv_end.setAdapter(endSeclectAdapter);
@@ -81,5 +81,5 @@ public abstract class TargetDialog {
         }
     }
 
-    public abstract void setOnTargetClick(String target);
+    public abstract void setOnTargetClick(String target, String hy);
 }

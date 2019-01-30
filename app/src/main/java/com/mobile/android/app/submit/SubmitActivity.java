@@ -1,15 +1,18 @@
 package com.mobile.android.app.submit;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -202,6 +205,8 @@ public class SubmitActivity extends BaseActivity {
     private String airline;
     private SubmitInfo.TipsBean tips;
     private String shownumber;
+    private Handler handler;
+    private ShowAdapter showAdapter;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
@@ -442,7 +447,7 @@ public class SubmitActivity extends BaseActivity {
         LinearLayoutManager manager3 = new LinearLayoutManager(this);
         manager3.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvShow.setLayoutManager(manager3);
-        ShowAdapter showAdapter = new ShowAdapter(this, plan1, plan2, plan3, validHyx) {
+        showAdapter = new ShowAdapter(this, plan1, plan2, plan3, validHyx) {
             @Override
             public void onItemClick(int position) {
                 if (isHyxCheck == false) {
@@ -462,9 +467,17 @@ public class SubmitActivity extends BaseActivity {
             }
         };
         rvShow.setAdapter(showAdapter);
+        WindowManager wm = (WindowManager) this
+                .getSystemService(Context.WINDOW_SERVICE);
+        int width = wm.getDefaultDisplay().getWidth();
 
-//        rvShow.scrollToPosition();
-
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rvShow.smoothScrollBy((width - 400) / 2, 0);
+            }
+        }, 500);
     }
 
 
@@ -489,12 +502,16 @@ public class SubmitActivity extends BaseActivity {
             if (isCheck) {
                 isHyxCheck = true;
                 mChage = "1";
+                ShowAdapter.selectPostion = 2;
+                showAdapter.notifyDataSetChanged();
                 tvHy.setBackgroundResource(R.drawable.bg_rb_select);
                 tvHy.setTextColor(Color.parseColor("#ffffff"));
                 tvSubmitMoney.setText(chebox2.add(insureance3) + "");
             } else {
                 isHyxCheck = false;
                 mChage = "0";
+                ShowAdapter.selectPostion = 3;
+                showAdapter.notifyDataSetChanged();
                 tvHy.setBackgroundResource(R.drawable.bg_tv_cb);
                 tvHy.setTextColor(Color.parseColor("#575757"));
                 if (planselect == 0) {
@@ -720,7 +737,7 @@ public class SubmitActivity extends BaseActivity {
         }
         myDialog.showDialog();
         mParams.clear();
-        mParams.put("act", "postManualReviewData");
+        mParams.put("act", "postOrderBillReschedulingManualReviewData");
         mParams.put("orderBillCode", submitSuccessInfo.getOrderBillCode());
         mParams.put("mobile", mobile);
 
@@ -894,9 +911,7 @@ public class SubmitActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

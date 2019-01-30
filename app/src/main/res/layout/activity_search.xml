@@ -95,8 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            app:tabBackground="@android:color/transparent"
-            android:elevation="0dp">
+            android:elevation="0dp"
+            app:tabBackground="@android:color/transparent">
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsingToolbar"

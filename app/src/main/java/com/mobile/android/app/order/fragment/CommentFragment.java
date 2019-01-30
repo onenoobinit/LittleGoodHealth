@@ -124,7 +124,7 @@ public class CommentFragment extends LazyFragment {
         params.clear();
         page += 1;
         params.put("act", "getExportOrderBillList");
-        params.put("orderType", "4");
+        params.put("orderType", "5");
         params.put("limitPage", "10");
         params.put("pageNumber", page);
         L.i("参数", params + "");
@@ -184,7 +184,7 @@ public class CommentFragment extends LazyFragment {
         params.clear();
         page = 1;
         params.put("act", "getExportOrderBillList");
-        params.put("orderType", "4");
+        params.put("orderType", "5");
         params.put("limitPage", "10");
         params.put("pageNumber", page);
         L.i("参数", params + "");
@@ -220,9 +220,16 @@ public class CommentFragment extends LazyFragment {
                             OrderInfo orderInfo = gson.fromJson(baseEntity.getSuccess(), OrderInfo.class);
                             ArrayList<OrderInfo.OrderBillListInfoBean> list = (ArrayList<OrderInfo.OrderBillListInfoBean>) orderInfo.getOrderBillListInfo();
                             count_page = Integer.parseInt(orderInfo.getAllCount()) / 10;
-                            wholeAapter.notifyDataSetChanged();
-                            complains = list;
-                            refreshData(complains, false);
+                            if (list != null && list.size() > 0) {
+                                arlHaveData.setVisibility(View.VISIBLE);
+                                arlNoData.setVisibility(View.GONE);
+                                complains = list;
+                                refreshData(complains, false);
+                                wholeAapter.notifyDataSetChanged();
+                            } else {
+                                arlHaveData.setVisibility(View.GONE);
+                                arlNoData.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
 
@@ -244,6 +251,9 @@ public class CommentFragment extends LazyFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        if (myDialog != null) {
+            myDialog.dismissDialog();
+        }
     }
 
     private void refreshData(ArrayList<OrderInfo.OrderBillListInfoBean> datas, boolean b) {

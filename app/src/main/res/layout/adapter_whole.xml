@@ -26,6 +26,7 @@
         android:textSize="35px" />
 
     <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/all_order_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_order_date"

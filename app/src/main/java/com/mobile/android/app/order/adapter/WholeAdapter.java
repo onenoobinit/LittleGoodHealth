@@ -1,6 +1,7 @@
 package com.mobile.android.app.order.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -11,9 +12,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mobile.android.R;
+import com.mobile.android.app.order.OrderComeActivity;
 import com.mobile.android.entity.OrderInfo;
 import com.mobile.hyoukalibrary.glide.CircleTransform;
 import com.mobile.hyoukalibrary.utils.DateUtil;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
 
@@ -76,6 +79,9 @@ public class WholeAdapter extends RecyclerView.Adapter<WholeAdapter.MyViewHolder
             holder.tv_order_stauts.setVisibility(View.VISIBLE);
             if ("1".equals(datas.get(position).getOperating().getIntoCabinConfirm())) {
                 holder.tv_order_stauts.setText("需确认入库数据");
+                holder.all_order_item.setOnClickListener(view -> {
+                    mContext.startActivity(new Intent(mContext, OrderComeActivity.class));
+                });
             } else if ("1".equals(datas.get(position).getOperating().getFreightFeeConfirm())) {
                 holder.tv_order_stauts.setText("需确认优化运费数据");
             } else if ("1".equals(datas.get(position).getOperating().getMakeBillConfirm())) {
@@ -168,6 +174,7 @@ public class WholeAdapter extends RecyclerView.Adapter<WholeAdapter.MyViewHolder
         private final TextView tv_item_vol;
         private final TextView tv_item_propor;
         private final CircleImageView iv_item_icon;
+        private final AutoLinearLayout all_order_item;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -188,6 +195,7 @@ public class WholeAdapter extends RecyclerView.Adapter<WholeAdapter.MyViewHolder
             tv_item_vol = itemView.findViewById(R.id.tv_item_vol);
             tv_item_propor = itemView.findViewById(R.id.tv_item_propor);
             iv_item_icon = itemView.findViewById(R.id.iv_item_icon);
+            all_order_item = itemView.findViewById(R.id.all_order_item);
         }
     }
 }

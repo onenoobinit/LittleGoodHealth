@@ -62,10 +62,9 @@ public abstract class FuzzySearchAdapter extends FuzzySearchBaseAdapter<ItemEnti
             holder.tv_result_name.setText(split[1]);
             cityName = split[1];
         }
-
-        holder.all_result_item.setOnClickListener(view -> {
-            setOnItemClickListener(split[0] + "," + cityName);
-        });
+            holder.all_result_item.setOnClickListener(view -> {
+                setOnItemClickListener(split[0] + "," + cityName);
+            });
     }
 
     static class ItemHolder extends RecyclerView.ViewHolder {

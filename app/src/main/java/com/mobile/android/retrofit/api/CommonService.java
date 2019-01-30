@@ -170,9 +170,7 @@ public interface CommonService {
      */
     @FormUrlEncoded
     @POST("personalCenterHandler/common/PersonalCenterCommonHandler.ashx")
-    Observable<BaseEntity> getLoginStauts(@FieldMap Map<String, Object> params);
-
-
+    Observable<BaseEntity> getLoginStauts(@Header("token") String token, @FieldMap Map<String, Object> params);
 
 
 

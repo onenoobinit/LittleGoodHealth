@@ -29,13 +29,6 @@ public abstract class DateAdapter extends RecyclerView.Adapter<DateAdapter.MyVie
         this.datas = data;
     }
 
-    public void setData(ArrayList<String> data) {
-        this.datas = data;
-    }
-
-    public ArrayList<String> getData() {
-        return datas;
-    }
 
     @NonNull
     @Override

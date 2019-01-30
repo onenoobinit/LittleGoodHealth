@@ -2,13 +2,14 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/all_content"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100px"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_item_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:paddingLeft="46px"
         android:paddingTop="26px"
         android:background="@drawable/bg_content_item"
@@ -21,6 +22,5 @@
         android:layout_height="1px"
         android:layout_marginLeft="23px"
         android:layout_marginRight="23px"
-        android:layout_marginTop="23px"
         android:background="@color/c_F2F1F1"></View>
 </com.zhy.autolayout.AutoLinearLayout>

@@ -271,7 +271,7 @@ public class MeFragment extends BaseFragment {
             case R.id.iv_user_icon:
                 break;
             case R.id.tv_user_name:
-                if (isLogin == false && TextUtils.isEmpty(tvUserName.getText().toString().trim())) {
+                if (isLogin == false) {
                     startActivity(new Intent(mContext, LoginActivity.class));
                 }
                 break;

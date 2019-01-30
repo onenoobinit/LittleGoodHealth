@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
 import com.mobile.android.app.program.adapter.DetailDateAdapter;
@@ -172,6 +174,7 @@ public class ProgramDetailActivity extends BaseActivity {
     private String mFrist = "0";
     private String airline;
     private String endHy;
+    private String imageUrl;
 
 
     @Override
@@ -195,13 +198,22 @@ public class ProgramDetailActivity extends BaseActivity {
         packget = getIntent().getStringExtra("packageWay");
         proportion = getIntent().getStringExtra("proportion");
         endHy = getIntent().getStringExtra("endHy");
+        imageUrl = getIntent().getStringExtra("imageUrl");
         tvEndHy.setText(endHy);
 
         splitDate = productDate.split("-");
         tvItemOrderDate.setText(splitDate[1] + "月" + splitDate[2] + "日");
-        String[] split = destination.split("-");
-        start = split[0];
-        end = split[1];
+        if (destination.contains("-")) {
+            String[] split = destination.split("-");
+            start = split[0];
+            end = split[1];
+            tvStartPy.setText(start);
+            if (split.length == 2) {
+                tvEndPy.setText(end);
+            } else if (split.length == 3) {
+                tvEndPy.setText(split[2]);
+            }
+        }
         List<StartInfo.StartPortBean> startList = SPUtil.getObject(ProgramDetailActivity.this, "startList", List.class);
         for (int i = 0; i < startList.size(); i++) {
             if (start.equals(startList.get(i).getPort())) {
@@ -209,26 +221,42 @@ public class ProgramDetailActivity extends BaseActivity {
             }
         }
 
-        tvStartPy.setText(start);
-        tvEndPy.setText(end);
+
         if (TextUtils.isEmpty(goodNumber)) {
             tvHeadNumber.setText("填入");
+        } else {
+            tvHeadNumber.setText(goodNumber);
         }
         if (TextUtils.isEmpty(goodWeight)) {
             tvHeadWeight.setText("填入");
+        } else {
+            tvHeadWeight.setText(goodWeight);
         }
         if (TextUtils.isEmpty(goodVolume)) {
             tvHeadVol.setText("填入");
+        } else {
+            tvHeadVol.setText(goodVolume);
         }
+
         if (TextUtils.isEmpty(proportion)) {
             tvHeadPortion.setText("- -");
             proportType = 0;
             changeProport = "";
-        } else {
+        } else if (proportion.contains(":")) {
             proportType = 1;
             String[] split1 = proportion.split(":");
             changeProport = split1[1];
         }
+
+        Glide.with(this)
+                .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .fitCenter()
+                .skipMemoryCache(true)
+                .dontTransform()
+                .placeholder(R.mipmap.zz_zxal_mrbj_icon)
+                .error(R.mipmap.zz_zxal_mrbj_icon)
+                .into(ivProCompany);
         //获取日期信息
         getDateInfo();
 
@@ -327,6 +355,7 @@ public class ProgramDetailActivity extends BaseActivity {
         tvShopName.setText(productDetailInfo.getProductDetail().getSupplierName());
         tvDetailStart.setText(productDetailInfo.getPortData().getTransit());
         destinationList = productDetailInfo.getPortData().getDestination();
+
 
         if ("0".equals(mFrist)) {
             realTotal = productDetailInfo.getTotalPrice().getTotal();
@@ -464,7 +493,11 @@ public class ProgramDetailActivity extends BaseActivity {
         rvDetail.setFocusable(false);
         rvDetail.setHasFixedSize(true);
         if ("0".equals(mFrist)) {
-            overSpace = Integer.parseInt(productDateList.get(0).getSpace().getOverSpace());
+            if (!TextUtils.isEmpty(productDateList.get(0).getSpace().getOverSpace())) {
+                overSpace = Integer.parseInt(productDateList.get(0).getSpace().getOverSpace());
+            } else {
+                overSpace = 0;
+            }
         }
         dateAdapter = new DetailDateAdapter(ProgramDetailActivity.this, productDateList, book) {
             @Override
@@ -505,7 +538,7 @@ public class ProgramDetailActivity extends BaseActivity {
                     initNewDialog();
                 }
                 programDetailDialog.setStart(start);
-                programDetailDialog.setPort(end);
+                programDetailDialog.setPort(tvEndPy.getText().toString().trim());
                 if (!"填入".equals(tvHeadNumber.getText().toString().trim())) {
                     programDetailDialog.setNumber(tvHeadNumber.getText().toString().trim());
                 } else {
@@ -578,9 +611,19 @@ public class ProgramDetailActivity extends BaseActivity {
             case R.id.tv_detail_end://目的港
                 targetDialog = new TargetDialog(this, destinationList) {
                     @Override
-                    public void setOnTargetClick(String target) {
+                    public void setOnTargetClick(String target, String hy) {
                         tvDetailEnd.setText("目的港：" + target);
                         tvEndPy.setText(target);
+                        if (hy.contains(",")) {
+                            String[] split = hy.split(",");
+                            tvEndHy.setText(split[0]);
+                        } else if (hy.contains("，")) {
+                            String[] split = hy.split("，");
+                            tvEndHy.setText(split[0]);
+                        } else {
+                            tvEndHy.setText(hy);
+                        }
+
                         dismiss();
                         getDateInfo();
                     }

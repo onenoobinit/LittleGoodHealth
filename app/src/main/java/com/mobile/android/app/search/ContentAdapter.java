@@ -18,8 +18,8 @@ import java.util.ArrayList;
  * Created by wangqiang on 2019/1/14.
  */
 public abstract class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.MyViewHolder> {
-
     private final Context mContext;
+    public static int canClick = 0;
     private ArrayList<PortInfo.DestinationListBean.DataListBeanX> datas;
     private int selectPostion = -1;
 
@@ -57,10 +57,16 @@ public abstract class ContentAdapter extends RecyclerView.Adapter<ContentAdapter
         } else {
             holder.tv_item_content.setText(cityNameC);
         }
-        holder.tv_item_content.setOnClickListener(view -> {
-            selectPostion = position;
-            setOnItemCont(holder.tv_item_content.getText().toString().trim());
-        });
+
+        if (canClick == 0) {
+            holder.tv_item_content.setClickable(true);
+            holder.tv_item_content.setOnClickListener(view -> {
+                selectPostion = position;
+                setOnItemCont(holder.tv_item_content.getText().toString().trim());
+            });
+        } else {
+            holder.tv_item_content.setClickable(false);
+        }
 
 
        /* if (selectPostion == position) {

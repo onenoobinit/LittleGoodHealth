@@ -5,12 +5,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,12 +17,13 @@ import android.widget.TextView;
 
 import com.mobile.android.R;
 import com.mobile.android.SupervisorApp;
+import com.mobile.android.app.login.LoginActivity;
 import com.mobile.android.app.program.adapter.DateAdapter;
 import com.mobile.android.app.program.adapter.LeftAdapter;
 import com.mobile.android.app.program.adapter.RightAdapter;
 import com.mobile.android.app.program.adapter.TestAdapter;
+import com.mobile.android.app.program.adapter.TestLeftAdapter;
 import com.mobile.android.app.search.SearchActivity;
-import com.mobile.android.entity.ItemType;
 import com.mobile.android.entity.ProgramSelectInfo;
 import com.mobile.android.entity.StartInfo;
 import com.mobile.android.retrofit.RetrofitManager;
@@ -31,9 +31,8 @@ import com.mobile.android.retrofit.RetryWhenNetworkException;
 import com.mobile.android.retrofit.RxSchedulers;
 import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.utils.DateUtils;
-import com.mobile.android.utils.LeftUtils;
-import com.mobile.android.utils.SimpleRecyclerAdapter;
 import com.mobile.android.widgets.dialog.IndexDialog;
+import com.mobile.android.widgets.dialog.MyDialog;
 import com.mobile.android.widgets.pop.AddPopWindow;
 import com.mobile.hyoukalibrary.base.BaseActivity;
 import com.mobile.hyoukalibrary.base.BaseEntity;
@@ -48,6 +47,8 @@ import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -129,6 +130,12 @@ public class ProgramSelectActivity extends BaseActivity {
     RecyclerView rvSortRight;
     @BindView(R.id.rv_test)
     RecyclerView rvTest;
+    @BindView(R.id.tv_item_order_date)
+    TextView tvItemOrderDate;
+    @BindView(R.id.iv_no_data)
+    ImageView ivNoData;
+    @BindView(R.id.arl_no_data)
+    AutoRelativeLayout arlNoData;
     private DateAdapter dateAdapter;
     private ArrayList<String> dates = new ArrayList();
     private String start;
@@ -151,10 +158,16 @@ public class ProgramSelectActivity extends BaseActivity {
     private LeftAdapter leftAdapter;
     private RightAdapter rightAdapter;
     private List<ProgramSelectInfo.AirlineListBean> airlineList;
+    private List<ProgramSelectInfo.AirlineListBean> leftDatas = new ArrayList<>();
     private List<ProgramSelectInfo.ProductCardListBean> productCardList;
+    private List<ProgramSelectInfo.ProductCardListBean> rightDatas = new ArrayList<>();
     private List<ProgramSelectInfo.AirlineListBean> mLeftList = new ArrayList<>();
     private final List<ProgramSelectInfo.ProductCardListBean> mRightList = new ArrayList<>();
     private final Map<Integer, Integer> indexMap = new HashMap<>();
+    private TestLeftAdapter testLeftAdapter;
+    private String imageUrl;
+    private MyDialog myDialog;
+    private TestAdapter testAdapter;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
@@ -169,6 +182,10 @@ public class ProgramSelectActivity extends BaseActivity {
     }
 
     private void getData() {
+        if (myDialog == null) {
+            myDialog = new MyDialog(ProgramSelectActivity.this);
+        }
+        myDialog.showDialog();
         params.clear();
         params.put("act", "getProductsDataV2");
 //        params.put("area", );
@@ -208,63 +225,54 @@ public class ProgramSelectActivity extends BaseActivity {
                     protected void onHandleSuccess(BaseEntity baseEntity) {
                         if (!TextUtils.isEmpty(baseEntity.getErrMsg())) {
                             ToastUtil.show(ProgramSelectActivity.this, baseEntity.getErrMsg());
+                            if ("暂无数据".equals(baseEntity.getErrMsg())) {
+                                rvTest.setVisibility(View.GONE);
+                                arlNoData.setVisibility(View.VISIBLE);
+                                leftDatas.clear();
+                                rightDatas.clear();
+                                initData();
+                            }
                             return;
                         } else {
+                            rvTest.setVisibility(View.VISIBLE);
+                            arlNoData.setVisibility(View.GONE);
                             programSelectInfo = gson.fromJson(baseEntity.getSuccess(), ProgramSelectInfo.class);
                             airlineList = programSelectInfo.getAirlineList();
                             mLeftList = airlineList;
                             productCardList = programSelectInfo.getProductCardList();
+                            leftDatas.clear();
+                            rightDatas.clear();
+                            leftDatas = airlineList;
+                            rightDatas = productCardList;
+
 //                            initSort();//排序
+                            Collections.sort(rightDatas, new Comparator<ProgramSelectInfo.ProductCardListBean>() {
+                                @Override
+                                public int compare(ProgramSelectInfo.ProductCardListBean p1, ProgramSelectInfo.ProductCardListBean p2) {
+                                    int i1 = Integer.parseInt(p1.getSort().getIntegrated());
+                                    int i2 = Integer.parseInt(p2.getSort().getIntegrated());
+                                    int i = i1 - i2;
+                                    return i1 - i2;
+                                }
+                            });
                             initData();
+                        }
+                    }
+
+                    @Override
+                    protected void onFinally() {
+                        super.onFinally();
+                        if (myDialog != null) {
+                            myDialog.dismissDialog();
                         }
                     }
                 });
     }
 
-    /*private void initSort() {
-     *//* for (int i = 0; i < airlineList.size(); i++) {
-            programSelectInfo.getAirlineList().bigSortId = i;
-            bean.bigSortName = "大分类" + i;
-            List<ProgramSelectInfo.ProductCardListBean> list = new ArrayList<>();
-            for (int j = 0; j < productCardList.size(); j++) {
-                ProgramSelectInfo.ProductCardListBean listBean = new ProgramSelectInfo.ProductCardListBean();
-                listBean.smallSortId = j;
-                listBean.smallSortName = "小标签" + j;
-                list.add(listBean);
-            }
-            mLeftList.add(bean);
-        }*//*
-
-        // 右侧的list是将每一个大类和小类按次序添加，并且标记大类的位置
-        for (int i = 0; i < mLeftList.size(); i++) {
-            ProgramSelectInfo.ProductCardListBean bigItem = new ProgramSelectInfo.ProductCardListBean();
-            bigItem.viewType = ItemType.BIG_SORT;
-            bigItem.id = mLeftList.get(i).bigSortId;
-            bigItem.name = mLeftList.get(i).bigSortName;
-            // 标记大类的位置，所有项的position默认是-1，如果是大类就添加position，让他和左侧位置对应
-            bigItem.position = i;
-            mRightList.add(bigItem);
-            for (int j = 0; j < mLeftList.size(); j++) {
-                SortItem smallItem = new SortItem();
-                smallItem.viewType = ItemType.SMALL_SORT;
-                smallItem.id = mLeftList.get(i).list.get(j).smallSortId;
-                smallItem.name = mLeftList.get(i).list.get(j).smallSortName;
-                mRightList.add(smallItem);
-            }
-        }
-        // 点击左侧需要知道对应右侧的位置，用map先保存起来
-        for (int i = 0; i < mRightList.size(); i++) {
-            if (mRightList.get(i).position != -1) {
-                indexMap.put(mRightList.get(i).position, i);
-            }
-        }
-
-        initData();
-    }*/
 
     private void initData() {
-
-        // 左列表
+        System.out.println("AAAA" + leftDatas.size());
+        /*// 左列表
         rvSortLeft.setLayoutManager(new LinearLayoutManager(this));
         ((SimpleItemAnimator) rvSortLeft.getItemAnimator()).setSupportsChangeAnimations(false);
         leftAdapter = new LeftAdapter();
@@ -318,46 +326,67 @@ public class ProgramSelectActivity extends BaseActivity {
                 }
 
             }
-        });
+        });*/
+
+
+        //左侧展示
+        //测试右边
+        LinearLayoutManager leftLayout = new LinearLayoutManager(this);
+        leftLayout.setOrientation(LinearLayoutManager.VERTICAL);
+        rvSortLeft.setLayoutManager(leftLayout);
+        testLeftAdapter = new TestLeftAdapter(ProgramSelectActivity.this, leftDatas);
+        rvSortLeft.setAdapter(testLeftAdapter);
+
 
         //测试右边
         LinearLayoutManager weightmanager = new LinearLayoutManager(this);
         weightmanager.setOrientation(LinearLayoutManager.VERTICAL);
         rvTest.setLayoutManager(weightmanager);
-        TestAdapter testAdapter = new TestAdapter(ProgramSelectActivity.this, productCardList) {
+        testAdapter = new TestAdapter(ProgramSelectActivity.this, rightDatas, book) {
             @Override
-            public void seOnItemClick(int selectPostion) {
-                Intent newintent = new Intent(ProgramSelectActivity.this, ProgramDetailActivity.class);
-                newintent.putExtra("productNo", productCardList.get(selectPostion).getProductNo());
-                newintent.putExtra("startEnd", productCardList.get(selectPostion).getStartPort());
-                newintent.putExtra("productDate", productCardList.get(selectPostion).getProductDate());
-                if ("填入".equals(tvHeadNumber.getText().toString().trim())) {
-                    newintent.putExtra("goodNumber", "");
+            public void seOnItemClick(int selectPostion, String airline) {
+                if (TextUtils.isEmpty(TOKEN)) {
+                    startActivity(new Intent(ProgramSelectActivity.this, LoginActivity.class));
                 } else {
-                    newintent.putExtra("goodNumber", tvHeadNumber.getText().toString().trim());
-                }
+                    for (int i = 0; i < leftDatas.size(); i++) {
+                        if (airline.equals(leftDatas.get(i).getNameAbbr())) {
+                            imageUrl = leftDatas.get(i).getImgLink();
+                        }
+                    }
 
-                if ("填入".equals(tvHeadWeight.getText().toString().trim())) {
-                    newintent.putExtra("goodWeight", "");
-                } else {
-                    newintent.putExtra("goodWeight", tvHeadWeight.getText().toString().trim());
-                }
+                    Intent newintent = new Intent(ProgramSelectActivity.this, ProgramDetailActivity.class);
+                    newintent.putExtra("productNo", rightDatas.get(selectPostion).getProductNo());
+                    newintent.putExtra("startEnd", rightDatas.get(selectPostion).getStartPort());
+                    newintent.putExtra("productDate", rightDatas.get(selectPostion).getProductDate());
+                    if ("填入".equals(tvHeadNumber.getText().toString().trim())) {
+                        newintent.putExtra("goodNumber", "");
+                    } else {
+                        newintent.putExtra("goodNumber", tvHeadNumber.getText().toString().trim());
+                    }
 
-                if ("填入".equals(tvHeadVol.getText().toString().trim())) {
-                    newintent.putExtra("goodVolume", "");
-                } else {
-                    newintent.putExtra("goodVolume", tvHeadVol.getText().toString().trim());
-                }
+                    if ("填入".equals(tvHeadWeight.getText().toString().trim())) {
+                        newintent.putExtra("goodWeight", "");
+                    } else {
+                        newintent.putExtra("goodWeight", tvHeadWeight.getText().toString().trim());
+                    }
 
-                if ("- -".equals(tvHeadPortion.getText().toString().trim())) {
-                    newintent.putExtra("proportion", "");
-                } else {
-                    newintent.putExtra("proportion", tvHeadPortion.getText().toString().trim());
+                    if ("填入".equals(tvHeadVol.getText().toString().trim())) {
+                        newintent.putExtra("goodVolume", "");
+                    } else {
+                        newintent.putExtra("goodVolume", tvHeadVol.getText().toString().trim());
+                    }
+
+                    if ("- -".equals(tvHeadPortion.getText().toString().trim())) {
+                        newintent.putExtra("proportion", "");
+                    } else {
+                        newintent.putExtra("proportion", tvHeadPortion.getText().toString().trim());
+                    }
+                    newintent.putExtra("bookingPosition", book);
+                    newintent.putExtra("packageWay", packget);
+                    newintent.putExtra("endHy", tvEndHy.getText().toString().trim());
+                    newintent.putExtra("imageUrl", imageUrl);
+                    startActivity(newintent);
                 }
-                newintent.putExtra("bookingPosition", book);
-                newintent.putExtra("packageWay", packget);
-                newintent.putExtra("endHy", tvEndHy.getText().toString().trim());
-                startActivity(newintent);
             }
         };
         rvTest.setAdapter(testAdapter);
@@ -437,6 +466,7 @@ public class ProgramSelectActivity extends BaseActivity {
             @Override
             public void setOnItemDate(String date) {
                 DATE = date;
+                getData();
             }
         };
         rvDate.setAdapter(dateAdapter);
@@ -480,7 +510,7 @@ public class ProgramSelectActivity extends BaseActivity {
 
                     @Override
                     public void startCloseClick(TextView tv, ImageView iv) {
-                        tv.setText("--");
+                        tv.setText("出发地");
                         tv.setTextColor(Color.parseColor("#969696"));
                         iv.setVisibility(View.GONE);
                     }
@@ -499,7 +529,8 @@ public class ProgramSelectActivity extends BaseActivity {
                         String trim2 = et_show2.getText().toString().trim();
                         String trim3 = et_show3.getText().toString().trim();
                         if ("出发地".equals(tv1.getText().toString()) && "目的地".equals(tv2.getText().toString()) && TextUtils.isEmpty(trim1) && TextUtils.isEmpty(trim2) && TextUtils.isEmpty(trim3)) {
-                            dismiss();
+                            tv3.setVisibility(View.VISIBLE);
+                            tv3.setText("缺少目的港");
                             return;
                         } else if ("目的地".equals(tv2.getText().toString())) {
                             tv3.setVisibility(View.VISIBLE);
@@ -536,9 +567,7 @@ public class ProgramSelectActivity extends BaseActivity {
                                 tv3.setText("重量不得少于100kg");
                                 return;
                             } else {
-                                getData();
-
-                                if (TextUtils.isEmpty(tv1.getText().toString().trim())) {
+                                if (TextUtils.isEmpty(tv1.getText().toString().trim()) || "出发地".equals(tv1.getText().toString().trim())) {
                                     tvStartPy.setText("--");
                                     tvStartHy.setText("");
                                 } else {
@@ -546,7 +575,11 @@ public class ProgramSelectActivity extends BaseActivity {
                                 }
 
                                 tvEndPy.setText(tv2.getText().toString().trim());
-                                tvEndHy.setText(portCity);
+                                if (TextUtils.isEmpty(portCity)) {
+                                    tvEndHy.setText(tvEndHy.getText().toString().trim());
+                                } else {
+                                    tvEndHy.setText(portCity);
+                                }
 
                                 if (!TextUtils.isEmpty(et_show1.getText().toString().trim())) {
                                     tvHeadNumber.setText(et_show1.getText().toString().trim());
@@ -576,10 +609,11 @@ public class ProgramSelectActivity extends BaseActivity {
                                 tv3.setVisibility(View.INVISIBLE);
                                 tv3.setText("");
                                 dismiss();
+                                getData();
                             }
                         } else {
-                            getData();
-                            if ("--".equals(tv1.getText().toString().trim())) {
+
+                            if ("--".equals(tv1.getText().toString().trim()) || "出发地".equals(tv1.getText().toString().trim())) {
                                 tvStartPy.setText("--");
                                 tvStartHy.setText("");
                             } else {
@@ -587,7 +621,11 @@ public class ProgramSelectActivity extends BaseActivity {
                             }
 
                             tvEndPy.setText(tv2.getText().toString().trim());
-                            tvEndHy.setText(portCity);
+                            if (TextUtils.isEmpty(portCity)) {
+                                tvEndHy.setText(tvEndHy.getText().toString().trim());
+                            } else {
+                                tvEndHy.setText(portCity);
+                            }
 
                             if (!TextUtils.isEmpty(et_show1.getText().toString().trim())) {
                                 tvHeadNumber.setText(et_show1.getText().toString().trim());
@@ -612,11 +650,12 @@ public class ProgramSelectActivity extends BaseActivity {
                                 double v2 = Double.parseDouble(tvHeadVol.getText().toString().trim());
                                 tvHeadPortion.setText("1:" + (int) (v1 / v2));
                             } else {
-                                tvHeadPortion.setText("--");
+                                tvHeadPortion.setText("- -");
                             }
                             tv3.setVisibility(View.INVISIBLE);
                             tv3.setText("");
                             dismiss();
+                            getData();
                         }
                     }
                 };
@@ -639,32 +678,76 @@ public class ProgramSelectActivity extends BaseActivity {
                 indexDialog.show();
                 int i = IndexDialog.bWidth;
                 addPopWindow = new AddPopWindow(ProgramSelectActivity.this, 672);
+                addPopWindow.setFocusable(true);
+                addPopWindow.setTouchInterceptor((v, event) -> {
+                    if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                        addPopWindow.dismiss();
+                        return true;
+                    }
+                    return false;
+                });
                 break;
             case R.id.tv_just://正装
                 book = "0";
                 initSelectColor(tvJust, tvPrepare, 1);
+                getData();
                 break;
             case R.id.tv_prepare://备装:
                 book = "1";
                 initSelectColor(tvJust, tvPrepare, 2);
+                getData();
                 break;
             case R.id.tv_tray://散货
                 packget = "0";
                 initSelectColor(tvTray, tvBulk, 1);
+                getData();
                 break;
             case R.id.tv_bulk://托盘:
                 packget = "1";
                 initSelectColor(tvTray, tvBulk, 2);
+                getData();
                 break;
             case R.id.all_compresive_sort://综合筛选
                 initSortColor(0);
-                startActivity(new Intent(this, ProgramDetailActivity.class));
+                Collections.sort(rightDatas, new Comparator<ProgramSelectInfo.ProductCardListBean>() {
+                    @Override
+                    public int compare(ProgramSelectInfo.ProductCardListBean p1, ProgramSelectInfo.ProductCardListBean p2) {
+                        int i1 = Integer.parseInt(p1.getSort().getIntegrated());
+                        int i2 = Integer.parseInt(p2.getSort().getIntegrated());
+                        int i = i1 - i2;
+                        return i1 - i2;
+                    }
+                });
+
+                testAdapter.notifyDataSetChanged();
                 break;
             case R.id.all_sale_sort://销售筛选
                 initSortColor(1);
+                Collections.sort(rightDatas, new Comparator<ProgramSelectInfo.ProductCardListBean>() {
+                    @Override
+                    public int compare(ProgramSelectInfo.ProductCardListBean p1, ProgramSelectInfo.ProductCardListBean p2) {
+                        int i1 = Integer.parseInt(p1.getSort().getSales());
+                        int i2 = Integer.parseInt(p2.getSort().getSales());
+                        int i = i1 - i2;
+                        return i1 - i2;
+                    }
+                });
+
+                testAdapter.notifyDataSetChanged();
                 break;
             case R.id.all_price_sort://价格筛选
                 initSortColor(2);
+                Collections.sort(rightDatas, new Comparator<ProgramSelectInfo.ProductCardListBean>() {
+                    @Override
+                    public int compare(ProgramSelectInfo.ProductCardListBean p1, ProgramSelectInfo.ProductCardListBean p2) {
+                        int i1 = Integer.parseInt(p1.getSort().getPrice());
+                        int i2 = Integer.parseInt(p2.getSort().getPrice());
+                        int i = i1 - i2;
+                        return i1 - i2;
+                    }
+                });
+
+                testAdapter.notifyDataSetChanged();
                 break;
         }
     }

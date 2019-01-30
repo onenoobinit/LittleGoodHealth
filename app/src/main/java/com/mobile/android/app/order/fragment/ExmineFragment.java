@@ -225,9 +225,17 @@ public class ExmineFragment extends LazyFragment {
                             OrderInfo orderInfo = gson.fromJson(baseEntity.getSuccess(), OrderInfo.class);
                             ArrayList<OrderInfo.OrderBillListInfoBean> list = (ArrayList<OrderInfo.OrderBillListInfoBean>) orderInfo.getOrderBillListInfo();
                             count_page = Integer.parseInt(orderInfo.getAllCount()) / 10;
-                            exmineAdapter.notifyDataSetChanged();
-                            complains = list;
-                            refreshData(complains, false);
+                            if (list != null && list.size() > 0) {
+                                arlHaveData.setVisibility(View.VISIBLE);
+                                arlNoData.setVisibility(View.GONE);
+                                complains = list;
+                                refreshData(complains, false);
+                                exmineAdapter.notifyDataSetChanged();
+                            } else {
+                                arlHaveData.setVisibility(View.GONE);
+                                arlNoData.setVisibility(View.VISIBLE);
+                            }
+
                         }
                     }
 
@@ -249,6 +257,9 @@ public class ExmineFragment extends LazyFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        if (myDialog != null) {
+            myDialog.dismissDialog();
+        }
     }
 
     private void refreshData(ArrayList<OrderInfo.OrderBillListInfoBean> datas, boolean b) {

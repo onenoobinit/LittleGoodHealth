@@ -193,6 +193,7 @@ public class SetActivity extends BaseActivity {
                             if ("ok".equals(outInfo.getMsg())) {
                                 SPUtil.put(SupervisorApp.getInstance(), Constant.IS_LOGIN, false);
                                 SPUtil.remove(SupervisorApp.getInstance(), "user");
+                                SupervisorApp.setUser(null);
                                 RxBus.get().post("loginOut", "");
                                 Intent intentout = new Intent(SupervisorApp.getInstance(), MainActivity.class);
                                 intentout.setFlags(FLAG_ACTIVITY_NEW_TASK);

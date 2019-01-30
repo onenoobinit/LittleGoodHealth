@@ -134,6 +134,9 @@ public class SearchActivity extends BaseActivity {
         getPort();
         arlX.setOnClickListener(view -> {
             arlSearchResult.setVisibility(View.GONE);
+            ContentAdapter.canClick = 0;
+            contentAdapter.notifyDataSetChanged();
+            rvContent.setVisibility(View.VISIBLE);
             etSearch.setText("");
             arlX.setVisibility(View.GONE);
         });
@@ -169,6 +172,9 @@ public class SearchActivity extends BaseActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 arlX.setVisibility(View.VISIBLE);
                 arlSearchResult.setVisibility(View.VISIBLE);
+                ContentAdapter.canClick = 1;
+                contentAdapter.notifyDataSetChanged();
+                rvContent.setVisibility(View.GONE);
                 mFuzzySearchAdapter.getFilter().filter(charSequence.toString().trim());
             }
 
@@ -178,6 +184,9 @@ public class SearchActivity extends BaseActivity {
                 if (TextUtils.isEmpty(s)) {
                     arlX.setVisibility(View.GONE);
                     arlSearchResult.setVisibility(View.GONE);
+                    rvContent.setVisibility(View.VISIBLE);
+                    ContentAdapter.canClick = 0;
+                    contentAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -280,6 +289,9 @@ public class SearchActivity extends BaseActivity {
                 SPUtil.setObject(SearchActivity.this, "history", history);
                 etSearch.setText(name);
                 arlSearchResult.setVisibility(View.VISIBLE);
+                rvContent.setVisibility(View.GONE);
+                ContentAdapter.canClick = 1;
+                contentAdapter.notifyDataSetChanged();
                 mFuzzySearchAdapter.getFilter().filter(name);
             }
         };
@@ -383,5 +395,11 @@ public class SearchActivity extends BaseActivity {
         tvHistoryNone.setVisibility(View.VISIBLE);
         history.clear();
         SPUtil.setObject(SearchActivity.this, "history", history);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ContentAdapter.canClick = 0;
     }
 }

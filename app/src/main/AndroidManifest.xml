@@ -76,52 +76,6 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <receiver android:name=".app.login.GlobalReceiver" />
-        <!-- 联系业主页 -->
-        <activity
-            android:name=".app.contact_owner.ContactOwnerActivity"
-            android:screenOrientation="portrait" />
-        <!-- 设计师查询页 -->
-        <activity
-            android:name=".app.desinger.DesiginerSearchActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 装修反馈 -->
-        <activity
-            android:name=".app.decfeedback.DecFeedbackActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 未接来电页 -->
-        <activity
-            android:name=".app.missed_calls.MissedCallsActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 建材反馈页 -->
-        <activity
-            android:name=".app.build_material_feedback.BuildingMaterialsFeedBackActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 短信发送页面 -->
-        <activity
-            android:name=".app.sms_send.SmsSendActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 更多功能页面 -->
-        <activity
-            android:name=".app.more.MoreActivity"
-            android:screenOrientation="portrait" />
-        <!-- 备忘录列表页 -->
-        <activity
-            android:name=".app.Memorandum.MemorandumActivity"
-            android:screenOrientation="portrait" />
-        <!-- 备忘录详情页 -->
-        <activity
-            android:name=".app.Memorandum.MemoRandumDetailActivity"
-            android:screenOrientation="portrait" />
-        <!-- 增加，编辑备忘页 -->
-        <activity
-            android:name=".app.Memorandum.AddEditMemoRandumActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
         <!-- 注册页面 -->
         <activity
             android:name=".app.register.RegisterActivity"
@@ -135,8 +89,7 @@
         <!-- 方案选择 -->
         <activity
             android:name=".app.program.ProgramSelectActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
+            android:screenOrientation="portrait" />
         <!-- 方案选择详情 -->
         <activity
             android:name=".app.program.ProgramDetailActivity"
@@ -207,7 +160,19 @@
             android:name=".app.submit.ContactHistoryActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-
+        <!-- 提交成功页 -->
+        <activity
+            android:name=".app.submit.SubmitSuccessActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- 入库数据确认 -->
+        <activity
+            android:name=".app.order.OrderComeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 运费确认 -->
+        <activity
+            android:name=".app.order.OrderSureActivity"
+            android:screenOrientation="portrait" />
         <!-- 渠道商编号 -->
         <meta-data
             android:name="BaiduMobAd_CHANNEL"

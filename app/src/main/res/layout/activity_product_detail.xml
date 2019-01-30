@@ -473,10 +473,76 @@
                             android:textSize="35px" />
                     </com.zhy.autolayout.AutoLinearLayout>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_head"
+
+                    <com.zhy.autolayout.AutoLinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:orientation="horizontal">
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30px"
+                                android:text="航班号"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30px"
+                                android:text="运输工具"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30px"
+                                android:text="起运时间"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30px"
+                                android:text="到达时间"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30px"
+                                android:text="航班班次"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30px"
+                                android:text="机型"
+                                android:textColor="@color/c_808080"
+                                android:textSize="35px" />
+
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_head"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2.5"></android.support.v7.widget.RecyclerView>
+
+                    </com.zhy.autolayout.AutoLinearLayout>
 
                     <com.zhy.autolayout.AutoLinearLayout
                         android:id="@+id/all_second"

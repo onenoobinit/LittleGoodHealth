@@ -21,9 +21,11 @@ import com.mobile.android.retrofit.RetryWhenNetworkException;
 import com.mobile.android.retrofit.RxSchedulers;
 import com.mobile.android.retrofit.api.CommonService;
 import com.mobile.android.updatebyrx2.UpdateManager;
+import com.mobile.android.utils.Constant;
 import com.mobile.hyoukalibrary.base.BaseActivity;
 import com.mobile.hyoukalibrary.base.BaseEntity;
 import com.mobile.hyoukalibrary.base.BaseObserver;
+import com.mobile.hyoukalibrary.utils.SPUtil;
 import com.mobile.hyoukalibrary.utils.StatusBarCompat;
 import com.mobile.hyoukalibrary.utils.ToastUtil;
 import com.zhy.autolayout.AutoLinearLayout;
@@ -62,15 +64,20 @@ public class MainActivity extends BaseActivity {
     private FragmentTransaction trx;
     private int currentTabIndex;
     private int selectedCurrent = 0;
+    private String TOKEN = "";
+    private LoginStautsInfo loginStautsInfo;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         ButterKnife.bind(this);
         initFragments();
         registerLoginOut();
+        TOKEN = SupervisorApp.getUser().getToken();
 //        scrollviewdo();
 //        initData();
-        checkIsLogin();
+        if (!TextUtils.isEmpty(TOKEN)) {
+            checkIsLogin();
+        }
         //检查更新
         UpdateManager.getInstance().checkUpdate(this);
     }
@@ -78,9 +85,8 @@ public class MainActivity extends BaseActivity {
     private void checkIsLogin() {
         params.clear();
         params.put("act", "getLoginTypeData");
-
         RetrofitManager.getInstance().create(CommonService.class)
-                .getLoginStauts(params)
+                .getLoginStauts(TOKEN, params)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .retryWhen(new RetryWhenNetworkException(2, 500, 500))
                 .compose(RxSchedulers.io_main())
@@ -91,10 +97,14 @@ public class MainActivity extends BaseActivity {
                             ToastUtil.show(MainActivity.this, baseEntity.getErrMsg());
                             return;
                         } else {
-                            gson.fromJson(baseEntity.getSuccess(), LoginStautsInfo.class);
+                            loginStautsInfo = gson.fromJson(baseEntity.getSuccess(), LoginStautsInfo.class);
+                            if ("0".equals(loginStautsInfo.getLoginType())) {//未登录
+                                SPUtil.put(SupervisorApp.getInstance(), Constant.IS_LOGIN, false);
+                                SPUtil.remove(SupervisorApp.getInstance(), "user");
+                                SupervisorApp.setUser(null);
+                            } else if ("1".equals(loginStautsInfo.getLoginType())) {//已登录
 
-
-
+                            }
                         }
                     }
                 });

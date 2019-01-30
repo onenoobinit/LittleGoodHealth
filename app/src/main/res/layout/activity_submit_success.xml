@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_bar_height"
         android:background="@color/white"
+        app:navigationIcon="@mipmap/back_arrow_blue"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -27,6 +28,11 @@
             android:textStyle="normal" />
     </android.support.v7.widget.Toolbar>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_below="@+id/logi_tool_bar"
+        android:background="@color/c_9b9b9b"
+        android:layout_height="2px"></View>
 
     <ImageView
         android:id="@+id/iv_success"

@@ -1,4 +1,4 @@
-package com.mobile.android.app.desinger;
+package com.mobile.android.widgets;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -50,7 +50,7 @@ public class GridviewAdapter extends BaseAdapter {
         tv = (TextView) view.findViewById(R.id.popup_text);
         tv.setText(list.get(position));
 
-       /* if (position == selectIndex) {
+        /*if (position == selectIndex) {
             tv.setTextColor(Color.parseColor("#a6a6a6"));
             tv.setBackgroundResource(R.drawable.search_label_pressed);
         }else{

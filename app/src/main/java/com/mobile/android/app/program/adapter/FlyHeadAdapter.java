@@ -39,7 +39,13 @@ public class FlyHeadAdapter extends RecyclerView.Adapter<FlyHeadAdapter.MyViewHo
         holder.tv_fly_number.setText(datas.get(position).getFlightNumber());
         holder.tv_yun_gong.setText(datas.get(position).getTransportation());
         holder.tv_fly_time.setText(datas.get(position).getStartDate());
-        holder.tv_arrive_time.setText(datas.get(position).getArrivalDate());
+        String arrivalDate = datas.get(position).getArrivalDate();
+        if (arrivalDate.contains("&")) {
+            String[] split = arrivalDate.split("&");
+            holder.tv_arrive_time.setText(split[0]);
+        } else {
+            holder.tv_arrive_time.setText(arrivalDate);
+        }
         holder.tv_hang_ban.setText(datas.get(position).getFlightShift());
         holder.tv_ji_xing.setText(datas.get(position).getAircraftType());
     }

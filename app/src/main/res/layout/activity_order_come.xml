@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_F3F2F2"
+    android:fitsSystemWindows="true"
+    android:overScrollMode="never">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/logi_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar_height"
+        android:background="@color/white"
+        app:navigationIcon="@mipmap/back_arrow_blue"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="入库数据确认"
+            android:textColor="@color/c_000000"
+            android:textSize="46px"
+            android:textStyle="normal" />
+    </android.support.v7.widget.Toolbar>
+
+    <com.mobile.android.widgets.LazyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/logi_tool_bar">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px">
+
+                <include
+                    android:id="@id/all_set_line"
+                    layout="@layout/program_head"></include>
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60px"
+                    android:layout_marginTop="70px"
+                    android:text="入库编号"
+                    android:textColor="@color/c_AAAAAA"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/tv_order_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="70px"
+                    android:text=""
+                    android:textColor="@color/c_575757"
+                    android:textSize="40px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60px"
+                    android:layout_marginTop="20px"
+                    android:text="入库时间"
+                    android:textColor="@color/c_AAAAAA"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/tv_order_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="20px"
+                    android:text=""
+                    android:textColor="@color/c_575757"
+                    android:textSize="40px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60px"
+                    android:layout_marginTop="20px"
+                    android:text="件数"
+                    android:textColor="@color/c_AAAAAA"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/tv_order_js"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="20px"
+                    android:text=""
+                    android:textColor="@color/c_575757"
+                    android:textSize="40px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60px"
+                    android:layout_marginTop="20px"
+                    android:text="重量"
+                    android:textColor="@color/c_AAAAAA"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/tv_order_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="20px"
+                    android:text=""
+                    android:textColor="@color/c_575757"
+                    android:textSize="40px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60px"
+                    android:layout_marginTop="20px"
+                    android:text="体积"
+                    android:textColor="@color/c_AAAAAA"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/tv_order_vol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="20px"
+                    android:text=""
+                    android:textColor="@color/c_575757"
+                    android:textSize="40px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60px"
+                    android:layout_marginTop="20px"
+                    android:text="获取尺寸"
+                    android:textColor="@color/c_AAAAAA"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/tv_order_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="20px"
+                    android:text=""
+                    android:textColor="@color/c_575757"
+                    android:textSize="40px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60px"
+                    android:layout_marginTop="20px"
+                    android:text="包装方式"
+                    android:textColor="@color/c_AAAAAA"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/tv_order_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="20px"
+                    android:text=""
+                    android:textColor="@color/c_575757"
+                    android:textSize="40px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="180px"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60px"
+                    android:layout_marginTop="20px"
+                    android:text="外箱情况"
+                    android:textColor="@color/c_AAAAAA"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/tv_order_qk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80px"
+                    android:layout_marginTop="20px"
+                    android:text=""
+                    android:textColor="@color/c_575757"
+                    android:textSize="40px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40px"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="30px"
+                    android:layout_marginRight="30px"
+                    android:background="@drawable/bg_xuxian"
+                    android:layerType="software"></View>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="46px"
+                android:layout_marginRight="46px"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60px"
+                    android:layout_marginTop="30px"
+                    android:text="入库TOTLE"
+                    android:textColor="@color/c_575757"
+                    android:textSize="40px" />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="180px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60px"
+                        android:text="入库数量"
+                        android:textColor="@color/c_AAAAAA"
+                        android:textSize="40px" />
+
+                    <TextView
+                        android:id="@+id/tv_order_rksl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80px"
+                        android:text=""
+                        android:textColor="@color/c_575757"
+                        android:textSize="40px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="180px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60px"
+                        android:text="入库重量"
+                        android:textColor="@color/c_AAAAAA"
+                        android:textSize="40px" />
+
+                    <TextView
+                        android:id="@+id/tv_order_rkzl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80px"
+                        android:text=""
+                        android:textColor="@color/c_575757"
+                        android:textSize="40px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="180px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60px"
+                        android:text="入库体积"
+                        android:textColor="@color/c_AAAAAA"
+                        android:textSize="40px" />
+
+                    <TextView
+                        android:id="@+id/tv_order_rktj"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80px"
+                        android:text=""
+                        android:textColor="@color/c_575757"
+                        android:textSize="40px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="60px"
+                    android:layout_marginTop="30px"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="180px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60px"
+                        android:text="货物比重"
+                        android:textColor="@color/c_AAAAAA"
+                        android:textSize="40px" />
+
+                    <TextView
+                        android:id="@+id/tv_order_hwbz"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80px"
+                        android:text=""
+                        android:textColor="@color/c_575757"
+                        android:textSize="40px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.mobile.android.widgets.LazyScrollView>
+
+    <TextView
+        android:id="@+id/tv_order_sure"
+        android:layout_width="match_parent"
+        android:layout_height="127px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="49px"
+        android:layout_marginLeft="46px"
+        android:layout_marginRight="46px"
+        android:background="@drawable/tv_login"
+        android:gravity="center"
+        android:text="确认以上入库数据"
+        android:textColor="@color/white"
+        android:textSize="52px" />
+</com.zhy.autolayout.AutoRelativeLayout>

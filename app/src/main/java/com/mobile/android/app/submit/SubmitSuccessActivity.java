@@ -45,7 +45,11 @@ public class SubmitSuccessActivity extends BaseActivity {
 
     @Override
     public void initToolBar() {
-
+        logiToolBar.setNavigationOnClickListener(view -> {
+            Intent intent = new Intent(SubmitSuccessActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
     }
 
     @OnClick({R.id.tv_look_order, R.id.tv_look_index})
@@ -53,7 +57,6 @@ public class SubmitSuccessActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.tv_look_order://查看订单
                 Intent intent1 = new Intent(SubmitSuccessActivity.this, OrderActivity.class);
-                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent1.putExtra("number", 1);
                 startActivity(intent1);
                 break;
@@ -63,5 +66,13 @@ public class SubmitSuccessActivity extends BaseActivity {
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(SubmitSuccessActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

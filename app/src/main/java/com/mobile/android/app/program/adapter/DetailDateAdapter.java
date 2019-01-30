@@ -68,7 +68,11 @@ public abstract class DetailDateAdapter extends RecyclerView.Adapter<DetailDateA
             holder.all_item_date.setClickable(true);
             holder.tv_weight_number.setVisibility(View.VISIBLE);
             holder.tv_item_price.setText("¥" + datas.get(position).getPrice());
-            overSpace = Integer.parseInt(datas.get(position).getSpace().getOverSpace());
+            if (!TextUtils.isEmpty(datas.get(position).getSpace().getOverSpace())) {
+                overSpace = Integer.parseInt(datas.get(position).getSpace().getOverSpace());
+            } else {
+                overSpace = 0;
+            }
             if (overSpace < 100) {
                 holder.iv_date_select.setVisibility(View.INVISIBLE);
                 holder.all_boot.setBackgroundResource(R.mipmap.blow_up);

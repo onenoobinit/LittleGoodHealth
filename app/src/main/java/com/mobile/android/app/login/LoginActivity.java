@@ -77,6 +77,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private LoadingDialog mLoadingDialog;
     private SurfaceHolder holder;
     private MediaPlayer mediaPlayer;
+    private User user;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
@@ -201,7 +202,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                                 ToastUtil.show(LoginActivity.this, baseEntity.getErrMsg());
                                 return;
                             } else if (TextUtils.isEmpty(baseEntity.getErrMsg()) && baseEntity.getSuccess() != null) {
-                                User user = gson.fromJson(baseEntity.getSuccess(), User.class);
+                                user = gson.fromJson(baseEntity.getSuccess(), User.class);
+                                user.setLogined(true);
                                 String token = user.getToken();
                                 SupervisorApp.setUser(user);
                                 SPUtil.put(getApplicationContext(), Constant.IS_LOGIN, true);
