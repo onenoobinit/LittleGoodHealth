@@ -7,7 +7,7 @@
     android:background="@color/c_efefef"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.mobile.android.app.Memorandum.MemorandumActivity">
+    tools:context="com.youyijia.goodhealth.app.Memorandum.MemorandumActivity">
 
     <include
         android:id="@+id/toolbar"

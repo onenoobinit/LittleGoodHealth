@@ -1,183 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/c_F3F2F2"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:overScrollMode="never">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/logi_tool_bar"
+    <RelativeLayout
+        android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tool_bar_height"
-        android:background="@color/c_F5A623"
-        app:navigationIcon="@mipmap/navagation_back"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="64dp"
+        android:background="@drawable/tv_login">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/logi_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar_height"
+            android:layout_alignParentBottom="true"
+            app:navigationIcon="@mipmap/navagation_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="关于我们"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_iv"
+        android:layout_width="match_parent"
+        android:layout_height="182dp"
+        android:layout_below="@+id/rl_top"
+        android:alpha="0.9"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_about_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:text="关于"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="normal" />
-    </android.support.v7.widget.Toolbar>
+            android:layout_below="@+id/iv_about_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="优医家"
+            android:textColor="@color/c_AAAAAA"
+            android:textSize="16sp" />
+    </RelativeLayout>
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/rl_iv"
+        android:background="@color/c_F3F2F2" />
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/logi_tool_bar"
+        android:layout_below="@+id/view"
         android:orientation="vertical">
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="46px"
-            android:layout_marginRight="46px"
-            android:layout_marginTop="60px"
-            android:background="@drawable/bg_set_normal"
+            android:background="@color/white"
             android:orientation="vertical">
 
-            <com.zhy.autolayout.AutoRelativeLayout
+            <RelativeLayout
                 android:id="@+id/arl_feed_back"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="29px">
+                android:layout_height="49dp">
 
                 <TextView
                     android:id="@+id/tv_set_cache"
                     style="@style/setLeftTv"
                     android:layout_centerVertical="true"
-                    android:text="意见反馈" />
+                    android:text="版本信息" />
 
 
                 <ImageView
                     style="@style/setIv"
                     android:layout_alignParentRight="true"
-                    android:layout_gravity="center_vertical" />
-            </com.zhy.autolayout.AutoRelativeLayout>
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
 
-            <View
-                style="@style/setVline"
-                android:layout_marginTop="20px"></View>
+            <View style="@style/setVline"></View>
 
-            <com.zhy.autolayout.AutoRelativeLayout
+            <RelativeLayout
                 android:id="@+id/arl_question_search"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="23px">
+                android:layout_height="49dp">
 
                 <TextView
                     style="@style/setLeftTv"
                     android:layout_centerVertical="true"
-                    android:text="问卷调查" />
+                    android:text="客服电话" />
 
 
                 <ImageView
                     style="@style/setIv"
                     android:layout_alignParentRight="true"
-                    android:layout_gravity="center_vertical" />
-            </com.zhy.autolayout.AutoRelativeLayout>
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
 
-            <View
-                style="@style/setVline"
-                android:layout_marginTop="26px"
-                android:background="@color/c_F3F2F2"></View>
+            <View style="@style/setVline"></View>
 
-            <com.zhy.autolayout.AutoRelativeLayout
+            <RelativeLayout
                 android:id="@+id/arl_about_share"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="23px">
+                android:layout_height="49dp">
 
                 <TextView
                     style="@style/setLeftTv"
                     android:layout_centerVertical="true"
-                    android:text="推荐三脚猫给好友" />
+                    android:text="评价建议" />
 
 
                 <ImageView
                     style="@style/setIv"
                     android:layout_alignParentRight="true"
-                    android:layout_gravity="center_vertical" />
-            </com.zhy.autolayout.AutoRelativeLayout>
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <View style="@style/setVline"></View>
 
-            <View
-                style="@style/setVline"
-                android:layout_marginTop="26px"
-                android:background="@color/c_F3F2F2"></View>
-        </com.zhy.autolayout.AutoLinearLayout>
+            <RelativeLayout
+                android:id="@+id/arl_about_comformation"
+                android:layout_width="match_parent"
+                android:layout_height="49dp">
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="46px"
-            android:layout_marginRight="46px"
-            android:layout_marginTop="58px"
-            android:orientation="horizontal">
+                <TextView
+                    style="@style/setLeftTv"
+                    android:layout_centerVertical="true"
+                    android:text="小屋医生信息及介绍" />
 
-            <TextView
-                android:id="@+id/tv_xieyi1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="160px"
-                android:text="三脚猫用户服务协议"
-                android:textColor="@drawable/tv_web_click"
-                android:textSize="35px" />
-
-            <TextView
-                android:id="@+id/tv_xieyi2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100px"
-                android:text="隐私协议"
-                android:textColor="@drawable/tv_web_click"
-                android:textSize="35px" />
-        </com.zhy.autolayout.AutoLinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginLeft="90px"
-            android:layout_marginRight="100px"
-            android:layout_marginTop="138px"
-            android:background="@color/c_979797"></View>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="89px"
-            android:layout_marginRight="90px"
-            android:layout_marginTop="104px"
-            android:text="三脚猫电商郑重承诺商城舱位真实有效，价格只跌不涨。"
-            android:textColor="@color/c_AAAAAA"
-            android:textSize="35px" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="89px"
-            android:layout_marginRight="90px"
-            android:layout_marginTop="50px"
-            android:text="我们希望三脚猫电商成为您在国际货运中省心、省钱的百科全书式伙伴，携手·共荣!"
-            android:textColor="@color/c_AAAAAA"
-            android:textSize="35px" />
-    </com.zhy.autolayout.AutoLinearLayout>
-
-    <TextView
-        android:id="@+id/tv_about_version_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="190px"
-        android:text="V1.0.0"
-        android:textColor="@color/c_AAAAAA"
-        android:textSize="40px" />
-</com.zhy.autolayout.AutoRelativeLayout>
+                <ImageView
+                    style="@style/setIv"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

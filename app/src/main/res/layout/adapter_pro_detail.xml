@@ -9,6 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17px"
+        android:gravity="center"
+        android:singleLine="true"
         android:text=""
         android:textColor="@color/c_808080"
         android:textSize="35px" />

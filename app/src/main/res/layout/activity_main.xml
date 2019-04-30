@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_root"
@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.mobile.android.MainActivity">
+    tools:context="com.youyijia.goodhealth.MainActivity">
 
     <FrameLayout
         android:id="@+id/fl_content"
@@ -15,18 +15,18 @@
         android:layout_height="0dp"
         android:layout_weight="1"></FrameLayout>
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="141px"
+        android:layout_height="49dp"
         android:orientation="horizontal">
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <LinearLayout
             android:id="@+id/all_sy"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <com.zhy.autolayout.AutoLinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -34,31 +34,62 @@
 
                 <ImageView
                     android:id="@+id/iv_index"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="27dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/tab_index_select" />
+                    android:src="@mipmap/ic_index_click" />
 
                 <TextView
                     android:id="@+id/tv_index"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="3px"
+                    android:layout_marginTop="6dp"
                     android:text="首页"
-                    android:textColor="@color/c_8C8D99"
-                    android:textSize="29px" />
-            </com.zhy.autolayout.AutoLinearLayout>
+                    android:textColor="@color/c_4EB2FF"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
 
-        </com.zhy.autolayout.AutoLinearLayout>
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <LinearLayout
+            android:id="@+id/all_center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_center"
+                    android:layout_width="47dp"
+                    android:layout_height="31dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/ic_frist_check" />
+
+                <TextView
+                    android:id="@+id/tv_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:text="优选"
+                    android:textColor="@color/c_666666"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/all_me"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <com.zhy.autolayout.AutoLinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -66,21 +97,21 @@
 
                 <ImageView
                     android:id="@+id/iv_me"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="22dp"
+                    android:layout_height="24dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/tab_me" />
+                    android:src="@mipmap/ic_me_gray" />
 
                 <TextView
                     android:id="@+id/tv_me"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="3px"
+                    android:layout_marginTop="6dp"
                     android:text="我的"
-                    android:textColor="@color/c_8C8D99"
-                    android:textSize="29px" />
-            </com.zhy.autolayout.AutoLinearLayout>
-        </com.zhy.autolayout.AutoLinearLayout>
-    </com.zhy.autolayout.AutoLinearLayout>
-</com.zhy.autolayout.AutoLinearLayout>
+                    android:textColor="@color/c_666666"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

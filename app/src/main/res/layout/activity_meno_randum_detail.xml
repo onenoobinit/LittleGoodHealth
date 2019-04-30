@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/white"
-    tools:context="com.mobile.android.app.Memorandum.MemoRandumDetailActivity">
+    tools:context="com.youyijia.goodhealth.app.Memorandum.MemoRandumDetailActivity">
 
     <include
         android:id="@+id/toolbar"

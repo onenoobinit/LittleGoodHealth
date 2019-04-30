@@ -1,11 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "com.mobile.android"
+        applicationId "com.youyijia.goodhealth"
         minSdkVersion 18
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
         multiDexEnabled true
@@ -35,22 +37,25 @@ android {
     }
 }
 
+
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':baselibrary')
+    implementation project(':diseasecheck')
     //RxPermission 权限申请
     api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
     //butterKnife
     api 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //RecyclerView adapter
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
     api 'com.android.support:multidex:1.0.0'
     //时间选择器
     api 'com.contrarywind:Android-PickerView:4.1.3'
@@ -59,9 +64,22 @@ dependencies {
     //可自定义指示标宽度的tablayout
     api 'com.androidkun:XTabLayout:1.1.3'
     //自动滚动，循环滚动的ViewPager
-    implementation('com.alibaba.android:ultraviewpager:1.0.7.1@aar') {
+    implementation('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
         transitive = true
     }
     //腾讯bugly
     api 'com.tencent.bugly:crashreport:latest.release'
+    //今日头条适配
+    implementation 'me.jessyan:autosize:0.9.5'
+    //城市选择器
+    api 'com.contrarywind:Android-PickerView:4.1.7'
+    //图片选择
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    implementation 'com.github.feeeei:CircleSeekbar:v1.1.2'
+    implementation(name: 'alipaySdk-15.6.2-20190416165036', ext: 'aar')
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

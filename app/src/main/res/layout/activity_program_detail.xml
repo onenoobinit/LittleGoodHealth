@@ -27,7 +27,7 @@
             android:textStyle="normal" />
     </android.support.v7.widget.Toolbar>
 
-    <com.mobile.android.widgets.LazyScrollView
+    <com.youyijia.goodhealth.widgets.LazyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/logi_tool_bar"
@@ -36,7 +36,7 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:descendantFocusability="blocksDescendants"
+            android:layout_below="@+id/logi_tool_bar"
             android:orientation="vertical">
 
             <com.zhy.autolayout.AutoLinearLayout
@@ -339,7 +339,7 @@
                 android:layout_height="160px"></View>
 
         </com.zhy.autolayout.AutoLinearLayout>
-    </com.mobile.android.widgets.LazyScrollView>
+    </com.youyijia.goodhealth.widgets.LazyScrollView>
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"

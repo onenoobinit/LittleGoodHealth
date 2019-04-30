@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -34,11 +34,11 @@ dependencies {
     //数字进度条
     api 'com.daimajia.numberprogressbar:library:1.4@aar'
     //noinspection GradleCompatible
-    api 'com.android.support:support-v4:26.1.0'
-    api 'com.android.support:appcompat-v7:27.1.0'
-    api 'com.android.support:recyclerview-v7:27.1.0'
-    api 'com.android.support:cardview-v7:27.1.0'
-    api 'com.android.support:design:27.1.0'
+    api 'com.android.support:support-v4:27.1.0'
+    api 'com.android.support:appcompat-v7:28.0.0'
+    api 'com.android.support:recyclerview-v7:28.0.0'
+    api 'com.android.support:cardview-v7:28.0.0'
+    api 'com.android.support:design:28.0.0'
     testImplementation 'junit:junit:4.12'
     //RX系列
     api 'io.reactivex.rxjava2:rxandroid:+'
@@ -50,8 +50,8 @@ dependencies {
     api 'com.trello.rxlifecycle2:rxlifecycle-components:+'
     api 'com.squareup.retrofit2:converter-gson:+'
     api 'com.squareup.okhttp3:logging-interceptor:+'
-    //glide图片加载库
-    api 'com.github.bumptech.glide:glide:3.7.0'
+   /* //glide图片加载库
+    api 'com.github.bumptech.glide:glide:3.7.0'*/
     //OkHttp
     api 'com.squareup.okhttp3:okhttp:+'
     api 'com.squareup.okhttp3:logging-interceptor:+'
@@ -59,10 +59,6 @@ dependencies {
     //https://github.com/hongyangAndroid/AndroidAutoLayout
     api 'com.zhy:autolayout:1.4.5'
     androidTestImplementation 'junit:junit:4.12'
-
-    api 'cn.finalteam.rxgalleryfinal:library:1.1.2'
-    /*图片选择*/
-    api 'cn.finalteam:galleryfinal:1.4.8.7'
 
     //腾讯TBS
     api files('libs/tbs_sdk_thirdapp_v3.6.0.1183_43604_sharewithdownload_withoutGame_obfs_20180211_105126.jar')
@@ -75,5 +71,7 @@ dependencies {
     api 'de.hdodenhof:circleimageview:2.1.0'
     //https://github.com/Tencent/VasSonic/blob/master/sonic-android/docs/Sonic%E6%8E%A5%E5%85%A5%E6%8C%87%E5%BC%95.md
     api 'com.tencent.sonic:sdk:3.0.0-alpha'
+    api 'com.bigkoo:convenientbanner:2.0.5'
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 }

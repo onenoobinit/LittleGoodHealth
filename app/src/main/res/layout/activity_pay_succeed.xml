@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_F3F2F2"
+    android:orientation="vertical"
+    tools:context=".app.order.OrderActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/tv_login">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/logi_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar_height"
+            android:layout_alignParentBottom="true"
+            app:navigationIcon="@mipmap/navagation_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="支付完成"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+
+
+    <com.youyijia.goodhealth.widgets.LazyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="45dp"
+                android:src="@mipmap/book_success" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:text="支付完成"
+                android:textColor="@color/c_4A4A4A"
+                android:textSize="17sp" />
+
+            <!-- <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_marginTop="20dp"
+                 android:layout_marginBottom="48dp"
+                 android:text="小优正带着你的优选商品飞奔而来"
+                 android:textColor="@color/c_AAAAAA"
+                 android:textSize="13sp" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="48dp"
+                android:orientation="horizontal">
+
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_back_index"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/bg_back_index"
+                        android:gravity="center"
+                        android:text="回首页"
+                        android:textColor="@color/c_4EB2FF" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_look"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/bg_look"
+                        android:gravity="center"
+                        android:text="随便逛逛"
+                        android:textColor="@color/c_AAAAAA" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </com.youyijia.goodhealth.widgets.LazyScrollView>
+</RelativeLayout>

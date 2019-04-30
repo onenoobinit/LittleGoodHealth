@@ -1,150 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mobile.android.app.login.LoginActivity">
+    android:background="@color/white"
+    tools:context="com.youyijia.goodhealth.app.login.LoginActivity">
 
-    <SurfaceView
-        android:id="@+id/myVideo"
+    <RelativeLayout
+        android:id="@+id/rl_login_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="225dp"
+        android:background="@mipmap/bg_login_img">
+
+        <ImageView
+            android:id="@+id/iv_login_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="34dp"
+            android:alpha="0.8"
+            android:src="@mipmap/navagation_back" />
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cd_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_login_top"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:id="@+id/ll_login_phone"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/rl_login_top"
+            android:background="@drawable/bg_login_name"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/ic_phone_number" />
+
+            <EditText
+                android:id="@+id/et_login_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:inputType="phone"
+                android:alpha="0.8"
+                android:background="@null"
+                android:hint="请输入大陆11位手机号码"
+                android:maxLength="11"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColorHint="@color/c_BFBFBF"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cd_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cd_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:id="@+id/ll_login_password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/ll_login_phone"
+            android:background="@drawable/bg_login_name"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/ic_password" />
+
+            <EditText
+                android:id="@+id/et_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:inputType="textVisiblePassword"
+                android:alpha="0.8"
+                android:background="@null"
+                android:hint="密码6到16位字母或数字"
+                android:maxLength="11"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColorHint="@color/c_BFBFBF"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/cb_login_pw"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_password"
+                android:button="@null" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cd_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cd_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/c_00A2FF"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <TextView
+            android:id="@+id/tv_login_sure"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/ll_login_password"
+            android:layout_centerHorizontal="true"
+            android:alpha="0.8"
+            android:background="@drawable/tv_login"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/rl_register_forget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cd_login"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="38dp">
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="立即注册"
+            android:textColor="@color/c_5AAEFF"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="忘记密码"
+            android:textColor="@color/c_FF834D"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_wx_split"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_register_forget"
+        android:layout_marginTop="40dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_wx_split" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="第三方登录"
+            android:textColor="@color/c_AAAAAA"
+            android:textSize="13sp" />
+    </RelativeLayout>
 
     <ImageView
-        android:id="@+id/iv_login_left"
+        android:id="@+id/iv_login_wx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30px"
-        android:layout_marginTop="120px"
-        android:alpha="0.8"
-        android:src="@mipmap/nagi_wrong" />
-
-    <ImageView
-        android:id="@+id/iv_login_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_wx_split"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250px"
-        android:alpha="0.8"
-        android:scaleType="fitXY"
-        android:src="@mipmap/job_icon" />
+        android:layout_marginTop="17dp"
+        android:src="@mipmap/ic_login_wx" />
 
-
-    <EditText
-        android:id="@+id/et_login_number"
-        android:layout_width="945px"
-        android:layout_height="127px"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="650px"
-        android:alpha="0.8"
-        android:background="@drawable/bg_login_name"
-        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        android:hint="用户名"
-        android:inputType="textVisiblePassword"
-        android:paddingLeft="66px"
-        android:textColorHint="@color/c_9b9b9b"
-        android:textSize="40px" />
-
-
-    <EditText
-        android:id="@+id/et_login_password"
-        android:layout_width="945px"
-        android:layout_height="127px"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="840px"
-        android:alpha="0.8"
-        android:background="@drawable/bg_login_name"
-        android:hint="密码"
-        android:inputType="textPassword"
-        android:paddingLeft="66px"
-        android:textColorHint="@color/c_9b9b9b"
-        android:textSize="40px" />
-
-    <!--<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="86px"
-        android:layout_marginTop="982px"
-        android:text="忘记密码？"
-        android:textColor="@color/c_9b9b9b"
-        android:textSize="35px" />-->
-
-    <TextView
-        android:id="@+id/tv_login_sure"
-        android:layout_width="945px"
-        android:layout_height="127px"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="1123px"
-        android:alpha="0.8"
-        android:background="@drawable/bg_tv_gray"
-        android:gravity="center"
-        android:text="登录"
-        android:textColor="@color/white"
-        android:textSize="52px" />
-
-    <com.zhy.autolayout.AutoLinearLayout
-        android:id="@+id/all_recept"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/all_yinsi"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5px"
-        android:alpha="0.8"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="登录代表您同意"
-            android:textColor="@color/white"
-            android:textSize="35px" />
-
-        <TextView
-            android:id="@+id/tv_login_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="《三脚猫用户协议》"
-            android:textColor="@drawable/tv_web_click"
-            android:textSize="35px" />
-    </com.zhy.autolayout.AutoLinearLayout>
-
-    <com.zhy.autolayout.AutoLinearLayout
-        android:id="@+id/all_yinsi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tv_to_register"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50px"
-        android:alpha="0.8"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="以及"
-            android:textColor="@color/white"
-            android:textSize="35px" />
-
-        <TextView
-            android:id="@+id/tv_login_mimi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="《三脚猫隐私条款》"
-            android:textColor="@drawable/tv_web_click"
-            android:textSize="35px" />
-    </com.zhy.autolayout.AutoLinearLayout>
-
-    <TextView
-        android:id="@+id/tv_to_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="153px"
-        android:alpha="0.8"
-        android:text="没有账号？去注册"
-        android:textColor="@drawable/tv_web_click"
-        android:textSize="35px" />
-</com.zhy.autolayout.AutoRelativeLayout>
+</RelativeLayout>

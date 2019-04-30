@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@android:id/background">
         <shape>
@@ -16,9 +16,9 @@
             <shape>
                 <corners android:radius="2dp" />
                 <gradient
-                    android:centerColor="@color/c42b678"
-                    android:endColor="@color/text_select"
-                    android:startColor="@color/c42b678" />
+                    android:centerColor="@color/c_4EB2FF"
+                    android:endColor="@color/c_4EB2FF"
+                    android:startColor="@color/c_4EB2FF" />
 
             </shape>
         </clip>

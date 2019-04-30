@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.mobile.hyoukalibrary">
+          package="com.youyijia.hyoukalibrary">
     <!-- 百度统计sdk -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.GET_TASKS"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <!-- 可选的权限 -->
     <!-- 启用错误分析功能，须添加该权限 -->
@@ -23,7 +20,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <service
-            android:name=".service.HideService"
+            android:name="com.youyijia.hyoukalibrary.service.HideService"
             android:process=":pointread"/>
         <!-- 您从百度网站获取的APP KEY -->
         <meta-data
@@ -51,7 +48,7 @@
             android:name="BaiduMobAd_ONLY_WIFI"
             android:value="false"/>
 
-        <activity android:name=".base.mvp.MvpActivity">
+        <activity android:name="com.youyijia.hyoukalibrary.base.mvp.MvpActivity">
         </activity>
     </application>
 

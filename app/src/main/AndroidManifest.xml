@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.mobile.android">
+    package="com.youyijia.goodhealth">
 
     <uses-permission android:name="com.youjuke.youdecroation.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -11,21 +11,27 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name=".SupervisorApp"
+        android:name=".GoodHealthApp"
         android:allowBackup="true"
-        android:icon="@mipmap/app_icon"
+        android:icon="@mipmap/ic_app"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -35,7 +41,6 @@
             android:name=".app.start.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBarWithBackGround">
-            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,29 +50,44 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.mobile.android.fileProvider"
+            android:authorities="com.youyijia.goodhealth.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
-        </provider>
-        <!-- 设计稿尺寸 -->
+        </provider> <!-- 设计稿尺寸 -->
         <meta-data
-            android:name="design_width"
-            android:value="1080" />
+            android:name="design_width_in_dp"
+            android:value="375" />
         <meta-data
-            android:name="design_height"
-            android:value="1921" />
+            android:name="design_height_in_dp"
+            android:value="667" />
 
-        <service android:name=".updatebyrx2.DownLoadService" />
-        <!-- 登录页 -->
+        <service android:name=".updatebyrx2.DownLoadService" /> <!-- 登录页 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:launchMode="singleTop"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:taskAffinity="net.sourceforge.simcpux" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wx89bfbe26609a6b54" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".app.login.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <!-- 主页 -->
+            android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- 主页 -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
@@ -75,108 +95,276 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <receiver android:name=".app.login.GlobalReceiver" />
-        <!-- 注册页面 -->
+        <receiver android:name=".app.login.GlobalReceiver" /> <!-- 注册页面 -->
         <activity
             android:name=".app.register.RegisterActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <!-- 订单页面 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- 订单页面 -->
         <activity
             android:name=".app.order.OrderActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 方案选择 -->
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 方案选择 -->
         <activity
             android:name=".app.program.ProgramSelectActivity"
-            android:screenOrientation="portrait" />
-        <!-- 方案选择详情 -->
+            android:screenOrientation="portrait" /> <!-- 方案选择详情 -->
         <activity
             android:name=".app.program.ProgramDetailActivity"
-            android:screenOrientation="portrait" />
-        <!-- 产品详情 -->
+            android:screenOrientation="portrait" /> <!-- 产品详情 -->
         <activity
             android:name=".app.program.ProductDetailActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 设置 -->
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 设置 -->
         <activity
             android:name=".app.set.SetActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 绑定手机 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 绑定手机 -->
         <activity
             android:name=".app.set.SetPhoneActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 绑定邮箱 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 绑定邮箱 -->
         <activity
             android:name=".app.set.SetMailActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 修改登录密码 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 修改登录密码 -->
         <activity
             android:name=".app.set.SetPasswordActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 关于 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 关于 -->
         <activity
             android:name=".app.set.AboutActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 通用网页 -->
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 通用网页 -->
         <activity
             android:name=".app.web.CommonWebActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <!-- 意见反馈 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustResize" /> <!-- 意见反馈 -->
         <activity
             android:name=".app.set.FeedBackActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 搜索 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 搜索 -->
         <activity
             android:name=".app.search.SearchActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 提交 -->
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 提交 -->
         <activity
             android:name=".app.submit.SubmitActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <!-- 计费方式 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" /> <!-- 计费方式 -->
         <activity
             android:name=".app.submit.PayStyleActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 保险 -->
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 保险 -->
         <activity
             android:name=".app.submit.InsureanceActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 历史联系人 -->
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 历史联系人 -->
         <activity
             android:name=".app.submit.ContactHistoryActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 提交成功页 -->
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 提交成功页 -->
         <activity
             android:name=".app.submit.SubmitSuccessActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <!-- 入库数据确认 -->
+            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 入库数据确认 -->
         <activity
             android:name=".app.order.OrderComeActivity"
-            android:screenOrientation="portrait" />
-        <!-- 运费确认 -->
+            android:screenOrientation="portrait" /> <!-- 运费确认 -->
         <activity
             android:name=".app.order.OrderSureActivity"
-            android:screenOrientation="portrait" />
-        <!-- 渠道商编号 -->
+            android:screenOrientation="portrait" /> <!-- 渠道商编号 -->
+        <!-- 忘记密码 -->
+        <activity
+            android:name=".app.register.ForgetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 版本信息 -->
+        <activity
+            android:name=".app.set.AboutVersionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 身心咨询 -->
+        <activity
+            android:name=".app.body.BodyHeartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 心理咨询 -->
+        <activity
+            android:name=".app.body.BodyZixunActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="cc.android.goodhealth.body" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> <!-- 健康咨询 -->
+        <activity
+            android:name=".app.body.HeartZixunActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 健康资讯 -->
+        <activity
+            android:name=".app.jknews.HealthNewsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 我的收货地址 -->
+        <activity
+            android:name=".app.adress.AdressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 添加收获地址 -->
+        <activity
+            android:name=".app.adress.AddAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 绿通就医人信息 -->
+        <activity
+            android:name=".app.adress.GreenInformationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 添加绿通就医人 -->
+        <activity
+            android:name=".app.adress.AddGreenYiActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 账号与安全 -->
+        <activity
+            android:name=".app.adress.UserSafeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 个人信息 -->
+        <activity
+            android:name=".app.meinfo.MeinfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 设置昵称 -->
+        <activity
+            android:name=".app.meinfo.SetNewNameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 微生态中心 -->
+        <!-- 微生态中心详情 -->
+        <activity
+            android:name=".app.center.MicCenterDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.center.MicCenterAcitivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 购物车 -->
+        <activity
+            android:name=".app.shopcart.ShopCartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 专家详情 -->
+        <activity
+            android:name=".app.center.MicDiscritionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 他的视频 -->
+        <activity
+            android:name=".app.center.HisVideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 直播视频 -->
+        <activity
+            android:name=".app.center.VideoListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 绿通首页 -->
+        <activity
+            android:name=".app.green.GreenIndexActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 绿通说明 -->
+        <activity
+            android:name=".app.green.GreenInstrctionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 绿通预约 -->
+        <activity
+            android:name=".app.green.GreenBookActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="cc.android.goodhealth.green" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> <!-- 绿通医院 -->
+        <activity
+            android:name=".app.green.GreenHostipalActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 绿通服务 -->
+        <activity
+            android:name=".app.green.GreenSeviceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 城市 -->
+        <activity
+            android:name=".app.green.GreenCityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.register.SelectSexDateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.web.NewsWebActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".app.web.ShopWebActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".app.web.CommentListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.company.CompanyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".app.green.GreenLcActivity" />
+        <activity
+            android:name=".app.company.MyCompanyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.shopcart.ShopOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.green.GreenOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.order.GreenOrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.order.ShopOrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.walk.WalkDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.walk.MyWalkActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.pay.PayTypeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.pay.PaySucceedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.adress.WxBandActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".app.order.MyTraceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
         <meta-data
             android:name="BaiduMobAd_CHANNEL"
-            android:value="3JMall" />
+            android:value="goodhealth" />
     </application>
 
 </manifest>

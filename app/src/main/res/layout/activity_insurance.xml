@@ -28,7 +28,7 @@
             android:textStyle="normal" />
     </android.support.v7.widget.Toolbar>
 
-    <com.mobile.android.widgets.LazyScrollView
+    <com.youyijia.goodhealth.widgets.LazyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -297,6 +297,6 @@
             </com.zhy.autolayout.AutoLinearLayout>
 
         </com.zhy.autolayout.AutoLinearLayout>
-    </com.mobile.android.widgets.LazyScrollView>
+    </com.youyijia.goodhealth.widgets.LazyScrollView>
 </com.zhy.autolayout.AutoLinearLayout>
 

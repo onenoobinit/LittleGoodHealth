@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".app.order.OrderActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/tv_login">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/logi_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar_height"
+            android:layout_alignParentBottom="true"
+            app:navigationIcon="@mipmap/navagation_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="账号绑定"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+
+    <com.youyijia.goodhealth.widgets.LazyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="22dp"
+                android:text="Hi,xxx(微信用户名)"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="29dp"
+                android:text="如果您已注册过优医佳App账号："
+                android:textColor="@color/c_999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_band_have"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_bd_have"
+                android:gravity="center"
+                android:text="绑定已有账号"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="如果您未注册过优医佳App账号:"
+                android:textColor="@color/c_999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_band_no"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_bd_no"
+                android:gravity="center"
+                android:text="注册新账号"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </com.youyijia.goodhealth.widgets.LazyScrollView>
+</LinearLayout>

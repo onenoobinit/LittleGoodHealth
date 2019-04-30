@@ -1,123 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fitsSystemWindows="true"
+    android:background="@color/c_F3F2F2"
     android:orientation="vertical"
     android:overScrollMode="never">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/logi_tool_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tool_bar_height"
-        android:background="@color/c_F5A623"
-        app:navigationIcon="@mipmap/navagation_back"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="64dp"
+        android:background="@drawable/tv_login">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:text="绑定手机号"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="normal" />
-    </android.support.v7.widget.Toolbar>
-
-    <com.zhy.autolayout.AutoLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="127px"
-        android:layout_marginLeft="69px"
-        android:layout_marginRight="66px"
-        android:layout_marginTop="276px"
-        android:background="@drawable/bg_all_phone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="66px"
-            android:text="+86"
-            android:textColor="@color/c_CDCDCD"
-            android:textSize="40px" />
-
-        <View
-            android:layout_width="1px"
-            android:layout_height="50px"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20px"
-            android:background="@color/c_CDCDCD"></View>
-
-        <EditText
-            android:id="@+id/et_phone"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/logi_tool_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="30px"
-            android:background="@null"
-            android:inputType="phone"
-            android:maxEms="11"
-            android:maxLength="11"
-            android:textColor="@color/c_000000"
-            android:textSize="40px" />
-    </com.zhy.autolayout.AutoLinearLayout>
+            android:layout_height="@dimen/tool_bar_height"
+            android:layout_alignParentBottom="true"
+            app:navigationIcon="@mipmap/navagation_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <com.zhy.autolayout.AutoLinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="更改手机号码"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+
+    <com.youyijia.goodhealth.widgets.LazyScrollView
         android:layout_width="match_parent"
-        android:layout_height="127px"
-        android:layout_marginLeft="69px"
-        android:layout_marginRight="66px"
-        android:layout_marginTop="100px"
-        android:background="@drawable/bg_all_phone">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="66px"
-            android:text="验证码"
-            android:textColor="@color/c_CDCDCD"
-            android:textSize="40px" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/et_code"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20px"
-            android:layout_weight="1"
-            android:background="@null"
-            android:inputType="number"
-            android:maxEms="6"
-            android:maxLength="6"
-            android:textColor="@color/c_000000"
-            android:textSize="40px" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
 
-        <TextView
-            android:id="@+id/tv_verify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="60px"
-            android:text="获取验证码"
-            android:textColor="@color/c_CDCDCD"
-            android:textSize="35px" />
-    </com.zhy.autolayout.AutoLinearLayout>
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:text="当前手机号"
+                    android:textColor="@color/c_4A4A4A"
+                    android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/tv_bind_phone"
-        android:layout_width="match_parent"
-        android:layout_height="127px"
-        android:layout_marginLeft="69px"
-        android:layout_marginRight="66px"
-        android:layout_marginTop="115px"
-        android:background="@drawable/bg_tv_gray"
-        android:gravity="center"
-        android:text="绑定"
-        android:textColor="@color/white"
-        android:textSize="52px" />
-</com.zhy.autolayout.AutoLinearLayout>
+                <TextView
+                    android:id="@+id/tv_change_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:text=""
+                    android:textColor="@color/c_AAAAAA"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/c_F3F2F2"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:text="当前手机号"
+                    android:textColor="@color/c_4A4A4A"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/et_phone_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:background="@null"
+                    android:hint="新手机号"
+                    android:inputType="phone"
+                    android:maxEms="11"
+                    android:maxLength="11"
+                    android:textColor="@color/c_4A4A4A"
+                    android:textColorHint="@color/c_AAAAAA"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/c_F3F2F2"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:text="输入验证码"
+                    android:textColor="@color/c_4A4A4A"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/et_code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20px"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入验证码"
+                    android:inputType="number"
+                    android:maxEms="6"
+                    android:maxLength="6"
+                    android:textColor="@color/c_4A4A4A"
+                    android:textColorHint="@color/c_AAAAAA"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_verify"
+                    android:layout_width="75dp"
+                    android:layout_height="27dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/tv_code_blue"
+                    android:gravity="center"
+                    android:text="获取验证码"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_bind_phone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/tv_login"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </com.youyijia.goodhealth.widgets.LazyScrollView>
+</LinearLayout>

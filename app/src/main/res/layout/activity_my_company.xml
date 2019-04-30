@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".app.green.GreenInstrctionActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/bg_wodeqiyez_xiaowu" />
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="31dp"
+            android:src="@mipmap/navagation_back" />
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="上海分行小屋"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/iv_yh_logo"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="15dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/zz_zxal_mrbj_icon" />
+    </RelativeLayout>
+
+    <com.youyijia.goodhealth.widgets.LazyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.tmall.ultraviewpager.UltraViewPager
+                android:id="@+id/vp_ask_banner1"
+                android:layout_width="match_parent"
+                android:layout_height="154dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/transparent"
+                android:clipChildren="false"></com.tmall.ultraviewpager.UltraViewPager>
+
+
+            <LinearLayout
+                android:id="@+id/ll_house"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vp_ask_banner1"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/ic_small_house" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="小屋内景，功能配备"
+                    android:textColor="@color/c_4A4A4A"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.tmall.ultraviewpager.UltraViewPager
+                android:id="@+id/vp_ask_banner2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/ll_house"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:clipChildren="false"></com.tmall.ultraviewpager.UltraViewPager>
+
+            <LinearLayout
+                android:id="@+id/ll_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vp_ask_banner2"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/ic_house_special" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="小屋特色服务"
+                    android:textColor="@color/c_4A4A4A"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.tmall.ultraviewpager.UltraViewPager
+                android:id="@+id/vp_ask_banner3"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@+id/ll_service"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:clipChildren="false"></com.tmall.ultraviewpager.UltraViewPager>
+
+            <View
+                android:id="@+id/v_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/vp_ask_banner3"
+                android:layout_marginTop="20dp"
+                android:background="@color/c_F3F2F2"></View>
+
+
+            <TextView
+                android:id="@+id/tv_house_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/v_line"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="45dp"
+                android:text=">>点击进入健康小屋详情介绍"
+                android:textColor="@color/c_4EB2FF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.youyijia.goodhealth.widgets.LazyScrollView>
+</RelativeLayout>

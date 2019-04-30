@@ -21,7 +21,7 @@
         <item name="windowActionBar">false</item><!--取消Actionbar-->
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item><!--//设置全屏-->
-        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowBackground">@mipmap/new_splash</item>
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
     </style>
 
@@ -115,9 +115,17 @@
     <style name="setLeftTv">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">46px</item>
-        <item name="android:textSize">40px</item>
-        <item name="android:textColor">@color/c_9b9b9b</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/c_4A4A4A</item>
+    </style>
+
+    <style name="meItemTv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/c_4A4A4A</item>
     </style>
 
     <style name="setIv">
@@ -125,15 +133,13 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">20px</item>
         <item name="android:layout_marginRight">80px</item>
-        <item name="android:src">@mipmap/arrow_right</item>
+        <item name="android:src">@mipmap/ic_me_arrow_big</item>
     </style>
 
     <style name="setVline">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1px</item>
-        <item name="android:layout_marginLeft">46px</item>
-        <item name="android:layout_marginRight">46px</item>
-        <item name="android:background">@color/c_D8D8D8</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/c_efefef</item>
     </style>
 
     <style name="Sweet.Alert.Dialog" parent="android:style/Theme.Dialog">
@@ -151,5 +157,69 @@
         <!-- 进入时的动画 -->
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>
         <!-- 退出时的动画 -->
+    </style>
+
+    <!--QQ数字风格样式，注意每一项都不能少-->
+    <style name="picture.QQ.style" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!--标题栏背景色-->
+        <item name="colorPrimary">@color/c_4EB2FF</item>
+        <!--状态栏背景色-->
+        <item name="colorPrimaryDark">@color/c_4EB2FF</item>
+        <!--是否改变图片列表界面状态栏字体颜色为黑色-->
+        <item name="picture.statusFontColor">false</item>
+        <!--返回键图标-->
+        <item name="picture.leftBack.icon">@drawable/picture_back</item>
+        <!--标题下拉箭头-->
+        <item name="picture.arrow_down.icon">@drawable/arrow_down</item>
+        <!--标题上拉箭头-->
+        <item name="picture.arrow_up.icon">@drawable/arrow_up</item>
+        <!--标题文字颜色-->
+        <item name="picture.title.textColor">@color/white</item>
+        <!--标题栏右边文字-->
+        <item name="picture.right.textColor">@color/white</item>
+        <!--图片列表勾选样式-->
+        <item name="picture.checked.style">@drawable/checkbox_num_selector</item>
+        <!--开启图片列表勾选数字模式,开启的话勾选样式要换-->
+        <item name="picture.style.checkNumMode">true</item>
+        <!--选择图片样式0/9-->
+        <item name="picture.style.numComplete">false</item>
+        <!--图片列表底部背景色-->
+        <item name="picture.bottom.bg">@color/color_fa</item>
+        <!--图片列表预览文字颜色-->
+        <item name="picture.preview.textColor">@color/c_4EB2FF</item>
+        <!--图片列表已完成文字颜色-->
+        <item name="picture.complete.textColor">@color/c_4EB2FF</item>
+        <!--图片已选数量圆点背景色-->
+        <item name="picture.num.style">@drawable/num_oval_blue</item>
+        <!--预览界面标题文字颜色-->
+        <item name="picture.ac_preview.title.textColor">@color/white</item>
+        <!--预览界面已完成文字颜色-->
+        <item name="picture.ac_preview.complete.textColor">@color/c_4EB2FF</item>
+        <!--预览界面标题栏背景色-->
+        <item name="picture.ac_preview.title.bg">@color/c_4EB2FF</item>
+        <!--预览界面底部背景色-->
+        <item name="picture.ac_preview.bottom.bg">@color/color_fa</item>
+        <!--预览界面状态栏颜色-->
+        <item name="picture.status.color">@color/c_4EB2FF</item>
+        <!--预览界面返回箭头-->
+        <item name="picture.preview.leftBack.icon">@drawable/picture_back</item>
+        <!--裁剪页面标题背景色-->
+        <item name="picture.crop.toolbar.bg">@color/bar_grey</item>
+        <!--裁剪页面状态栏颜色-->
+        <item name="picture.crop.status.color">@color/bar_grey</item>
+        <!--裁剪页面标题文字颜色-->
+        <item name="picture.crop.title.color">@color/white</item>
+        <!--相册文件夹列表选中图标-->
+        <item name="picture.folder_checked_dot">@drawable/orange_oval</item>
+    </style>
+
+    <style name="Comment_Dialog" parent="@style/AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowSoftInputMode">stateAlwaysVisible</item><!--显示软件盘-->
+        <item name="android:backgroundDimAmount">0.5</item>
     </style>
 </resources>

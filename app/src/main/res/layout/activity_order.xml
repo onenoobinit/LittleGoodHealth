@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".app.order.OrderActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/logi_tool_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tool_bar_height"
-        android:background="@color/c_F5A623"
-        app:navigationIcon="@mipmap/navagation_back"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="64dp"
+        android:background="@drawable/tv_login">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:text="我的订单"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="normal" />
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/logi_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar_height"
+            android:layout_alignParentBottom="true"
+            app:navigationIcon="@mipmap/navagation_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <com.zhy.autolayout.AutoLinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="我的订单"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -41,11 +46,11 @@
             android:layout_height="wrap_content"
             app:xTabBackgroundColor="@color/white"
             app:xTabDividerWidthWidthText="true"
-            app:xTabIndicatorColor="@color/white"
+            app:xTabIndicatorColor="@color/c_4EB2FF"
             app:xTabSelectedBackgroundColor="@color/white"
-            app:xTabSelectedTextColor="@color/c_F5A623"
-            app:xTabTextColor="@color/c_9b9b9b"
-            app:xTabTextSize="15sp" />
+            app:xTabSelectedTextColor="@color/c_4EB2FF"
+            app:xTabTextColor="@color/c_4A4A4A"
+            app:xTabTextSize="14sp" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
@@ -53,5 +58,5 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:overScrollMode="never"></android.support.v4.view.ViewPager>
-    </com.zhy.autolayout.AutoLinearLayout>
-</com.zhy.autolayout.AutoLinearLayout>
+    </LinearLayout>
+</LinearLayout>

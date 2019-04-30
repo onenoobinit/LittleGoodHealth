@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.mobile.android.app.sms_send.SmsSendActivity">
+    tools:context="com.youyijia.goodhealth.app.sms_send.SmsSendActivity">
 
     <include layout="@layout/toolbar_view"/>
 

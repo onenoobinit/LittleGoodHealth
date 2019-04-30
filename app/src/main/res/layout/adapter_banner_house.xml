@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg_house_iv"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_house"
+        android:layout_width="match_parent"
+        android:src="@mipmap/zz_zxal_mrbj_icon"
+        android:scaleType="centerCrop"
+        android:layout_height="match_parent" />
+</RelativeLayout>

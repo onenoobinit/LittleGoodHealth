@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_F3F2F2"
+    android:orientation="vertical"
+    tools:context=".app.order.OrderActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/tv_login">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/logi_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar_height"
+            android:layout_alignParentBottom="true"
+            app:navigationIcon="@mipmap/navagation_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="个人信息"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+
+    <com.youyijia.goodhealth.widgets.LazyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_top"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/rl_set_icon"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/ll_click"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_user"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/img_boy_weixuanzhong" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:src="@mipmap/ic_me_arrow_big" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="头像"
+                    android:textColor="@color/c_4A4A4A"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/c_F3F2F2"></View>
+
+            <RelativeLayout
+                android:id="@+id/arl_set_name"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/ll_click"
+                android:clickable="true">
+
+                <TextView
+                    style="@style/setLeftTv"
+                    android:layout_centerVertical="true"
+                    android:text="昵称" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_set_name"
+                        style="@style/setLeftTv"
+                        android:layout_gravity="center_vertical"
+                        android:text=""
+                        android:textColor="@color/c_4A4A4A" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/ic_me_arrow_big" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/c_F3F2F2"></View>
+
+            <RelativeLayout
+                android:id="@+id/arl_set_sex"
+                android:layout_width="match_parent"
+                android:layout_height="49sp"
+                android:background="@drawable/ll_click"
+                android:clickable="true">
+
+                <TextView
+                    style="@style/setLeftTv"
+                    android:layout_centerVertical="true"
+                    android:text="性别" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_set_sex"
+                        style="@style/setLeftTv"
+                        android:layout_gravity="center_vertical"
+                        android:text=""
+                        android:textColor="@color/c_4A4A4A" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/ic_me_arrow_big" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/c_F3F2F2"></View>
+
+            <RelativeLayout
+                android:id="@+id/arl_set_brithday"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/ll_click"
+                android:clickable="true">
+
+                <TextView
+                    style="@style/setLeftTv"
+                    android:layout_centerVertical="true"
+                    android:text="出生日期" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_set_brithday"
+                        style="@style/setLeftTv"
+                        android:layout_gravity="center_vertical"
+                        android:text="" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/ic_me_arrow_big" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/c_F3F2F2"></View>
+
+            <RelativeLayout
+                android:id="@+id/arl_set_company_address"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/ll_click"
+                android:clickable="true"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/setLeftTv"
+                    android:layout_centerVertical="true"
+                    android:text="公司地址" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_set_address_company"
+                        style="@style/setLeftTv"
+                        android:layout_gravity="center_vertical"
+                        android:text="" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/ic_me_arrow_big" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/c_F3F2F2"></View>
+
+            <RelativeLayout
+                android:id="@+id/arl_set_company"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:background="@drawable/ll_click"
+                android:clickable="true">
+
+                <TextView
+                    style="@style/setLeftTv"
+                    android:layout_centerVertical="true"
+                    android:text="绑定公司" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_set_company"
+                        style="@style/setLeftTv"
+                        android:layout_gravity="center_vertical"
+                        android:text="" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/ic_me_arrow_big" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </com.youyijia.goodhealth.widgets.LazyScrollView>
+</LinearLayout>

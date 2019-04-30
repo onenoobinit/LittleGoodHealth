@@ -1,39 +1,360 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/bg_index" />
-
-    <com.zhy.autolayout.AutoRelativeLayout
-        android:id="@+id/arl_circle"
-        android:layout_width="230px"
-        android:layout_height="230px"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_mudi"
-        android:alpha="0.9"
-        android:layout_marginTop="697px">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_height="wrap_content"
-            android:rotation="45"
-            android:src="@mipmap/wrong" />
-    </com.zhy.autolayout.AutoRelativeLayout>
-
+    android:layout_height="match_parent"
+    android:background="@color/c_F3F2F2">
 
     <TextView
-        android:layout_below="@+id/arl_circle"
-        android:layout_marginTop="40px"
-        android:text="输入目的港"
-        android:layout_centerHorizontal="true"
-        android:textSize="58px"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</com.zhy.autolayout.AutoRelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="已经全部加载完毕"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/c_4A4A4A"
+        android:textSize="14sp" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlClassicsSpinnerStyle="FixedBehind"
+            app:srlDrawableArrowSize="20dp"
+            app:srlDrawableMarginRight="20dp"
+            app:srlDrawableProgress="@drawable/ic_progress_hojder"
+            app:srlDrawableProgressSize="20dp"
+            app:srlEnableLastTime="true"
+            app:srlFinishDuration="500"
+            app:srlTextSizeTime="10dp"
+            app:srlTextSizeTitle="16sp"
+            app:srlTextTimeMarginTop="2dp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <com.youyijia.goodhealth.widgets.ObservableScrollView
+                android:id="@+id/scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/white"
+                android:clipChildren="true"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical"
+                    tools:ignore="ScrollViewSize">
+
+                    <com.bigkoo.convenientbanner.ConvenientBanner
+                        android:id="@+id/convenientBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        app:canLoop="true" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp">
+
+                        <RelativeLayout
+                            android:id="@+id/ll_index_zjzx"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_index_zs1"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="21dp"
+                                android:src="@mipmap/ic_green_load" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_index_zs1"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:text="绿色通道"
+                                android:textColor="@color/c_4A4A4A"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/ll_index_bjq"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_index_zs2"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="21dp"
+                                android:src="@mipmap/ic_check_self" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_index_zs2"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:text="症状自查"
+                                android:textColor="@color/c_4A4A4A"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/ll_index_yzgs"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_index_zs3"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="21dp"
+                                android:src="@mipmap/ic_sx_check" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_index_zs3"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:text="身心咨询"
+                                android:textColor="@color/c_4A4A4A"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/ll_index_ygj"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_index_zs4"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="21dp"
+                                android:src="@mipmap/ic_heart_test" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_index_zs4"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:text="心理测评"
+                                android:textColor="@color/c_4A4A4A"
+                                android:textSize="13sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/ll_index_xgt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/iv_index_zs5"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="21dp"
+                                android:src="@mipmap/ic_jk_news" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/iv_index_zs5"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:text="健康资讯"
+                                android:textColor="@color/c_4A4A4A"
+                                android:textSize="13sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="169dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="15dp"
+                            android:text="微生态中心"
+                            android:textColor="@color/c_4A4A4A"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:id="@+id/iv_index_wxt_center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="15dp"
+                            android:scaleType="centerCrop"
+                            android:src="@mipmap/img_home_weishengtai" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/c_efefef"></View>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="63dp"
+                                android:layout_height="23dp"
+                                android:layout_centerInParent="true"
+                                android:src="@mipmap/ic_chage_news" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/c_EEEEEE"></View>
+
+                        <com.youyijia.goodhealth.widgets.MarqueeView
+                            android:id="@+id/mq_index"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"></com.youyijia.goodhealth.widgets.MarqueeView>
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_index"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:overScrollMode="never"></android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+            </com.youyijia.goodhealth.widgets.ObservableScrollView>
+
+            <RelativeLayout
+                android:id="@+id/titilelayout"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/c_4EB2FF"
+                android:visibility="invisible">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/tool_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tool_bar_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="4dp"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_index_toolbar_center"
+                        android:layout_width="210dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:id="@+id/toolbar_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:alpha="0.8"
+                            android:text="小优健康"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout_tool_bar_message"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="30px"
+                        android:clickable="true">
+
+                        <ImageView
+                            android:id="@+id/tool_bar_imageView"
+                            android:layout_width="35dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:alpha="0.8"
+                            android:scaleType="center"
+                            android:src="@mipmap/ic_home_xiaoxi" />
+
+                        <TextView
+                            android:id="@+id/textView_message_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@mipmap/btn_red_news2"
+                            android:gravity="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="10dp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+                </android.support.v7.widget.Toolbar>
+
+                <View
+                    android:id="@+id/v_sy_tl_bot"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#AEAEAE"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</RelativeLayout>

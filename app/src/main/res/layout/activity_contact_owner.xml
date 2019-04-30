@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.mobile.android.app.contact_owner.ContactOwnerActivity">
+    tools:context="com.youyijia.goodhealth.app.contact_owner.ContactOwnerActivity">
 
     <include layout="@layout/toolbar_view"/>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/c_F3F2F2"
@@ -24,13 +24,13 @@
             app:srlTextSizeTitle="16sp"
             app:srlTextTimeMarginTop="2dp" />
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
 
-            <com.zhy.autolayout.AutoRelativeLayout
+            <RelativeLayout
                 android:id="@+id/arl_have_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -39,9 +39,9 @@
                     android:id="@+id/rv_operation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            </com.zhy.autolayout.AutoRelativeLayout>
+            </RelativeLayout>
 
-            <com.zhy.autolayout.AutoRelativeLayout
+            <RelativeLayout
                 android:id="@+id/arl_no_data"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -52,20 +52,19 @@
                     android:id="@+id/iv_no_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="130px"
-                    android:src="@mipmap/xzyhq_x_png" />
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/ic_no_data" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/iv_no_data"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="90px"
-                    android:text="对不起，暂无数据~"
+                    android:layout_marginTop="20dp"
+                    android:text="暂无数据~"
                     android:textColor="@color/c_a6a6a6"
-                    android:textSize="40px" />
-            </com.zhy.autolayout.AutoRelativeLayout>
-        </com.zhy.autolayout.AutoLinearLayout>
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </LinearLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-</com.zhy.autolayout.AutoRelativeLayout>
+</RelativeLayout>

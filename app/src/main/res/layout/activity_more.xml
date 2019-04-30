@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.mobile.android.app.more.MoreActivity">
+    tools:context="com.youyijia.goodhealth.app.more.MoreActivity">
 
     <include layout="@layout/toolbar_view"
         />

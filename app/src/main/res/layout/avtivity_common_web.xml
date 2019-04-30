@@ -1,58 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fitsSystemWindows="true"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:orientation="vertical">
 
-    <com.zhy.autolayout.AutoRelativeLayout
+    <RelativeLayout
         android:id="@+id/arl_header"
         android:layout_width="match_parent"
-        android:layout_height="105px"
+        android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@color/white"
+        android:background="@drawable/tv_login"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:translationZ="1px">
+        android:translationZ="1dp">
 
-        <TextView
-            android:id="@+id/tv_title"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="80px"
-            android:layout_marginRight="60px"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLength="8"
-            android:singleLine="true"
-            android:textColor="@color/c_000000"
-            android:textSize="18sp"
-            android:textStyle="normal"
-            android:text="" />
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true">
 
-        <ImageButton
-            android:id="@+id/ib_back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:paddingLeft="20px"
-            android:paddingRight="12px"
-            android:src="@mipmap/back_arrow_blue" />
-    </com.zhy.autolayout.AutoRelativeLayout>
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="8"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+            <ImageButton
+                android:id="@+id/ib_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:paddingLeft="10dp"
+                android:paddingRight="6dp"
+                android:src="@mipmap/navagation_back" />
+
+            <!--<ImageView
+                android:layout_width="wrap_content"
+                android:src=""
+                android:layout_height="wrap_content" />-->
+        </RelativeLayout>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:background="@color/c_979797"
+        android:layout_height="2px"
         android:layout_below="@id/arl_header"
-        android:layout_height="2px"></View>
+        android:background="@color/c_979797"></View>
 
-    <com.zhy.autolayout.AutoFrameLayout
+    <FrameLayout
         android:id="@+id/video_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,10 +75,9 @@
         android:layout_below="@id/arl_header"
         android:progressDrawable="@drawable/progress_bar_web_drawable"
         android:visibility="gone"
-
         />
 
-    <com.mobile.hyoukalibrary.x5_web_view.BaseWebView
+    <com.youyijia.hyoukalibrary.x5_web_view.BaseWebView
         android:id="@+id/ev_web"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -78,10 +85,10 @@
         android:overScrollMode="never"
         android:scrollbars="none" />
 
-    <com.zhy.autolayout.AutoFrameLayout
+    <FrameLayout
         android:id="@+id/afl_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
 
-</com.zhy.autolayout.AutoRelativeLayout>
+</RelativeLayout>

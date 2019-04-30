@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.mobile.android.app.build_material_feedback.BuildingMaterialsFeedBackActivity">
+    tools:context="com.youyijia.goodhealth.app.build_material_feedback.BuildingMaterialsFeedBackActivity">
 
     <include layout="@layout/toolbar_view_submit"/>
 

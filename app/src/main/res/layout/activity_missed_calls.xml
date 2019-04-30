@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:background="@color/c_efefef"
-    tools:context="com.mobile.android.app.missed_calls.MissedCallsActivity">
+    tools:context="com.youyijia.goodhealth.app.missed_calls.MissedCallsActivity">
 
     <include layout="@layout/toolbar_view"/>
 

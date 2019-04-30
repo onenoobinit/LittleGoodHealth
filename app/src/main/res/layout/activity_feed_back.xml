@@ -1,92 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/c_F3F2F2"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:overScrollMode="never">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/logi_tool_bar"
+    <RelativeLayout
+        android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tool_bar_height"
-        android:background="@color/c_F5A623"
-        app:navigationIcon="@mipmap/navagation_back"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="64dp"
+        android:background="@drawable/tv_login">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/logi_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar_height"
+            android:layout_alignParentBottom="true"
+            app:navigationIcon="@mipmap/navagation_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:text="评价建议"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_top"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:text="意见反馈"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="normal" />
-    </android.support.v7.widget.Toolbar>
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="15dp"
+            android:text="您的建议"
+            android:textColor="@color/c_4A4A4A"
+            android:textSize="14sp" />
 
-    <com.zhy.autolayout.AutoRelativeLayout
-        android:id="@+id/arl_feedback"
-        android:layout_width="wrap_content"
-        android:layout_height="636px"
-        android:layout_below="@+id/logi_tool_bar"
-        android:layout_marginLeft="46px"
-        android:layout_marginRight="46px"
-        android:layout_marginTop="60px"
-        android:background="@drawable/feed_back_bgd"
-        android:paddingBottom="20px"
-        android:paddingLeft="30px"
-        android:paddingRight="30px"
-        android:paddingTop="30px">
+        <RelativeLayout
+            android:id="@+id/arl_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="173dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/feed_back_bgd"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp">
+
+            <EditText
+                android:id="@+id/edit_feedback_content"
+                android:layout_width="match_parent"
+                android:layout_height="400px"
+                android:background="@null"
+                android:gravity="left"
+                android:hint="只针对本产品进行反馈，如果咨询健康问题或者对商品有问题请使用首页“问问他”或请找客服帮忙。"
+                android:lineSpacingExtra="5dp"
+                android:textColor="@color/c_000000"
+                android:textColorHint="@color/c_AAAAAA"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_content_max_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:text="/200"
+                android:textColor="@color/c_000000"
+                android:textSize="30px" />
+
+            <TextView
+                android:id="@+id/tv_content_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="2dp"
+                android:layout_toLeftOf="@id/tv_content_max_length"
+                android:text="0"
+                android:textColor="@color/c_85B175"
+                android:textSize="30px" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="17dp"
+            android:text="请留下手机号，方便我们联系您"
+            android:textColor="@color/c_4A4A4A"
+            android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/edit_feedback_content"
+            android:id="@+id/et_phone_number"
             android:layout_width="match_parent"
-            android:layout_height="400px"
-            android:background="@null"
-            android:gravity="left"
-            android:hint="请输入您的反馈意见(200字以内)"
+            android:layout_height="49dp"
+            android:background="@color/white"
+            android:layout_marginTop="17dp"
+            android:gravity="center_vertical"
+            android:inputType="phone"
             android:lineSpacingExtra="5dp"
-            android:textColor="@color/c_000000"
-            android:textColorHint="@color/c_AAAAAA"
-            android:textSize="35px" />
+            android:paddingLeft="18dp"
+            android:textColor="@color/c_4A4A4A"
+            android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_content_max_length"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="/200"
-            android:textColor="@color/c_000000"
-            android:textSize="30px" />
-
-        <TextView
-            android:id="@+id/tv_content_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="2dp"
-            android:layout_toLeftOf="@id/tv_content_max_length"
-            android:text="0"
-            android:textColor="@color/c_85B175"
-            android:textSize="30px" />
-    </com.zhy.autolayout.AutoRelativeLayout>
-
-    <TextView
-        android:id="@+id/tv_feed_submit"
-        android:layout_width="match_parent"
-        android:layout_height="127px"
-        android:layout_below="@+id/arl_feedback"
-        android:layout_marginLeft="46px"
-        android:layout_marginRight="46px"
-        android:layout_marginTop="78px"
-        android:background="@drawable/bg_tv_gray"
-        android:gravity="center"
-        android:text="提交"
-        android:textColor="@color/white"
-        android:textSize="52px" />
-</com.zhy.autolayout.AutoRelativeLayout>
+            android:id="@+id/tv_feed_submit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/tv_feed_back"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
+</RelativeLayout>

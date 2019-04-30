@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/cb_gg_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:button="@null"
+        android:paddingLeft="10dp"
+        android:paddingTop="3dp"
+        android:singleLine="true"
+        android:paddingRight="10dp"
+        android:paddingBottom="3dp"
+        android:text="100"
+        android:background="@drawable/bg_gg_uncheck"
+        android:textColor="@color/c_AAAAAA"
+        android:textSize="14sp" />
+</RelativeLayout>

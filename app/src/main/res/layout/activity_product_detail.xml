@@ -292,15 +292,15 @@
                         <com.zhy.autolayout.AutoRelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.9">
+                            android:layout_weight="1">
 
                             <com.zhy.autolayout.AutoLinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="航班号"
                                     android:textColor="@color/c_808080"
@@ -310,7 +310,7 @@
                                     android:id="@+id/tv_sec1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginLeft="40px"
                                     android:layout_marginTop="50px"
                                     android:text="- -"
                                     android:textColor="@color/c_808080"
@@ -333,13 +333,13 @@
                             android:layout_weight="1">
 
                             <com.zhy.autolayout.AutoLinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="交货城市"
                                     android:textColor="@color/c_808080"
@@ -349,7 +349,7 @@
                                     android:id="@+id/tv_sec2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginLeft="40px"
                                     android:layout_marginTop="50px"
                                     android:text="- -"
                                     android:textColor="@color/c_808080"
@@ -371,13 +371,13 @@
                             android:layout_weight="1">
 
                             <com.zhy.autolayout.AutoLinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="交货时间"
                                     android:textColor="@color/c_808080"
@@ -387,7 +387,7 @@
                                     android:id="@+id/tv_sec3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginLeft="40px"
                                     android:layout_marginTop="50px"
                                     android:text="- -"
                                     android:textColor="@color/c_808080"
@@ -409,13 +409,13 @@
                             android:layout_weight="1">
 
                             <com.zhy.autolayout.AutoLinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="进仓时间"
                                     android:textColor="@color/c_808080"
@@ -425,7 +425,7 @@
                                     android:id="@+id/tv_sec4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginLeft="40px"
                                     android:layout_marginTop="50px"
                                     android:text="- -"
                                     android:textColor="@color/c_808080"
@@ -458,7 +458,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="60px"
-                            android:text="航班头信息"
+                            android:text="航班信息"
                             android:textColor="@color/c_00A7F7"
                             android:textSize="46px" />
 
@@ -548,6 +548,7 @@
                         android:id="@+id/all_second"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:orientation="vertical">
 
                         <View
